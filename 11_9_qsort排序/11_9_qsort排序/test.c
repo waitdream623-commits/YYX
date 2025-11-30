@@ -13,7 +13,7 @@ void test();
 //{
 //	return strcmp(((struct stu*)p1)->name,((struct stu*)p2)->name);
 //}
-////°´ÕÕÄêÁäÅÅÐòË³Ðò
+//°´ÕÕÄêÁäÅÅÐòË³Ðò
 //int com_stu_by_age(const void* p1, const void* p2)
 //{
 //	return(((struct stu*)p1)->age- ((struct stu*)p2)->age);
@@ -25,15 +25,15 @@ void test();
 //}
 //
 //
-//void test()
-//{
-//	struct stu arr[3] = { {"lemon",18},{"liling",221},{"yy",19}};
-//	int sz = sizeof(arr) / sizeof(arr[0]);
-//	qsort(arr, sz, sizeof(arr[0]), com_stu_by_age);
-//	for (int i = 0; i < sz;i++)
-//	{
-//		printf("name:%s£¬age£º%d\n", arr[i].name,arr[i].age);
-//	}
+void test()
+{
+	struct stu arr[3] = { {"lemon",18},{"liling",221},{"yy",19}};
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	qsort(arr, sz, sizeof(arr[0]), com_stu_by_age);
+	for (int i = 0; i < sz;i++)
+	{
+		printf("name:%s£¬age£º%d\n", arr[i].name,arr[i].age);
+	}
 //	
 //}
 int com_int(const void* p1, const void* p2);
