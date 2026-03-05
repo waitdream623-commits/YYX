@@ -10,7 +10,8 @@ int ret,n,k,sum;
  
 bool cheack(int x)
 {
-	for(int i=2;i<=sqrt(x);i++)
+    if(x<=1)return 0;
+	for(int i=2;i<=x/i;i++)//Ê¹ÓÃsqrt³¬Ê±
 	{
 		if(x%i==0)return 0;
 	 } 
