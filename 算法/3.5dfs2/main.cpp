@@ -5,32 +5,31 @@
 using namespace std;
 int n;
 const int N=20;
-bool st[N][N];
+bool col[N],st[2*N],st2[N];
 vector<int>choice;
-int count=3;
 int ret;
 void dfs(int pos)
 {
 	if(pos>n)
-	{
-		if(count)
+	{	ret++;
+		if(ret<=3)//输出前三个 
 		{
 			for(auto e:choice)
 			cout<<e<<" ";
 			cout<<endl;
 		}
-		count--
-		ret++;
+		
 		return;
 	}
 	for(int i=1;i<=n;i++)
 	{
-		if(st[pos][i])continue;
+		if(col[i]||st[pos-i+n]||st2[pos+i])continue;
+		col[i]=st[pos-i+n]=st2[pos+i]=1;
 		choice.push_back(i);
-		for(int j=1;j<=n;j++)
-		{
+		dfs(pos+1);
+		col[i]=st[pos-i+n]=st2[pos+i]=0;
+		choice.pop_back();
 		
-		}
 		
 	}
 }
@@ -38,6 +37,7 @@ int main()
 {
 	cin>>n;
 	dfs(1);
+	cout<<ret; 
 	return 0;
  } 
 
