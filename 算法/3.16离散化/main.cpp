@@ -19,7 +19,7 @@ int main()
 		disc[++pos]=a[i],disc[++pos]=b[i];
 	}
 	sort(disc+1,disc+1+pos);
-	//取重后续利用差分离散下标找到原来左右区间 
+	//去重后续利用差分离散下标找到原来左右区间 
 	pos=unique(disc+1,disc+1+pos)-(disc+1);
 	for(int i=1;i<=pos;i++)
 	{
