@@ -1,23 +1,23 @@
-//T618438 电梯接客
-#include<iostream>
-#incldue <vector>
-using namespace std;
-int n,x,y,w;
-pair<int,int>a[];
-int main()
-{
-	cin>>n>>x>>y>>w;
-	for(int i=1;i<=n;i++)
-	{
-		int a,b;cin>>a>>b;
-		q.push_back({a,b});
-	}
-	int ret=0;
-	sort(q.begin(),q.end());
-	
-	
-	return 0;
-}
+////T618438 电梯接客
+//#include<iostream>
+//#incldue <vector>
+//using namespace std;
+//int n,x,y,w;
+//pair<int,int>a[];
+//int main()
+//{
+//	cin>>n>>x>>y>>w;
+//	for(int i=1;i<=n;i++)
+//	{
+//		int a,b;cin>>a>>b;
+//		q.push_back({a,b});
+//	}
+//	int ret=0;
+//	sort(q.begin(),q.end());
+//	
+//	
+//	return 0;
+//}
 
 
 //////T632594 采矿文明
