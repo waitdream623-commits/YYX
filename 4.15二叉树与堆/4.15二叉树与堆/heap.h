@@ -20,11 +20,10 @@ void Adjustup(Hpdatatype* a, int child);
 //插入
 void Push(Hp* hp, Hpdatatype e);
 //向下调整
-// void Adjustdown(Hpdatatype* a, int father, int size);
+void Adjustdown(Hpdatatype* a, int father, int size);
 //删除
 void Pop(Hp* hp);
 //判空
 bool Empty(Hp hp);
 //堆头
 Hpdatatype Top(Hp hp);
-
