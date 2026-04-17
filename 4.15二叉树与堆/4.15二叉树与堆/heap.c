@@ -10,8 +10,8 @@ void Init(Hp* hp)
 void Destory(Hp* hp)
 {
 	assert(hp);
-	free(hp->a);//只会释放内存
-	hp->a = NULL;//置空，避免野指针
+	assert(hp->a);
+	free(hp->a);
 	hp->capacity = hp->size = 0;
 }
 void Swap(Hpdatatype* a, Hpdatatype* b)
@@ -67,24 +67,10 @@ void Push(Hp* hp, Hpdatatype e)
 void Adjustdown(Hpdatatype* a, int father, int size)
 {
 	int child = father * 2 + 1;//左孩子
-	//大根堆
-	//while (child  < size)//最后一个为删除元素
-	//{	//大根堆，找到最大的孩子
-	//	if (child+1<size&&a[child + 1] > a[child])child++;
-	//	if (a[father] < a[child])
-	//	{
-	//		Swap(&a[child], &a[father]);
-	//		father = child;
-	//		child = father * 2 + 1;
-	//	}
-	//	else
-	//		break;
-	//}
-	//小根堆
-	while (child < size)//最后一个为删除元素
-	{	//小根堆，找到最小的孩子
-		if (child + 1 < size && a[child + 1] < a[child])child++;
-		if (a[father] > a[child])
+	while (child  < size)//最后一个为删除元素
+	{	//大根堆，找到最大的孩子
+		if (a+1<size&&a[child + 1] > a[child])child++;
+		if (a[father] < a[child])
 		{
 			Swap(&a[child], &a[father]);
 			father = child;
@@ -97,21 +83,18 @@ void Adjustdown(Hpdatatype* a, int father, int size)
 }
 void Pop(Hp* hp)
 {
-	assert(hp);
-	assert(hp->size > 0);
 	Swap(&hp->a[0], &hp->a[hp->size - 1]);
 	//向下调整
 	hp->size--;
 	Adjustdown(hp->a, 0, hp->size);
 	
 }
-bool Empty(Hp* hp)
+bool Empty(Hp hp)
 {
-	assert(hp);
-	return hp->size == 0;
+	return hp.size == 0;
 }
-Hpdatatype Top(Hp* hp)
+Hpdatatype Top(Hp hp)
 {
-	assert(hp);
-	return hp->a[0];
+	
+	return hp.a[0];
 }
