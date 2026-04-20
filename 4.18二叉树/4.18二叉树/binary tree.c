@@ -152,11 +152,39 @@ BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
 	return BinaryTreeFind(root->right, x);
 }
 // 通过前序遍历的数组"ABD##E#H##CF##G##"构建二叉树
-BTNode* BinaryTreeCreate(BTDataType* a, int n, int* pi);
+//BTNode* BinaryTreeCreate(BTDataType* a, int n, int* pi);
 // 二叉树销毁
-void BinaryTreeDestory(BTNode** root);
+void TreeDestory(BTNode** root)
+{
+	if (*root == NULL)return;
+	TreeDestory((*root)->left);
+	TreeDestory((*root)->right);
+	free(*root);
+	*root = NULL;
+}
+#include"Queue.h"
+//层序遍历
+void TreeLevelOrder(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+	if (root)
+		QueuePush(&q, root);
+	while (!QueueEmpty(&q))
+	{
+		BTNode* tmp = QueueFront(&q);
+		QueuePop(&q);
+		
+			printf("%d ", tmp->data);
+			if (tmp->left)
+				QueuePush(&q, tmp->left);
+			if (tmp->right)
+				QueuePush(&q, tmp->right);
+	}
+	QueueDestroy(&q);
+}
 // 判断二叉树是否是完全二叉树
-int BinaryTreeComplete(BTNode* root);
+//int BinaryTreeComplete(BTNode* root);
 
 
 int main()
@@ -176,7 +204,7 @@ int main()
 	printf("树高度：%d\n", TreeHeight(root));
 	printf("第三层节点数：%d\n", TreekNode(root,3));
 	printf("查找6：%d\n", BinaryTreeFind(root, 6)->data);
-
+	TreeLevelOrder(root);
 	
 
 	
