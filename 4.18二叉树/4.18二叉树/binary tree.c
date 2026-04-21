@@ -184,7 +184,34 @@ void TreeLevelOrder(BTNode* root)
 	QueueDestroy(&q);
 }
 // 判断二叉树是否是完全二叉树
-//int BinaryTreeComplete(BTNode* root);
+bool BinaryTreeComplete(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+	if (root)
+		QueuePush(&q, root);
+	while (!QueueEmpty(&q))
+	{
+		BTNode* tmp = QueueFront(&q);
+		QueuePop(&q);
+		if (!tmp)//第一次遇到空
+			break;
+		//将空也入队
+		QueuePush(&q, tmp->left);
+		QueuePush(&q, tmp->right);
+	}
+	while (!QueueEmpty(&q))
+	{
+		BTNode* tmp = QueueFront(&q);
+		QueuePop(&q);
+		if (tmp)
+		{
+			QueueDestroy(&q);
+			return false;
+		}
+	}
+	return true;
+}
 
 
 int main()
