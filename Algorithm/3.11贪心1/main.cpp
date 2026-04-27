@@ -1,4 +1,4 @@
-//P1094 [NOIP 2007 ÆÕ¼°×é] ¼ÍÄîÆ··Ö×é
+//P1094 [NOIP 2007 ï¿½Õ¼ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 #include<iostream>
 #include<algorithm>
 using namespace std;
@@ -13,9 +13,9 @@ int main()
 	}
 	sort(a+1,a+1+n);
 	int l=1,r=n; 
-	//×î¶àÁ½¸öÎªÒ»×é 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÒ»ï¿½ï¿½ 
 	int ret=0;
-	while(l<=r)//È¡µÈ£¬µ±ÆæÊýÊ±ÐèÒª¼ÓÒ» 
+	while(l<=r)//È¡ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Òªï¿½ï¿½Ò» 
 	{
 		if(a[l]+a[r]<=k)l++,r--;
 		else r--;
@@ -26,7 +26,7 @@ int main()
  } 
 
 
-////P1115 ×î´ó×Ó¶ÎºÍ
+////P1115 ï¿½ï¿½ï¿½ï¿½Ó¶Îºï¿½
 //#include <iostream>
 //
 //using namespace std;
@@ -47,7 +47,7 @@ int main()
 // } 
 
 
-////P10452 »õ²ÖÑ¡Ö·
+////P10452 ï¿½ï¿½ï¿½ï¿½Ñ¡Ö·
 //#include <iostream>
 //#include<algorithm>
 //using namespace std;

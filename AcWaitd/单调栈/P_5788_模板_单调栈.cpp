@@ -1,16 +1,16 @@
 #define _CRT_SECURE_NO_WARNINGS
-//P5788 ¡¾Ä£°å¡¿µ¥µ÷Õ»
-//´ËÌâ¿ÉÁĞÎª´ÓÓÒÍù×óµ¥µ÷µİ¼õÕ»
+//P5788 ã€æ¨¡æ¿ã€‘å•è°ƒæ ˆ
+//æ­¤é¢˜å¯åˆ—ä¸ºä»å³å¾€å·¦å•è°ƒé€’å‡æ ˆ
 #include<iostream>
 #include<stack>
 
 using namespace std;
-const int N = 3e6 + 10;//²»ÄÜĞ´³É3*e6
+const int N = 3e6 + 10;//ä¸èƒ½å†™æˆ3*e6
 int a[N];
 int f[N];
 int main()
 {
-	//³¬Ê±ÓÅ»¯
+	//è¶…æ—¶ä¼˜åŒ–
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
@@ -20,15 +20,15 @@ int main()
 	stack<int>st;
 	for (int i = n; i > 0; i--)
 	{
-		//Îª¿Õ£¬¼´µÚÒ»´Î£¬Ö±½Ó¼ÓÈë
+		//ä¸ºç©ºï¼Œå³ç¬¬ä¸€æ¬¡ï¼Œç›´æ¥åŠ å…¥
 		while (st.size() && a[st.top()] <= a[i])st.pop();
-		//´ËÊ±Õ»ÀïÂú×ãÌõ¼ş
-		if (st.size())f[i] = st.top();//Îª¿Õ£¬±íÊ¾Ã»ÓĞÂú×ãÌõ¼şµÄ
-										//Ä¬ÈÏÎª¿Õ
+		//æ­¤æ—¶æ ˆé‡Œæ»¡è¶³æ¡ä»¶
+		if (st.size())f[i] = st.top();//ä¸ºç©ºï¼Œè¡¨ç¤ºæ²¡æœ‰æ»¡è¶³æ¡ä»¶çš„
+										//é»˜è®¤ä¸ºç©º
 		st.push(i);
 
 	}
-	//Êä³ö
+	//è¾“å‡º
 	for (int i = 1; i <= n; i++)
 	{
 		cout << f[i] << ' ';
