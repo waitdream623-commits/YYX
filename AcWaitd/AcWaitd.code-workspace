@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "单调队列",
+			"path": "单调队列"
+		},
+		{
+			"name": "单调栈",
+			"path": "单调栈"
+		},
+		{
+			"name": "templates",
+			"path": "templates"
+		},
+		{
+			"name": "树",
+			"path": "树"
+		}
+	],
+	"settings": {"files.exclude": {
+    "**/*.exe": true
+}}
+}

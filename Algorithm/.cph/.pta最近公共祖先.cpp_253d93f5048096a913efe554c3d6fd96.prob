@@ -1,0 +1,1 @@
+{"name":"Local: pta最近公共祖先","url":"d:\\c\\code\\yy\\AcWaitd\\树\\pta最近公共祖先.cpp","tests":[{"id":1777380869398,"input":"2\n8 5 1 0 6 0 2 0 0 3 4 0 0 7 0 0 0\n1 2\n8 5 1 0 6 0 2 0 0 3 4 0 0 7 0 0 0\n2 4\n","output":"5\n8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\c\\code\\yy\\AcWaitd\\树\\pta最近公共祖先.cpp","group":"local","local":true}

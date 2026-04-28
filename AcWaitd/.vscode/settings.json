@@ -1,0 +1,34 @@
+{
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ -std=c++20 $fileName -o a.exe && .\\a.exe"
+    },
+    "code-runner.saveFileBeforeRun": true,
+
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "clangd",
+    "clangd.arguments": [
+        "--header-insertion=never",
+        "--completion-style=detailed"
+    ],
+    "clangd.fallbackFlags": [
+        "-ID:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++",
+        "-ID:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32",
+        "-ID:/Program Files/LLVM/x86_64-w64-mingw32/include"
+    ],
+
+    "files.exclude": {
+        "**/*.exe": true
+    },
+
+    // 可选：强制 CPH 也用 a.exe
+    "cph.general.compileCommand": "g++ -std=c++20 $fileName -o $dir/a.exe",
+
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas",
+    "editor.fontLigatures": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+}
