@@ -1,34 +1,16 @@
 {
-    "code-runner.runInTerminal": true,
-    "code-runner.executorMap": {
-        "cpp": "cd $dir && g++ -std=c++20 $fileName -o a.exe && .\\a.exe"
-    },
-    "code-runner.saveFileBeforeRun": true,
-
-    "C_Cpp.intelliSenseEngine": "disabled",
-    "clangd.path": "clangd",
-    "clangd.arguments": [
-        "--header-insertion=never",
-        "--completion-style=detailed"
-    ],
-    "clangd.fallbackFlags": [
-        "-ID:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++",
-        "-ID:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32",
-        "-ID:/Program Files/LLVM/x86_64-w64-mingw32/include"
-    ],
-
+    "C_Cpp.intelliSenseEngine": "Disabled", // 极其关键：禁用微软引擎，防止与 Clangd 打架
     "files.exclude": {
-        "**/*.exe": true
+        "**/*.exe": true,       // 隐藏生成的 exe 文件
+        "**/*.tmp*": true,      // 隐藏编译产生的临时垃圾
+        "**/*.pdb": true,       // 🌟 核心修改：把调试信息字典也完美隐藏
+        "**/.cph": true         // 隐藏 cph 缓存
     },
-
-    // 可选：强制 CPH 也用 a.exe
-    "cph.general.compileCommand": "g++ -std=c++20 $fileName -o $dir/a.exe",
-
-    "files.autoSave": "onFocusChange",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas",
-    "editor.fontLigatures": true,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true
+    "code-runner.runInTerminal": true,      // 解决 cin 无法输入法的问题
+    "code-runner.saveFileBeforeRun": true,  
+    "code-runner.executorMap": {
+        // 强制编译为 a.exe 并运行，运行前自动清理缓存
+        "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g \"$fileName\" -o a.exe && .\\a.exe"
+    },
+    "cph.general.defaultSrcDir": "Monotonic Queue"
 }

@@ -1,22 +1,31 @@
 {
-    "version": "2.0.0",
     "tasks": [
         {
-            "label": "g++ build active file",
-            "type": "shell",
-            "command": "g++",
+            "type": "cppbuild",
+            "label": "C/C++: clang++.exe 生成活动文件",
+            "command": "D:\\Program Files\\LLVM\\bin\\clang++.exe",
             "args": [
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
                 "-std=c++20",
-                "-g",                                 // 必须包含调试信息
+                "-g",
+                "-gdwarf",
                 "${file}",
                 "-o",
                 "${fileDirname}\\a.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "detail": "调试器生成的任务。"
         }
-    ]
+    ],
+    "version": "2.0.0"
 }

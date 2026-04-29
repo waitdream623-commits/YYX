@@ -1,23 +1,74 @@
 {
 	"folders": [
 		{
-			"name": "单调队列",
-			"path": "单调队列"
+			"path": "Monotonic_Queue"
 		},
 		{
-			"name": "单调栈",
-			"path": "单调栈"
+			"path": "Monotonic_Stack"
 		},
 		{
-			"name": "templates",
 			"path": "templates"
 		},
 		{
-			"name": "树",
-			"path": "树"
+			"path": "Tree"
 		}
 	],
-	"settings": {"files.exclude": {
-    "**/*.exe": true
-}}
+	"settings": {
+        "files.exclude": {
+            "**/*.exe": true,
+            "**/*.pdb": true,
+            "**/*.ilk": true,
+            "**/*.tmp*": true,
+            "**/.cph": true
+        },
+        "C_Cpp.intelliSenseEngine": "Disabled",
+        "code-runner.runInTerminal": true,
+        "code-runner.stopPreviousRun": true,  // 🌟 核心魔法 1：运行新代码前，自动猎杀上一个卡死的进程
+        "code-runner.executorMap": {
+            // 🌟 核心魔法 2：播放键专属轨道，编译为 run.exe
+            "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g \"$fileName\" -o run.exe && .\\run.exe"
+        }
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "type": "shell",
+                "label": "Build for Debug",
+                // 🌟 核心魔法1：使用 CMD 专属的 & 符号连接命令，>nul 2>&1 负责静默吸收所有错误
+                "command": "taskkill /f /im debug.exe /t >nul 2>&1 & clang++ -std=c++20 -g -gdwarf \"${file}\" -o \"${fileDirname}\\debug.exe\" -Wl,-ignore:4068",
+                "options": {
+                    "cwd": "${fileDirname}",
+                    // 🌟 核心魔法2：强制夺权！指定该任务不准用 PowerShell，必须用老实本分的 cmd.exe
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": ["/c"]
+                    }
+                },
+                "problemMatcher": ["$gcc"],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                }
+            }
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Debug Current File",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${fileDirname}\\debug.exe", // 🌟 调试器去咬住 debug.exe
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${fileDirname}",
+                "environment": [],
+                "externalConsole": false,
+                "MIMode": "gdb",
+                "preLaunchTask": "Build for Debug"
+            }
+        ]
+    }
 }
