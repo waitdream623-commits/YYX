@@ -1,18 +1,26 @@
 {
 	"folders": [
-		{
-			"path": "Monotonic_Queue"
-		},
-		{
-			"path": "Monotonic_Stack"
-		},
-		{
-			"path": "templates"
-		},
-		{
-			"path": "Tree"
-		}
-	],
+        {
+            "name": "union-find_sets",
+            "path": "union-find_sets"
+        },
+        {
+            "name": "Monotonic_Queue",
+            "path": "Monotonic_Queue"
+        },
+        {
+            "name": "Monotonic_Stack",
+            "path": "Monotonic_Stack"
+        },
+        {
+            "name": "templates",
+            "path": "templates"
+        },
+        {
+            "name": "Tree",
+            "path": "Tree"
+        }
+    ],
 	"settings": {
         "files.exclude": {
             "**/*.exe": true,

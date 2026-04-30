@@ -42,11 +42,11 @@ int main()
                 //最后三个0，两个就会跳出
                 cin>>x;
         //如何存储
-            int j=1;//便利数组
+            int j=1;//遍历数组
             dfs(0,j);
             int c,b;
             cin>>c>>b;
-            //a向上访问标记经过路径
+            //c向上访问标记经过路径
             while(fa[c])
             {
                 road[fa[c]]=1;
