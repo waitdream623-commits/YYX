@@ -23,6 +23,7 @@ bin-release/
 *.db
 *.ipch
 *.pdb
+*.tmp
 Debug/
 .vs
 Release/
