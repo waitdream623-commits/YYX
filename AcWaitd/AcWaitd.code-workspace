@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "Trie",
+            "path": "Trie"
+        },
+        {
+            "name": "Character_Hash_Array",
+            "path": "Character_Hash_Array"
+        },
+        {
             "name": "union-find_sets",
             "path": "union-find_sets"
         },
