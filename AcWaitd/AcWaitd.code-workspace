@@ -1,12 +1,12 @@
 {
 	"folders": [
         {
-            "name": "LGR-265-Div.3#34 & YLLOI Round 4",
-            "path": "Luo_Gu_Contest/LGR-265-Div.3#34 & YLLOI Round 4"
-        },
-        {
             "name": "Minimum_Weight_Spanning_Tree",
             "path": "Graph_Theory/Minimum_Weight_Spanning_Tree"
+        },
+        {
+            "name": "LGR-265-Div.3#34 & YLLOI Round 4",
+            "path": "Luo_Gu_Contest/LGR-265-Div.3#34 & YLLOI Round 4"
         },
         {
             "name": "Trie",
