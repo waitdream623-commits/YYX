@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Topological_Sorting",
+            "path": "Graph_Theory/Topological_Sorting"
+        },
+        {
             "name": "Minimum_Weight_Spanning_Tree",
             "path": "Graph_Theory/Minimum_Weight_Spanning_Tree"
         },
