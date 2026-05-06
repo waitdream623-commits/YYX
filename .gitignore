@@ -24,6 +24,10 @@ bin-release/
 *.ipch
 *.pdb
 *.tmp
+*.exe.tmp0
+*.exe.tmp1
+*.exe.tmp2
+
 Debug/
 .vs
 Release/
