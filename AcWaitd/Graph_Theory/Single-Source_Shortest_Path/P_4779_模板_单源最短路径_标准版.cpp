@@ -1,5 +1,6 @@
 //卡复杂度
 //优化，非负可以用优先队列优化找最小距离点
+//dijkstra加小根堆优化
 #include <functional>
 #include <iostream>
 #include <queue>
