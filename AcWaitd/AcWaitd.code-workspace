@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Multi-Source_Shortest_Path",
+            "path": "Graph_Theory/Multi-Source_Shortest_Path"
+        },
+        {
             "name": "Single-Source_Shortest_Path",
             "path": "Graph_Theory/Single-Source_Shortest_Path"
         },
