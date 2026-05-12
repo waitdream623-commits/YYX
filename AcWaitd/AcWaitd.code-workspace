@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "Prime",
+            "path": "Number_Theory/Prime"
+        },
+        {
+            "name": "Number_Theory",
+            "path": "Number_Theory"
+        },
+        {
             "name": "Multi-Source_Shortest_Path",
             "path": "Graph_Theory/Multi-Source_Shortest_Path"
         },
