@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Consolidation",
+            "path": "Consolidation"
+        },
+        {
             "name": "Prime",
             "path": "Number_Theory/Prime"
         },

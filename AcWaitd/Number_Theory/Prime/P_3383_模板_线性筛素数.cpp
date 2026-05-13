@@ -26,7 +26,15 @@ void get_prime1()
 }
 void get_prime2()
 {
-  
+  for(int i=2;i<=n;i++)
+  {
+    if(!st[i])p[++cnt]=i;
+    for(int j=1;1ll*i*p[j]<=n;j++)
+    {
+      st[i*p[j]]=true;
+      if(i%p[j]==0)break;
+    }
+  }
 
 }
 int main() {
@@ -34,7 +42,7 @@ int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin>>n;
-  get_prime();
+  get_prime2();
   int q;cin>>q;
   while(q--)
   {
