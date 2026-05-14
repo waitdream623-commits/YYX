@@ -2,8 +2,6 @@
 //并查集
 #include <algorithm>
 #include <iostream>
-#include <locale>
-#include <map>
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -13,8 +11,7 @@ const int N = 1e4 + 10;
 int c[N],v[N];
 int n,m,w;
 int f[11000];
-int g[N];//需要初始化
-map<int, int>mp1,mp2;//存储每个集合的消耗与价值
+int g[N];//需要初始化，并查集
 int find(int x)
 {
   if(g[x]==x)return x;
