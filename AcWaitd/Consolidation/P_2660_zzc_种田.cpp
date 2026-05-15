@@ -15,8 +15,10 @@ int main() {
   while (x>0&&y>0)
   {
     if(x>y)swap(x,y);
-    ret+=x*4;
-    y-=x;
+    // 能获得x为边正方形个数
+    ll cnt=y/x;//记得用ll;
+    ret+=x*4*cnt;
+    y%=x;
   }
   cout<<ret;
   return 0;

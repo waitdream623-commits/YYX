@@ -24,7 +24,8 @@ int main() {
 }
    else
    {
-    cout<<s[0]<<s[1]<<s[2]<<'-';
+    cout<<s[0]<<s[1]<<s[2];
+    if(n>3)cout<<"-";//如果长度仅为3
     for(int i=3;i<n;i++)
     {
         cout<<s[i];
