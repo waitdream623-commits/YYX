@@ -1,31 +1,31 @@
 #include <iostream>
-#include <utility>
+#include <string>
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int>PII;
 int INF=0x3f3f3f3f;
 const int N = 1e6 + 10;
+//尽量留前导0；留小数在前面，优先处理高位大数
+string s;
 int main() {
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  int t;cin>>t;
-  while (t--)
+  cin>>s;
+  int k;cin>>k;
+  for(int i=0;i<s.size();i++)
   {
-    int n,a,b,k;cin>>n>>a>>b>>k;
-    ll ret=0;
-    if(n<=3)
+    if(s[i]<s[i+1])
     {
-      cout<<1<<endl;
-      continue;
+      s.erase(i+1);
+      k--;
     }
-    //距离
-    int d=min(abs(a-b),n-abs(a-b));
-    //k能增加k秒
-    ret+=k+d;
-    cout<<ret<<endl;
+    else
+    {
+      s.erase(i);
+      k--;
+    }
   }
-  
   return 0;
 }
