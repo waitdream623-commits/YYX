@@ -79,7 +79,9 @@
             "**/*.pdb": true,
             "**/*.ilk": true,
             "**/*.tmp*": true,
-            "**/.cph": true
+            "**/.cph": true,
+            "**/.png": true,
+
         },
         "C_Cpp.intelliSenseEngine": "Disabled",
         "code-runner.runInTerminal": true,
