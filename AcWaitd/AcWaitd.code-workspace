@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "The_Fundamental_Theorem_of_Arithmetic",
+            "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
+        },
+        {
             "name": "Consolidation",
             "path": "Consolidation"
         },
