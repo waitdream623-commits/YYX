@@ -37,7 +37,7 @@ void get_prime()
         {
             p[++cnt] = i; // 记录这个质数
             // 从 i*i 开始，因为⼩于 i 的倍数已经被划掉了
-            for(LL j = i * i; j <= n; j += i) // 筛掉这个质数的倍数
+            for(LL j = i * i; j <= n; j += i) // 筛掉这个质数的倍数,这个i必须为ll，也可以使用1ll*i*i转换
             {
                 st[j] = true;
             }
@@ -64,7 +64,9 @@ void get_prime()
     {
         if(!st[i]) p[++cnt] = i; // 如果没标记过，就是质数
         // 枚举所有的质数
-        for(int j = 1; 1ll * i * p[j] <= n; j++)
+        //记得开long long ,1ll是将1转换为ll；
+        //1ll 就是数据类型为 long long 的数字 1，默认为int类型
+        for(ll j = 1; 1ll * i * p[j] <= n; j++)
         {
             st[i * p[j]] = true;
             if(i % p[j] == 0) break;

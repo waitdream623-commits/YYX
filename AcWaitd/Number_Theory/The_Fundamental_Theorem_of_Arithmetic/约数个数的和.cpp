@@ -9,28 +9,36 @@ int p[N];
 int cnt;
 bool st[N];
 int n;
-void getprime()
-{
-  for(int i=1;i<=n;i++)
-  {
-      if(!st[i])p[++cnt]=i;
-      for(int j=1;1ll*i*p[j];j++)
-      {
-        st[i*p[j]]=true;
-        if(i%p[j]==0)break;
-      }
-  }
-}
+// void getprime()
+// {
+//   for(int i=1;i<=n;i++)
+//   {
+//       if(!st[i])p[++cnt]=i;
+//       for(int j=1;1ll*i*p[j];j++)
+//       {
+//         st[i*p[j]]=true;
+//         if(i%p[j]==0)break;
+//       }
+//   }
+// }
 int main() {
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin>>n;
   ll ret=0;
-  for(int i=1;i<=n;i++)
-  {
+  // for(int i=1;i<=n;i++)
+  // {
+  //   ret+=n/i;
+  // }
+  //对于前n/2，需要计算，后半部分均分1；
+  //优化，验证奇偶
+  for (int  i = 1; i <= n/2; i++)
+   {
     ret+=n/i;
   }
+  ret+=n-n/2;
+  
   cout<<ret;
   return 0;
 }
