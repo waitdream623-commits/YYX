@@ -24,3 +24,61 @@
 
 ## 求解约数个数和
 ![alt text](image-5.png)
+
+## 欧拉函数
+- 试除法求解一个
+~~~cpp
+  ll getphi(int x)
+{
+  ll ret=x;
+  for(int i=2;i<=x;i++)
+  {
+    if(x%i==0)
+    {
+      ret=ret/i*(i-1);
+      while (x%i==0)
+      {
+        x/=i;
+      }
+      
+    }
+  }
+  if(x>1)ret=ret/x*(x-1);
+  return ret;
+}
+~~~
+- 求解1~n
+~~~cpp
+void getphi()
+{
+  phi[1]=1;
+  for(int i=2;i<=n;i++)
+  {
+    if(!st[i])
+    {
+        phi[i]=i-1;
+        p[++cnt]=i;
+    }
+    for(int j=1;1ll*i*p[j]<=n;j++)
+    {
+      int x=i*p[j];
+      st[x]=true;
+      if(i%p[j]==0)
+      {
+        phi[x]=p[j]*phi[i];
+        break;
+
+      }
+      else
+      {
+        phi[x]=phi[p[j]]*phi[i];
+      }
+    }
+  }
+}
+~~~
+## 求逆元
+- 快速幂p11465，序列求和
+
+## 欧拉定理与扩展
+- 欧拉降幂与秦九韶算法p5091与p4139

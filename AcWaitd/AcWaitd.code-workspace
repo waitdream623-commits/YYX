@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Codeforces Round 1099 (Div. 2)",
+            "path": "Contest/Codeforces Round 1099 (Div. 2)"
+        },
+        {
             "name": "The_Fundamental_Theorem_of_Arithmetic",
             "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
         },
@@ -75,6 +79,10 @@
         {
             "name": "Tree",
             "path": "Tree"
+        },
+        {
+            "name": "Contest",
+            "path": "Contest"
         }
     ],
 	"settings": {

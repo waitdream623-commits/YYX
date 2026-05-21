@@ -32,6 +32,14 @@ bin-release/
 *.exe.tmp5
 *.exe.tmp6
 *.exe.tmp7
+*.exe.tmp8
+*.exe.tmp9
+*.exe.tmp10
+*.exe.tmp11
+*.exe.tmp12
+*.exe.tmp13
+*.exe.tmp14
+
 Debug/
 .vs
 Release/
