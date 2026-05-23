@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)",
+            "path": "Contest/SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)"
+        },
+        {
             "name": "The_Fundamental_Theorem_of_Arithmetic",
             "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
         },
@@ -47,10 +51,6 @@
         {
             "name": "Minimum_Weight_Spanning_Tree",
             "path": "Graph_Theory/Minimum_Weight_Spanning_Tree"
-        },
-        {
-            "name": "LGR-265-Div.3#34 & YLLOI Round 4",
-            "path": "Luo_Gu_Contest/LGR-265-Div.3#34 & YLLOI Round 4"
         },
         {
             "name": "Trie",
