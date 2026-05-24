@@ -1,3 +1,12 @@
+# 错例
+- [ ] `int` 会不会溢出？ → 换 `long long`
+- [ ] 数组开够了吗？ → `const int N = xxx + 10`
+- [ ] 多测清空了吗？ → 全局变量、队列、栈、vector
+- [ ] 模运算做了吗？ → `(a + b) % MOD`
+- [ ] 输出格式：空格？换行？末尾空格？Yes/YES？
+- [ ] 0-indexed vs 1-indexed 搞混了没？
+- [ ] 类型混用了嘛
+
 # 一、基础模板
 
 ## 快读快写
@@ -352,74 +361,122 @@ for (int i = 1; i <= n; i++) {
 
 ## 线段树
 
-### 基础版（单点修改 + 区间求和）
+> 二叉树结构，O(log n) 单点/区间操作。空间开 **4×N**。
+> 节点 p：左儿子 `p<<1`，右儿子 `p<<1|1`，mid = (l+r)>>1。
+
+### 基础版：单点修改 + 区间求和
+
 ```cpp
-ll a[N], tr[N << 2];
-void pushup(int u) { tr[u] = tr[u << 1] + tr[u << 1 | 1]; }
-void build(int u, int l, int r) {
-    if (l == r) { tr[u] = a[l]; return; }
+ll a[N], tree[N << 2];
+
+void pushup(int p) { tree[p] = tree[p << 1] + tree[p << 1 | 1]; }
+
+// 建树：build(1, 1, n)
+void build(int p, int l, int r) {
+    if(l == r) { tree[p] = a[l]; return; }
     int mid = (l + r) >> 1;
-    build(u << 1, l, mid);
-    build(u << 1 | 1, mid + 1, r);
-    pushup(u);
+    build(p << 1, l, mid);
+    build(p << 1 | 1, mid + 1, r);
+    pushup(p);
 }
-void update(int u, int l, int r, int pos, ll val) {
-    if (l == r) { tr[u] += val; return; }
+
+// 单点修改：将 a[pos] 改为 val
+void update(int p, int l, int r, int pos, ll val) {
+    if(l == r) { tree[p] = val; return; }
     int mid = (l + r) >> 1;
-    if (pos <= mid) update(u << 1, l, mid, pos, val);
-    else            update(u << 1 | 1, mid + 1, r, pos, val);
-    pushup(u);
+    if(pos <= mid) update(p << 1, l, mid, pos, val);
+    else           update(p << 1 | 1, mid + 1, r, pos, val);
+    pushup(p);
 }
-ll query(int u, int l, int r, int ql, int qr) {
-    if (ql <= l && r <= qr) return tr[u];
-    int mid = (l + r) >> 1; ll res = 0;
-    if (ql <= mid) res += query(u << 1, l, mid, ql, qr);
-    if (qr >  mid) res += query(u << 1 | 1, mid + 1, r, ql, qr);
-    return res;
+
+// 区间查询 [ql, qr] 的和
+ll query(int p, int l, int r, int ql, int qr) {
+    if(ql <= l && r <= qr) return tree[p];
+    int mid = (l + r) >> 1; ll sum = 0;
+    if(ql <= mid) sum += query(p << 1, l, mid, ql, qr);
+    if(qr >  mid) sum += query(p << 1 | 1, mid + 1, r, ql, qr);
+    return sum;
 }
 ```
 
-### 懒标记版（区间加法 + 区间求和）
+### 懒标记版：区间加法 + 区间求和
+
 ```cpp
-ll a[N], tr[N << 2], lazy[N << 2];
-void pushup(int u) { tr[u] = tr[u << 1] + tr[u << 1 | 1]; }
-void pushdown(int u, int l, int r) {
-    if (lazy[u]) {
-        int mid = (l + r) >> 1;
-        tr[u << 1] += lazy[u] * (mid - l + 1);
-        tr[u << 1 | 1] += lazy[u] * (r - mid);
-        lazy[u << 1] += lazy[u];
-        lazy[u << 1 | 1] += lazy[u];
-        lazy[u] = 0;
-    }
-}
-void build(int u, int l, int r) {
-    if (l == r) { tr[u] = a[l]; return; }
+ll a[N], tree[N << 2], lazy[N << 2];
+
+void pushup(int p) { tree[p] = tree[p << 1] + tree[p << 1 | 1]; }
+
+// ★ 下传懒标记：经过节点时必须先 pushdown
+void pushdown(int p, int l, int r) {
+    if(lazy[p] == 0) return;
     int mid = (l + r) >> 1;
-    build(u << 1, l, mid);
-    build(u << 1 | 1, mid + 1, r);
-    pushup(u);
+    int left_len = mid - l + 1, right_len = r - mid;
+    // 左儿子
+    tree[p << 1] += lazy[p] * left_len;
+    lazy[p << 1] += lazy[p];
+    // 右儿子
+    tree[p << 1 | 1] += lazy[p] * right_len;
+    lazy[p << 1 | 1] += lazy[p];
+    lazy[p] = 0;  // 清除当前标记
 }
-void update(int u, int l, int r, int ql, int qr, ll val) {
-    if (ql <= l && r <= qr) {
-        tr[u] += val * (r - l + 1);
-        lazy[u] += val; return;
-    }
-    pushdown(u, l, r);
+
+void build(int p, int l, int r) {
+    if(l == r) { tree[p] = a[l]; return; }
     int mid = (l + r) >> 1;
-    if (ql <= mid) update(u << 1, l, mid, ql, qr, val);
-    if (qr >  mid) update(u << 1 | 1, mid + 1, r, ql, qr, val);
-    pushup(u);
+    build(p << 1, l, mid);
+    build(p << 1 | 1, mid + 1, r);
+    pushup(p);
 }
-ll query(int u, int l, int r, int ql, int qr) {
-    if (ql <= l && r <= qr) return tr[u];
-    pushdown(u, l, r);
-    int mid = (l + r) >> 1; ll res = 0;
-    if (ql <= mid) res += query(u << 1, l, mid, ql, qr);
-    if (qr >  mid) res += query(u << 1 | 1, mid + 1, r, ql, qr);
+
+// 区间加：[ml, mr] 每个元素 +val
+void update(int p, int l, int r, int ml, int mr, ll val) {
+    if(ml <= l && r <= mr) {          // 完全覆盖 → 打懒标记
+        tree[p] += val * (r - l + 1);
+        lazy[p] += val;
+        return;
+    }
+    pushdown(p, l, r);                // ★ 先下传
+    int mid = (l + r) >> 1;
+    if(ml <= mid) update(p << 1, l, mid, ml, mr, val);
+    if(mr >  mid) update(p << 1 | 1, mid + 1, r, ml, mr, val);
+    pushup(p);
+}
+
+// 区间查询（带懒标记）
+ll query(int p, int l, int r, int ql, int qr) {
+    if(ql <= l && r <= qr) return tree[p];
+    pushdown(p, l, r);                // ★ 查询前先下传
+    int mid = (l + r) >> 1; ll sum = 0;
+    if(ql <= mid) sum += query(p << 1, l, mid, ql, qr);
+    if(qr >  mid) sum += query(p << 1 | 1, mid + 1, r, ql, qr);
+    return sum;
+}
+```
+
+### 区间最值版（RMQ，无懒标记）
+
+```cpp
+int a[N], maxv[N << 2];
+
+void pushup(int p) { maxv[p] = max(maxv[p << 1], maxv[p << 1 | 1]); }
+
+void build(int p, int l, int r) {
+    if(l == r) { maxv[p] = a[l]; return; }
+    int mid = (l + r) >> 1;
+    build(p << 1, l, mid);
+    build(p << 1 | 1, mid + 1, r);
+    pushup(p);
+}
+
+int query_max(int p, int l, int r, int ql, int qr) {
+    if(ql <= l && r <= qr) return maxv[p];
+    int mid = (l + r) >> 1;
+    int res = -0x3f3f3f3f;  // 极小值
+    if(ql <= mid) res = max(res, query_max(p << 1, l, mid, ql, qr));
+    if(qr >  mid) res = max(res, query_max(p << 1 | 1, mid + 1, r, ql, qr));
     return res;
 }
-// 改成区间最值：pushup 用 max，res 初始 -INF
+// 求最小值：max → min，初始值改为 0x3f3f3f3f
 ```
 
 ## 树状数组 (Fenwick Tree / BIT)

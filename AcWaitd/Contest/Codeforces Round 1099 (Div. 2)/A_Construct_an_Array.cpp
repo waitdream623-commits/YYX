@@ -14,27 +14,8 @@ int main() {
   while (t--)
   {
     int n;cin>>n;
-    for(int i=1;i<=2*n;i++)
-    {
-      st[i]=0;
-    }
-    for(int i=1;i<=2*n;i++)
-    {
-      if(!st[i]&&!st[i+1])
-      {
-        int a=i,b=i+1;
-      st[a+b]=true;
-      }
 
-    }
-    int j=1;
-    while (n--)
-    {
-      if(!st[j]){
-        cout<<j<<' ';
-        j++;
-      }
-    }
+  
     cout<<endl;
   }
   

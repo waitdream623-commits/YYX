@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
-
-const int N = 2e5 + 10;
+#define int long long
+const int N = 2e5 + 10,INF=0x3f3f3f3f;
 int a[N], ans[N];
-int f[N];
-int main() {
+long long f[N];
+signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -13,12 +13,28 @@ int main() {
     while (T--) {
         int n;
         cin >> n;
-        int m=0;
+        f[0]=0;
+        int m=0,mn=INF;
         for (int i = 1; i <= n; i++){ cin >> a[i];
+            if(a[i]<0)
             f[i]=abs(a[i])+f[i-1];
+            else
+            {
+                f[i]=f[i-1];
+            }
             m=max(m,a[i]);
+            mn=min(mn,a[i]);
         }
-    
+    // if(m<=0)
+    // {
+    //     cout<<0<<endl;
+    //     continue;
+    // }
+    //    if(mn>=0)
+    // {
+    //     cout<<0<<endl;
+    //     continue;
+    // }
     int index=0;
     int mx=0;
     for(int i=1;i<n;i++)
@@ -28,11 +44,15 @@ int main() {
             if(f[i]-a[i+1]>mx)
             {
                 index=i+1;
-                mx=f[i]-a[i+1];
+                mx=f[i]-a[i+1];//开long long
             }
         }
     }    
-
+    if(index==0)
+    {
+        cout<<0<<endl;
+        continue;
+    }
         int cnt = 0, flip = 0;
         // 从右向左: 若有效值为正则翻转前缀 [1..i]
         for (int i = index-1; i >= 1; i--) {
@@ -49,5 +69,4 @@ int main() {
             cout << ans[i] << " \n"[i == cnt];
         }
     }
-    return 0;
 }

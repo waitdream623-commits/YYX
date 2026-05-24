@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
             "name": "SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)",
             "path": "Contest/SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)"
         },
@@ -19,10 +23,6 @@
         {
             "name": "Codeforces Round 1098 (Div. 2)",
             "path": "Contest/Codeforces Round 1098 (Div. 2)"
-        },
-        {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
         },
         {
             "name": "Prime",
@@ -100,7 +100,7 @@
         "code-runner.stopPreviousRun": true,  // 🌟 核心魔法 1：运行新代码前，自动猎杀上一个卡死的进程
         "code-runner.executorMap": {
             // 🌟 核心魔法 2：播放键专属轨道，编译为 run.exe
-            "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g \"$fileName\" -o run.exe && .\\run.exe"
+            "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g -I \"C:\\Users\\wait\" \"$fileName\" -o run.exe && .\\run.exe"
         }
     },
     "tasks": {
@@ -110,7 +110,7 @@
                 "type": "shell",
                 "label": "Build for Debug",
                 // 🌟 核心魔法1：使用 CMD 专属的 & 符号连接命令，>nul 2>&1 负责静默吸收所有错误
-                "command": "taskkill /f /im debug.exe /t >nul 2>&1 & clang++ -std=c++20 -g -gdwarf \"${file}\" -o \"${fileDirname}\\debug.exe\" -Wl,-ignore:4068",
+                "command": "taskkill /f /im debug.exe /t >nul 2>&1 & clang++ -std=c++20 -g -gdwarf -I \"C:\\Users\\wait\" \"${file}\" -o \"${fileDirname}\\debug.exe\" -Wl,-ignore:4068",
                 "options": {
                     "cwd": "${fileDirname}",
                     // 🌟 核心魔法2：强制夺权！指定该任务不准用 PowerShell，必须用老实本分的 cmd.exe

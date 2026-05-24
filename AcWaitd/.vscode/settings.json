@@ -1,5 +1,11 @@
 {
-    "C_Cpp.intelliSenseEngine": "Disabled", // 极其关键：禁用微软引擎，防止与 Clangd 打架
+    "C_Cpp.intelliSenseEngine": "Tag Parser", // 轻量标签解析器，不跟 clangd 冲突，但能解析 include 路径
+    "C_Cpp.errorSquiggles": "disabled", // 禁用微软 C/C++ 的错误波浪线，交给 clangd 处理
+    "C_Cpp.default.includePath": [
+        "C:/Users/wait"
+    ],
+    "C_Cpp.default.compilerPath": "D:/Program Files/LLVM/bin/clang++.exe",
+    "C_Cpp.default.cppStandard": "c++20",
     "files.exclude": {
         "**/*.exe": true,       // 隐藏生成的 exe 文件
         "**/*.tmp*": true,      // 隐藏编译产生的临时垃圾
