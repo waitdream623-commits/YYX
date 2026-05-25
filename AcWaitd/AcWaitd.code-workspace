@@ -1,56 +1,44 @@
 {
 	"folders": [
         {
+            "name": "Combinatorial_Counting",
+            "path": "Combinatorics/Combinatorial_Counting"
+        },
+        {
+            "name": "Computing_Combinations",
+            "path": "Combinatorics/Computing_Combinations"
+        },
+        {
+            "name": "Combinatorics",
+            "path": "Combinatorics"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
-        },
-        {
-            "name": "SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)",
-            "path": "Contest/SpectralCup 2026 Round 2 (Codeforces Round 1100, Div. 1 + Div. 2)"
-        },
-        {
-            "name": "The_Fundamental_Theorem_of_Arithmetic",
-            "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
         },
         {
             "name": "Codeforces Round 1099 (Div. 2)",
             "path": "Contest/Codeforces Round 1099 (Div. 2)"
         },
         {
-            "name": "Consolidation",
-            "path": "Consolidation"
-        },
-        {
             "name": "Codeforces Round 1098 (Div. 2)",
             "path": "Contest/Codeforces Round 1098 (Div. 2)"
-        },
-        {
-            "name": "Prime",
-            "path": "Number_Theory/Prime"
-        },
-        {
-            "name": "Number_Theory",
-            "path": "Number_Theory"
-        },
-        {
-            "name": "Multi-Source_Shortest_Path",
-            "path": "Graph_Theory/Multi-Source_Shortest_Path"
-        },
-        {
-            "name": "Single-Source_Shortest_Path",
-            "path": "Graph_Theory/Single-Source_Shortest_Path"
         },
         {
             "name": "Codeforces Round 1097 (Div. 2, Based on Zhili Cup 2026)",
             "path": "Contest/Codeforces Round 1097 (Div. 2, Based on Zhili Cup 2026)"
         },
         {
-            "name": "Topological_Sorting",
-            "path": "Graph_Theory/Topological_Sorting"
+            "name": "Consolidation",
+            "path": "Consolidation"
         },
         {
-            "name": "Minimum_Weight_Spanning_Tree",
-            "path": "Graph_Theory/Minimum_Weight_Spanning_Tree"
+            "name": "The_Fundamental_Theorem_of_Arithmetic",
+            "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
+        },
+        {
+            "name": "Number_Theory",
+            "path": "Number_Theory"
         },
         {
             "name": "Trie",
@@ -73,16 +61,20 @@
             "path": "Monotonic_Stack"
         },
         {
-            "name": "templates",
-            "path": "templates"
-        },
-        {
             "name": "Tree",
             "path": "Tree"
         },
         {
+            "name": "Graph_Theory",
+            "path": "Graph_Theory"
+        },
+        {
             "name": "Contest",
             "path": "Contest"
+        },
+        {
+            "name": "templates",
+            "path": "templates"
         }
     ],
 	"settings": {
@@ -95,7 +87,7 @@
             "**/.png": true,
 
         },
-        "C_Cpp.intelliSenseEngine": "Disabled",
+        "C_Cpp.intelliSenseEngine": "Tag Parser",
         "code-runner.runInTerminal": true,
         "code-runner.stopPreviousRun": true,  // 🌟 核心魔法 1：运行新代码前，自动猎杀上一个卡死的进程
         "code-runner.executorMap": {
@@ -110,7 +102,7 @@
                 "type": "shell",
                 "label": "Build for Debug",
                 // 🌟 核心魔法1：使用 CMD 专属的 & 符号连接命令，>nul 2>&1 负责静默吸收所有错误
-                "command": "taskkill /f /im debug.exe /t >nul 2>&1 & clang++ -std=c++20 -g -gdwarf -I \"C:\\Users\\wait\" \"${file}\" -o \"${fileDirname}\\debug.exe\" -Wl,-ignore:4068",
+                "command": "taskkill /f /im debug.exe /t >nul 2>&1 & clang++ -std=c++20 -O0 -g -gcodeview -fstandalone-debug -fno-omit-frame-pointer -I \"C:\\Users\\wait\" \"${file}\" -o \"${fileDirname}\\debug.exe\" -Wl,-debug -Wl,-ignore:4068",
                 "options": {
                     "cwd": "${fileDirname}",
                     // 🌟 核心魔法2：强制夺权！指定该任务不准用 PowerShell，必须用老实本分的 cmd.exe
@@ -124,6 +116,22 @@
                     "kind": "build",
                     "isDefault": true
                 }
+            },
+            {
+                "type": "shell",
+                "label": "Kill Debug Processes",
+                "command": "taskkill /f /im debug.exe /t 2>nul & taskkill /f /im gdb.exe /t 2>nul & taskkill /f /im gdborig.exe /t 2>nul & exit 0",
+                "options": {
+                    "cwd": "${fileDirname}",
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": ["/c"]
+                    }
+                },
+                "presentation": {
+                    "reveal": "never",
+                    "panel": "dedicated"
+                }
             }
         ]
     },
@@ -132,16 +140,16 @@
         "configurations": [
             {
                 "name": "Debug Current File",
-                "type": "cppdbg",
+                "type": "cppvsdbg",
                 "request": "launch",
-                "program": "${fileDirname}\\debug.exe", // 🌟 调试器去咬住 debug.exe
+                "program": "${fileDirname}\\debug.exe",
                 "args": [],
                 "stopAtEntry": false,
                 "cwd": "${fileDirname}",
                 "environment": [],
-                "externalConsole": false,
-                "MIMode": "gdb",
-                "preLaunchTask": "Build for Debug"
+                "console": "integratedTerminal",
+                "preLaunchTask": "Build for Debug",
+                "postDebugTask": "Kill Debug Processes"
             }
         ]
     }

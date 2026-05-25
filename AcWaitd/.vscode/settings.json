@@ -16,7 +16,7 @@
     "code-runner.saveFileBeforeRun": true,  
     "code-runner.executorMap": {
         // 强制编译为 a.exe 并运行，运行前自动清理缓存
-        "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g \"$fileName\" -o a.exe && .\\a.exe"
+        "cpp": "chcp 65001 && cd $dir && clang++ -std=c++20 -g -I \"C:\\Users\\wait\" \"$fileName\" -o a.exe && .\\a.exe"
     },
-    "cph.general.defaultSrcDir": "Monotonic Queue"
+    "cph.general.defaultSrcDir": "Monotonic_Queue"
 }

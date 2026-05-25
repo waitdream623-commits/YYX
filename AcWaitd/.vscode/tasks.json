@@ -8,11 +8,17 @@
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "-std=c++20",
+                "-O0",
                 "-g",
-                "-gdwarf",
+                "-gcodeview",
+                "-fstandalone-debug",
+                "-fno-omit-frame-pointer",
+                "-I",
+                "C:/Users/wait",
                 "${file}",
+                "-Wl,-debug",
                 "-o",
-                "${fileDirname}\\a.exe"
+                "${fileDirname}\\debug.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -25,6 +31,18 @@
                 "isDefault": true
             },
             "detail": "调试器生成的任务。"
+        },
+        {
+            "label": "Kill Debug Processes",
+            "type": "shell",
+            "command": "taskkill /f /im debug.exe /t 2>nul & taskkill /f /im gdb.exe /t 2>nul & taskkill /f /im gdborig.exe /t 2>nul & exit 0",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "never",
+                "panel": "dedicated"
+            }
         }
     ],
     "version": "2.0.0"
