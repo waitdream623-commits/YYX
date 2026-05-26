@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Knapsack_DP",
+            "path": "DP/Knapsack_DP"
+        },
+        {
             "name": "Combinatorial_Counting",
             "path": "Combinatorics/Combinatorial_Counting"
         },
@@ -75,6 +79,10 @@
         {
             "name": "templates",
             "path": "templates"
+        },
+        {
+            "name": "DP",
+            "path": "DP"
         }
     ],
 	"settings": {
