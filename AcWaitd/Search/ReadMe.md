@@ -1,101 +1,70 @@
-# DFS/BFS 系统复习计划（蓝桥杯 CA 组专项）
+# 搜索 (Search)
 
-## 蓝桥杯为什么考搜索？
+> 📋 训练计划 → `templates/search-plan.md`
+> 📝 模板代码 → `Search_Template.cpp`
 
-- **填空题**：DFS 暴力枚举/打表是最可靠的解法，不考验数学推导
-- **编程题**：BFS 求最短路径、DFS 求连通块是基础中的基础
-- CA 组搜索题难度：DFS 剪枝（如八数码）、BFS 状态搜索（如华容道）
-- 你已有数论/图论基础，搜索补齐后，蓝桥杯这套就齐了
+## 目录结构
 
----
-
-## 学习路径（3 天，每天 3-4 小时）
-
-### Day 1 — DFS 基础（回溯 + 排列组合）
-
-重点攻克：**回溯三要素**（选择→递归→撤销）
-
-| 题号 | 题目 | 类型 | 关键点 |
-|------|------|------|--------|
-| P1706 全排列问题 | DFS全排列 | vis数组+回溯，最基础模板 |
-| P1157 组合的输出 | DFS组合 | start参数保证升序去重 |
-| P1036 [NOIP2002] 选数 | DFS + 素数 | 组合枚举 + 验证 |
-| P1219 [USACO1.5] 八皇后 | DFS + 剪枝 | 对角线约束，经典回溯 |
-| P1019 [NOIP2000] 单词接龙 | DFS + 字符串 | 回溯 + 预处理重叠长度 |
-
-**必会闭卷写出的代码**：
-```cpp
-// 全排列 — 3 行核心
-vis[i]=1; path.push_back(i); dfs();
-path.pop_back(); vis[i]=0;
-
-// 组合 — 1 个关键参数
-void dfs(int start) { for(int i=start; i<=n; i++) { ... dfs(i+1); } }
+```
+Search/
+├── dfs_backtracking/     ← DFS 回溯（全排列、组合、N皇后）
+├── grid_floodfill/       ← 网格搜索（连通块、记忆化）
+├── bfs_shortest/         ← BFS 最短路（无权图、多源BFS）
+├── bfs_state/            ← BFS 状态搜索（八数码）
+├── search_advanced/      ← 进阶（IDDFS、A*，大二）
+├── Search_Template.cpp   ← 模板代码
+└── ReadMe.md             ← 本文件
 ```
 
 ---
 
-### Day 2 — 网格搜索（Flood Fill + 连通块 + 记忆化）
+## 搜索完整知识图谱
 
-重点攻克：**四方向/八方向遍历 + 记忆化**
-
-| 题号 | 题目 | 类型 | 关键点 |
-|------|------|------|--------|
-| P1434 [SHOI2002] 滑雪 | DFS+记忆化 | memo[x][y] 记录最长路径 |
-| P1162 填涂颜色 | BFS/DFS | 闭合圈内部染色 |
-| P1332 血色先锋队 | BFS多源扩散 | 多起点BFS |
-| P1451 求细胞数量 | DFS 连通块 | 二维数组遍历+计数 |
-| P1141 01迷宫 | BFS+连通块标记 | 同一个连通块答案相同 |
-
-**必会闭卷写出的代码**：
-```cpp
-// 四方向数组
-int dx[4] = {0, 0, 1, -1};
-int dy[4] = {1, -1, 0, 0};
-
-// 记忆化 DFS 模板
-if (memo[x][y] != -1) return memo[x][y];
-for (int d=0; d<4; d++) { nx, ny; 判断+递归; }
-return memo[x][y] = ans;
-
-// BFS 多源
-queue.push({所有起点});
-while (!q.empty()) { 扩散; }
 ```
+搜索 (Search)
+├── 🟢 1. DFS 回溯基础          ← dfs_backtracking/
+│   ├── 全排列（vis + 回溯）
+│   ├── 组合（start 参数去重）
+│   ├── 子集（选/不选二叉树）
+│   └── N皇后（对角线剪枝）
+│
+├── 🟢 2. 网格搜索 Flood Fill   ← grid_floodfill/
+│   ├── 连通块计数（四方向/八方向）
+│   ├── 包围区域（边界染色）
+│   ├── 记忆化搜索（滑雪）
+│   └── 岛屿/细胞计数
+│
+├── 🟡 3. BFS 最短路            ← bfs_shortest/
+│   ├── 无权图最短路径（dist 数组）
+│   ├── 分层 BFS（按层处理）
+│   ├── 多源 BFS（多个起点同时扩散）
+│   └── 0-1 BFS（deque，边权 0 或 1）
+│
+├── 🟡 4. 状态搜索              ← bfs_state/
+│   ├── 八数码（字符串编码 + BFS）
+│   ├── 华容道 / 推箱子
+│   └── 双向 BFS（起点终点同时搜）
+│
+└── 🔴 5. 搜索优化（进阶）      ← search_advanced/（大二再碰）
+    ├── 剪枝（可行性、最优性）
+    ├── 迭代加深 DFS (IDDFS)
+    ├── 折半搜索 (Meet in the Middle)
+    └── A* / IDA*（启发式搜索）
+```
+
+### 学习优先级
+
+| 优先级 | 板块 | 蓝桥杯 | ICPC | 建议时间 |
+|--------|------|--------|------|----------|
+| 🔥🔥🔥 | DFS 回溯 | 填空主力 | 基础 | 大一 |
+| 🔥🔥🔥 | Flood Fill | 编程常考 | 基础 | 大一 |
+| 🔥🔥🔥 | BFS 最短路 | 编程常考 | 基础 | 大一 |
+| 🔥🔥 | 状态搜索 | 偶尔考 | 常考 | 大一暑假 |
+| 🔥 | 搜索优化 | 不考 | 常考 | 大二 |
 
 ---
 
-### Day 3 — 搜索进阶（BFS最短路 + 状态搜索 + 剪枝）
-
-重点攻克：**BFS求最少步数 + 状态编码**
-
-| 题号 | 题目 | 类型 | 关键点 |
-|------|------|------|--------|
-| P1135 奇怪的电梯 | BFS最短路 | 图上的最少按键次数 |
-| P1443 马的遍历 | BFS最短路 | 八方向BFS，输出步数矩阵 |
-| P1379 八数码难题 | BFS状态搜索 | 状态哈希(字符串/unordered_map) |
-| P2895 [USACO] 流星雨 | BFS+时间约束 | 安全地带 + 时间轴 |
-| P1123 取数游戏 | DFS+约束 | 八方向不能相邻取 |
-| P3395 路障 | BFS+时间 | 障碍随时间出现 |
-
-**必会闭卷写出的代码**：
-```cpp
-// BFS 最短路标准框架
-queue<...> q; q.push(start); dist[start] = 0;
-while (!q.empty()) {
-    auto cur = q.front(); q.pop();
-    遍历邻接状态;
-    if (未访问) { dist = cur.dist+1; q.push; }
-}
-
-// BFS 状态哈希
-unordered_map<string, int> dist;
-q.push(init_str); dist[init_str] = 0;
-```
-
----
-
-## DFS/BFS 核心区分表
+## DFS/BFS 核心区分
 
 | | DFS | BFS |
 |---|-----|-----|
@@ -105,6 +74,83 @@ q.push(init_str); dist[init_str] = 0;
 | 剪枝 | 可以提前 return | 难以剪枝 |
 | 蓝桥填空 | ⭐⭐⭐ 主力 | ⭐ 偶尔用 |
 | 蓝桥编程 | ⭐⭐ 连通块 | ⭐⭐⭐ 最短路 |
+
+---
+
+## 核心模板速查
+
+### DFS 回溯 — 全排列
+```cpp
+vis[i]=1; path.push_back(i); dfs();
+path.pop_back(); vis[i]=0;          // 回溯！忘了就死循环
+```
+
+### DFS 回溯 — 组合（升序去重）
+```cpp
+void dfs(int start) {
+    for(int i=start; i<=n; i++) {
+        comb.push_back(i);
+        dfs(i+1);                   // i+1 保证不重复
+        comb.pop_back();
+    }
+}
+```
+
+### 网格四方向
+```cpp
+int dx[4] = {0, 0, 1, -1};
+int dy[4] = {1, -1, 0, 0};
+```
+
+### 记忆化 DFS
+```cpp
+if (memo[x][y] != -1) return memo[x][y];
+int best = 1;
+for (int d=0; d<4; d++) {
+    int nx=x+dx[d], ny=y+dy[d];
+    if (边界/障碍) continue;
+    best = max(best, 1 + dfs(nx, ny));
+}
+return memo[x][y] = best;
+```
+
+### BFS 最短路
+```cpp
+queue<State> q; q.push({sx, sy, 0});
+vis[sx][sy] = true;
+while (!q.empty()) {
+    auto [x, y, step] = q.front(); q.pop();
+    if (x == tx && y == ty) return step;
+    for (int d=0; d<4; d++) {
+        int nx=x+dx[d], ny=y+dy[d];
+        if (边界||vis||障碍) continue;
+        vis[nx][ny] = true;
+        q.push({nx, ny, step+1});
+    }
+}
+```
+
+### BFS 状态搜索（八数码）
+```cpp
+unordered_map<string, int> dist;
+queue<string> q;
+q.push(start); dist[start] = 0;
+while (!q.empty()) {
+    string s = q.front(); q.pop();
+    int pos = s.find('0');
+    int x=pos/3, y=pos%3;
+    for (int d=0; d<4; d++) {
+        int nx=x+dx[d], ny=y+dy[d];
+        if (nx<0||nx>=3||ny<0||ny>=3) continue;
+        string ns = s;
+        swap(ns[pos], ns[nx*3+ny]);
+        if (!dist.count(ns)) {
+            dist[ns] = dist[s] + 1;
+            q.push(ns);
+        }
+    }
+}
+```
 
 ---
 
@@ -120,17 +166,11 @@ q.push(init_str); dist[init_str] = 0;
 
 ---
 
-## 与 DP 11 天计划的融合
+## 当前进度
 
-当前是 5/27 (Day 2)，搜索可以插在以下时间：
-
-| 日期 | 原计划 | 加入搜索 |
-|------|--------|----------|
-| 5/27 晚 | 背包② | 搜 Day 1 的第一题（P1706 全排列）练手 |
-| 5/28 晚 | 线性① + 写完 | 搜 Day 1 的剩余题 |
-| 5/29 晚 | 线性② | 搜 Day 2 的网格题 |
-| 5/30 晚 | 区间① | 搜 Day 3 的 BFS 题 |
-| 6/1 | 混合 DP | Day 2 剩余网格题 |
-| 6/2 | 原 Day 8 搜索 | 强化搜 Day 3 进阶题 |
-
-**时间分配**：每天 DP 占 2h，搜索占 1-1.5h，并行推进。
+| 板块 | 状态 |
+|------|------|
+| DFS 回溯基础 | 🔜 5/27 进行中 |
+| 网格 Flood Fill | ⬜ |
+| BFS 最短路+状态 | ⬜ |
+| 搜索进阶 | ⬜（大二） |

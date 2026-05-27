@@ -1,12 +1,24 @@
 {
 	"folders": [
         {
+            "name": "dfs_backtracking",
+            "path": "Search/dfs_backtracking"
+        },
+        {
             "name": "knapsack_dp",
             "path": "DP/knapsack_dp"
         },
         {
             "name": "Combinatorics",
             "path": "Combinatorics"
+        },
+        {
+            "name": "DP",
+            "path": "DP"
+        },
+        {
+            "name": "Search",
+            "path": "Search"
         },
         {
             "name": "Segment_Tree",
@@ -71,14 +83,6 @@
         {
             "name": "templates",
             "path": "templates"
-        },
-        {
-            "name": "DP",
-            "path": "DP"
-        },
-        {
-            "name": "Search",
-            "path": "Search"
         }
     ],
 	"settings": {
