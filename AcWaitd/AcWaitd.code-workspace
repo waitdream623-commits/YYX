@@ -1,16 +1,8 @@
 {
 	"folders": [
         {
-            "name": "Knapsack_DP",
-            "path": "DP/Knapsack_DP"
-        },
-        {
-            "name": "Combinatorial_Counting",
-            "path": "Combinatorics/Combinatorial_Counting"
-        },
-        {
-            "name": "Computing_Combinations",
-            "path": "Combinatorics/Computing_Combinations"
+            "name": "knapsack_dp",
+            "path": "DP/knapsack_dp"
         },
         {
             "name": "Combinatorics",
@@ -83,6 +75,10 @@
         {
             "name": "DP",
             "path": "DP"
+        },
+        {
+            "name": "Search",
+            "path": "Search"
         }
     ],
 	"settings": {

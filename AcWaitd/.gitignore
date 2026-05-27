@@ -1,0 +1,17 @@
+# Compiled executables
+*.exe
+*.pdb
+
+# Temp files
+*.tmp0
+*.tmp
+
+# Debug build artifacts
+debug/
+x64/
+
+# CPH cache
+.cph/
+
+# Claude config
+.claude/
