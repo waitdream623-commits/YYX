@@ -1,8 +1,24 @@
 {
 	"folders": [
         {
+            "name": "Game_Theory",
+            "path": "Game_Theory"
+        },
+        {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
+            "name": "grid_floodfill",
+            "path": "Search/grid_floodfill"
+        },
+        {
             "name": "dfs_backtracking",
             "path": "Search/dfs_backtracking"
+        },
+        {
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
         },
         {
             "name": "knapsack_dp",
@@ -21,8 +37,8 @@
             "path": "Search"
         },
         {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
+            "name": "Nowcoder Practice Match 153",
+            "path": "Contest/Nowcoder Practice Match 153"
         },
         {
             "name": "Codeforces Round 1099 (Div. 2)",
