@@ -1,6 +1,18 @@
 {
 	"folders": [
         {
+            "name": "sg_function",
+            "path": "Game_Theory/sg_function"
+        },
+        {
+            "name": "nim_game",
+            "path": "Game_Theory/nim_game"
+        },
+        {
+            "name": "bash_game",
+            "path": "Game_Theory/bash_game"
+        },
+        {
             "name": "Game_Theory",
             "path": "Game_Theory"
         },
