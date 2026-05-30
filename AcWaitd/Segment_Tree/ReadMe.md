@@ -132,22 +132,22 @@ flowchart LR
     J --> K
 ```
 
-### ④ update — 单点修改
+### ④ modify — 单点修改
 
 > 将原数组第 `pos` 个元素的值改为 `val`。
 
 ```cpp
 // 将 a[pos] 改为 val
-void update(int p, int l, int r, int pos, int val) {
+void modify(int p, int l, int r, int pos, int val) {
     if (l == r) {
         tree[p] = val;             // 到达叶子，直接改
         return;
     }
     int mid = (l + r) >> 1;
     if (pos <= mid)
-        update(p << 1, l, mid, pos, val);
+        modify(p << 1, l, mid, pos, val);
     else
-        update(p << 1 | 1, mid + 1, r, pos, val);
+        modify(p << 1 | 1, mid + 1, r, pos, val);
     pushup(p);                     // 回溯时更新父节点
 }
 ```
@@ -156,7 +156,7 @@ void update(int p, int l, int r, int pos, int val) {
 
 ```mermaid
 flowchart LR
-    A["update(p,l,r,pos,val)"] --> B{"l == r ?"}
+    A["modify(p,l,r,pos,val)"] --> B{"l == r ?"}
     B -->|是| C["tree[p] = val<br/>返回"]
     B -->|否| D["mid = (l+r)/2"]
     D --> E{"pos <= mid ?"}
@@ -230,13 +230,58 @@ flowchart TD
 
 ---
 
-## 六、完整模板
+## 六、阶段小结
+
+> 写出 bug-free 线段树的 checklist，每次写之前过一遍。
+
+### 写法顺序
+
+线段树代码应严格按以下顺序编写，前一个写对了才能写下一个：
+
+| 步骤 | 函数 | 检查要点 |
+|------|------|----------|
+| 1 | `pushup` | 左右儿子合并公式是否正确（和/max/min/GCD） |
+| 2 | `build` | 叶子赋值、递归左右、最后调 `pushup` |
+| 3 | `pushdown` | 懒标记是否下传、长度计算（左 `mid-l+1` 右 `r-mid`）、最后清空 `lazy[p]=0` |
+| 4 | `modify`（单点） | 叶子修改、递归单边走、回溯 `pushup` |
+| 5 | `modify` / `update`（区间） | 完全覆盖→打懒标记+更新当前值；否则先 `pushdown` 再递归、回溯 `pushup` |
+| 6 | `query` | 完全包含→直接返回；否则先 `pushdown` 再递归、**累加**左右返回值 |
+
+### 高频出错点
+
+| 坑 | 说明 |
+|----|------|
+| **忘记 `pushdown`** | `query` 和 `update` 递归前都要先下传，否则子节点信息是旧的 |
+| **区间长度算错** | 左儿子长度 = `mid - l + 1`，右儿子长度 = `r - mid` |
+| **query 没累加** | `sum += query(...)` 不是 `query(...)` |
+| **modify 没 pushup** | 单点和区间修改都在递归返回后需要 `pushup(p)` |
+| **lazy 没初始化为 0** | 建树或修改后必须保证 `lazy[p]=0` |
+| **数组开小了** | 线段树数组必须开到 `4 * N`（不是 `2 * N`） |
+
+### 核心原则
+
+```mermaid
+flowchart TD
+    A["进入节点 p"] --> B{"是否被目标区间完全包含？"}
+    B -->|是| C["直接处理，打懒标记<br/>不往下递归"]
+    B -->|否| D["pushdown(p)：下传旧标记"]
+    D --> E["递归与目标区间有交集的儿子"]
+    E --> F["pushup(p)：回溯合并子节点"]
+    C --> G["返回"]
+    F --> G
+```
+
+> **一句话**：懒标记的精髓是"用到再更新"——修改/查询经过节点时才 `pushdown`，离开节点时 `pushup`。
+
+---
+
+## 七、完整模板
 
 见同目录下的 `Segment_Tree_Template.cpp`。
 
 ---
 
-## 七、复杂度分析
+## 八、复杂度分析
 
 | 操作 | 时间复杂度 | 说明 |
 |------|-----------|------|
@@ -247,7 +292,7 @@ flowchart TD
 
 ---
 
-## 八、常见变体
+## 九、常见变体
 
 | 维护内容 | pushup 写法 |
 |----------|-------------|

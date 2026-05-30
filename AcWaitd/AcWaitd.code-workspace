@@ -1,24 +1,20 @@
 {
 	"folders": [
         {
-            "name": "sg_function",
-            "path": "Game_Theory/sg_function"
-        },
-        {
-            "name": "nim_game",
-            "path": "Game_Theory/nim_game"
-        },
-        {
-            "name": "bash_game",
-            "path": "Game_Theory/bash_game"
-        },
-        {
-            "name": "Game_Theory",
-            "path": "Game_Theory"
+            "name": "Codeforces Round 1101 (Div. 2)",
+            "path": "Contest/Codeforces Round 1101 (Div. 2)"
         },
         {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
+        },
+        {
+            "name": "sg_function",
+            "path": "Game_Theory/sg_function"
+        },
+        {
+            "name": "Game_Theory",
+            "path": "Game_Theory"
         },
         {
             "name": "grid_floodfill",
@@ -47,6 +43,10 @@
         {
             "name": "Search",
             "path": "Search"
+        },
+        {
+            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
+            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
         },
         {
             "name": "Nowcoder Practice Match 153",

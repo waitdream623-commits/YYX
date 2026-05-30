@@ -45,11 +45,11 @@ void build(int p, int l, int r) {
     tree[p] = merge(tree[p << 1], tree[p << 1 | 1]);
 }
 
-void update(int p, int l, int r, int pos, int val) {
+void modify(int p, int l, int r, int pos, int val) {
     if (l == r) { tree[p] = {1, 1, 1, val, val, 1}; return; }
     int mid = (l + r) >> 1;
-    if (pos <= mid) update(p << 1, l, mid, pos, val);
-    else            update(p << 1 | 1, mid + 1, r, pos, val);
+    if (pos <= mid) modify(p << 1, l, mid, pos, val);
+    else            modify(p << 1 | 1, mid + 1, r, pos, val);
     tree[p] = merge(tree[p << 1], tree[p << 1 | 1]);
 }
 
@@ -95,7 +95,7 @@ int main() {
         if (op == 1) {          // 单点修改
             int pos, val;
             cin >> pos >> val;
-            update(1, 1, n, pos, val);
+            modify(1, 1, n, pos, val);
         } else {                // 区间查询
             int l, r;
             cin >> l >> r;

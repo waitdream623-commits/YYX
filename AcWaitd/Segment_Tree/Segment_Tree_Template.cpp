@@ -66,9 +66,9 @@ ll query(int p, int l, int r, int ql, int qr)
   return sum;
 }
 
-// ==================== 5. update（单点修改） ====================
+// ==================== 5. modify（单点修改） ====================
 // 单点修改：将 a[pos] 改为 val
-void update(int p, int l, int r, int pos, int val)
+void modify(int p, int l, int r, int pos, int val)
 {
   if(l == r)
   {
@@ -77,9 +77,9 @@ void update(int p, int l, int r, int pos, int val)
   }
   int mid = (l + r) >> 1;
   if(pos <= mid)
-    update(p << 1, l, mid, pos, val);
+    modify(p << 1, l, mid, pos, val);
   else
-    update(p << 1 | 1, mid + 1, r, pos, val);
+    modify(p << 1 | 1, mid + 1, r, pos, val);
   pushup(p);                       // 回溯更新父节点
 }
 
@@ -104,12 +104,12 @@ void update(int p, int l, int r, int ml, int mr, int val)
 // --- 用于 RMQ 场景，不需要懒标记 ---
 int maxv[N * 4];
 
-void pushup(int p)
+void pushup_max(int p)
 {
   maxv[p] = max(maxv[p << 1], maxv[p << 1 | 1]);
 }
 
-void build(int p, int l, int r)
+void build_max(int p, int l, int r)
 {
   if(l == r)
   {
@@ -117,9 +117,9 @@ void build(int p, int l, int r)
     return;
   }
   int mid = (l + r) >> 1;
-  build(p << 1, l, mid);
-  build(p << 1 | 1, mid + 1, r);
-  pushup(p);
+  build_max(p << 1, l, mid);
+  build_max(p << 1 | 1, mid + 1, r);
+  pushup_max(p);
 }
 
 int query_max(int p, int l, int r, int ql, int qr)
