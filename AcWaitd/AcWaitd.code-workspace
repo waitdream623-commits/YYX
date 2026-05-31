@@ -1,10 +1,6 @@
 {
 	"folders": [
         {
-            "name": "Codeforces Round 1101 (Div. 2)",
-            "path": "Contest/Codeforces Round 1101 (Div. 2)"
-        },
-        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
@@ -43,6 +39,10 @@
         {
             "name": "Search",
             "path": "Search"
+        },
+        {
+            "name": "Codeforces Round 1101 (Div. 2)",
+            "path": "Contest/Codeforces Round 1101 (Div. 2)"
         },
         {
             "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",

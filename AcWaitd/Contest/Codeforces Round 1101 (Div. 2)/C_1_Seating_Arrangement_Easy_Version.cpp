@@ -7,7 +7,7 @@ int INF=0x3f3f3f3f;
 const int N = 1e6 + 10;
 void solve()
 {
-    int n,s,k;cin>>n>>k>>s;
+    int n,s,k;cin>>n>>s>>k;
     string a;
     cin>>a;
     multiset<char>t[s];
@@ -20,7 +20,8 @@ void solve()
             //找有人
             for(int j=0;j<s;j++)
             {
-                if(int si=t[j].size()!=0&&si<k)
+                int si=t[j].size();
+                if(si!=0&&si<k)
                 {
                     t[j].insert(tmp);
                     ret++;
@@ -33,7 +34,8 @@ void solve()
              //找没有人或者有人全是i人
             for(int j=0;j<s;j++)
             {
-                if(int si=t[j].size()==0||(si<k&&t[j].count('I')==si))
+                int si=t[j].size();
+                if(si==0||(si<k&&t[j].count('I')==si))
                 {
                     t[j].insert(tmp);
                     ret++;

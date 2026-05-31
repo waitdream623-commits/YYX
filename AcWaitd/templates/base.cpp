@@ -4,6 +4,8 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int>PII;
 int INF=0x3f3f3f3f;
+#define lc p<<1
+#define rc p<<1|1
 const int N = 1e6 + 10;
 void solve()
 {
