@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Training",
+            "path": "Training"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
