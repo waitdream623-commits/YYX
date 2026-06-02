@@ -5,6 +5,10 @@
             "path": "Training"
         },
         {
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
@@ -23,10 +27,6 @@
         {
             "name": "dfs_backtracking",
             "path": "Search/dfs_backtracking"
-        },
-        {
-            "name": "linear_dp",
-            "path": "DP/linear_dp"
         },
         {
             "name": "knapsack_dp",
