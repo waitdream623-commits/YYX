@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "combinatorial_counting",
+            "path": "Combinatorics/combinatorial_counting"
+        },
+        {
             "name": "Training",
             "path": "Training"
         },
