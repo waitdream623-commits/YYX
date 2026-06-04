@@ -5,7 +5,7 @@ typedef unsigned long long ull;
 typedef pair<int,int>PII;
 int INF=0x3f3f3f3f;
 const int N = 1e6 + 10;
-int f[1010][1010];
+int f[2010][2010];//记得开足够大
 void cal(int a,int b,int r)
 {
     double t=r*r;

@@ -1,16 +1,20 @@
 {
 	"folders": [
         {
-            "name": "combinatorial_counting",
-            "path": "Combinatorics/combinatorial_counting"
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
         },
         {
             "name": "Training",
             "path": "Training"
         },
         {
-            "name": "linear_dp",
-            "path": "DP/linear_dp"
+            "name": "Consolidation",
+            "path": "Consolidation"
+        },
+        {
+            "name": "combinatorial_counting",
+            "path": "Combinatorics/combinatorial_counting"
         },
         {
             "name": "Segment_Tree",
@@ -45,16 +49,16 @@
             "path": "DP"
         },
         {
+            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
+            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
+        },
+        {
             "name": "Search",
             "path": "Search"
         },
         {
             "name": "Codeforces Round 1101 (Div. 2)",
             "path": "Contest/Codeforces Round 1101 (Div. 2)"
-        },
-        {
-            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
-            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
         },
         {
             "name": "Nowcoder Practice Match 153",
@@ -71,10 +75,6 @@
         {
             "name": "Codeforces Round 1097 (Div. 2, Based on Zhili Cup 2026)",
             "path": "Contest/Codeforces Round 1097 (Div. 2, Based on Zhili Cup 2026)"
-        },
-        {
-            "name": "Consolidation",
-            "path": "Consolidation"
         },
         {
             "name": "The_Fundamental_Theorem_of_Arithmetic",
@@ -119,6 +119,10 @@
         {
             "name": "templates",
             "path": "templates"
+        },
+        {
+            "name": "Daily_Log",
+            "path": "Daily_Log"
         }
     ],
 	"settings": {

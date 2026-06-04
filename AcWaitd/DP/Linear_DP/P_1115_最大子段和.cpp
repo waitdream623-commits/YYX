@@ -6,7 +6,7 @@ typedef pair<int,int>PII;
 int INF=0x3f3f3f3f;
 const int N = 1e6 + 10;
 int a[N];
-int f[N];//以i为结尾，所有子数组最大和,转移单独自己，与前面元素结合
+int f[N];//以i为结尾，所有子数组最大和,转移单独自己或者与前面元素结合
 void slove()
 {
     int n;

@@ -95,7 +95,7 @@ int main() {
         {
           flag2=1;
         }
-        if(st[i]=='c')
+        if(st[i]=='c')//连接上下表面
         {
           flag1=flag2=1;
         }
