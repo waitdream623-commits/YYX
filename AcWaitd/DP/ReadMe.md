@@ -10,6 +10,7 @@ DP/
 ├── knapsack_dp/     ← 背包 DP（01/完全/多重/分组/二维费用）
 ├── linear_dp/       ← 线性 DP（LIS/LCS/最大子段和/编辑距离）
 ├── interval_dp/     ← 区间 DP（石子合并/环形/两端扩展）
+├── tree_dp/         ← 树形 DP（独立集/换根/树上背包）
 └── ReadMe.md        ← 本文件
 ```
 

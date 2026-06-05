@@ -1,12 +1,24 @@
 {
 	"folders": [
         {
-            "name": "linear_dp",
-            "path": "DP/linear_dp"
-        },
-        {
             "name": "Training",
             "path": "Training"
+        },
+        {
+            "name": "tree_dp",
+            "path": "DP/tree_dp"
+        },
+        {
+            "name": "DP",
+            "path": "DP"
+        },
+        {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
         },
         {
             "name": "Consolidation",
@@ -15,10 +27,6 @@
         {
             "name": "combinatorial_counting",
             "path": "Combinatorics/combinatorial_counting"
-        },
-        {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
         },
         {
             "name": "sg_function",
@@ -43,10 +51,6 @@
         {
             "name": "Combinatorics",
             "path": "Combinatorics"
-        },
-        {
-            "name": "DP",
-            "path": "DP"
         },
         {
             "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
