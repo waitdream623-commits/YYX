@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
+            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
+        },
+        {
             "name": "Training",
             "path": "Training"
         },
@@ -51,10 +55,6 @@
         {
             "name": "Combinatorics",
             "path": "Combinatorics"
-        },
-        {
-            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
-            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
         },
         {
             "name": "Search",
