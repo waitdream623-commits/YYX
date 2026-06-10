@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "AGC",
+            "path": "AGC"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
