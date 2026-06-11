@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "lanqiaoCAcountry",
+            "path": "Contest/lanqiaoCAcountry"
+        },
+        {
             "name": "AGC",
             "path": "AGC"
         },
