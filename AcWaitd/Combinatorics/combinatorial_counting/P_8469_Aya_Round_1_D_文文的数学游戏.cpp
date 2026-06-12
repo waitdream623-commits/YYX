@@ -25,7 +25,7 @@ void solve()
     }
     for(int i=1;i<=n;i++)
     {
-        ans=(ans*(a[i]/mn))%MOD;
+        ans=(ans*(a[i]/mn))%MOD;//b每次取值次数必须小于a[i],大于mn，除法看能取几个
     }
     cout<<mn<<" "<<ans;
 
