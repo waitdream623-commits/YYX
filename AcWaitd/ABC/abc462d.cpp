@@ -12,23 +12,25 @@ void solve()
 {
     int n,d;
     cin>>n>>d;
-    int smn,end;
+    int end;
     for(int i=1;i<=n;i++)
     {
         cin>>a[i].first>>a[i].second;
         end=max(end,a[i].second);
     }
     sort(a+1,a+1+n);
-    int cnt=0;
+    ll cnt=0;//开ll
+    
     int s=a[1].first;
-    for(int i=s;i<=end-d;i++)
+    for(int i=s;i<=end-d;i++)//i为起始时间
     {
-        int su=0;
+        ll su=0;
         int j=1;
-        while(a[j].first<=s&&j<=n)
+        while(a[j].first<=i&&j<=n)//找在区间内满足
         {
-            if(s+d<=a[j].second)
+            if(i+d<=a[j].second)//i为起始时间
             su++;
+
             j++;
         }
         if(su>=2)
