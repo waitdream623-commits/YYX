@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "Cnstructive_Algorithms",
+            "path": "Cnstructive_Algorithms"
+        },
+        {
+            "name": "combinatorial_counting",
+            "path": "Combinatorics/combinatorial_counting"
+        },
+        {
             "name": "ABC",
             "path": "ABC"
         },
@@ -17,32 +25,12 @@
             "path": "Segment_Tree"
         },
         {
-            "name": "LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest",
-            "path": "Contest/LGR-285-Div.2Luogu Lanqiao Cup National Finals Simulation Contest"
-        },
-        {
-            "name": "tree_dp",
-            "path": "DP/tree_dp"
-        },
-        {
             "name": "DP",
             "path": "DP"
         },
         {
-            "name": "linear_dp",
-            "path": "DP/linear_dp"
-        },
-        {
             "name": "Consolidation",
             "path": "Consolidation"
-        },
-        {
-            "name": "combinatorial_counting",
-            "path": "Combinatorics/combinatorial_counting"
-        },
-        {
-            "name": "sg_function",
-            "path": "Game_Theory/sg_function"
         },
         {
             "name": "Game_Theory",
@@ -53,18 +41,6 @@
             "path": "Training"
         },
         {
-            "name": "grid_floodfill",
-            "path": "Search/grid_floodfill"
-        },
-        {
-            "name": "dfs_backtracking",
-            "path": "Search/dfs_backtracking"
-        },
-        {
-            "name": "knapsack_dp",
-            "path": "DP/knapsack_dp"
-        },
-        {
             "name": "Combinatorics",
             "path": "Combinatorics"
         },
@@ -73,20 +49,8 @@
             "path": "Search"
         },
         {
-            "name": "The_Fundamental_Theorem_of_Arithmetic",
-            "path": "Number_Theory/The_Fundamental_Theorem_of_Arithmetic"
-        },
-        {
             "name": "Number_Theory",
             "path": "Number_Theory"
-        },
-        {
-            "name": "Trie",
-            "path": "Trie"
-        },
-        {
-            "name": "Character_Hash_Array",
-            "path": "Character_Hash_Array"
         },
         {
             "name": "union-find_sets",
