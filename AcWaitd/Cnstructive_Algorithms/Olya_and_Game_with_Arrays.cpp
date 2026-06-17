@@ -7,6 +7,13 @@ int INF=0x3f3f3f3f;
 #define lc p<<1
 #define rc p<<1|1
 const int N = 1e6 + 10;
+#ifndef DEBUG
+struct __X {
+  __X& operator<<(const auto& str) {return *this;}
+  void sp(const string& str = "") {}
+} dout;
+#define debug(x)
+#endif
 void solve()
 {
     int k;
@@ -23,6 +30,7 @@ void solve()
             q.push(x);
 
         }   
+       // debug(q);
         int a=q.top();q.pop();
         mnn=min(mnn,a);
         mn.push_back(q.top());

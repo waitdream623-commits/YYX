@@ -1,5 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+#ifndef DEBUG
+struct __X {
+  __X& operator<<(const auto& str) {return *this;}
+  void sp(const string& str = "") {}
+} dout;
+#define debug(x)
+#endif
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,int>PII;
