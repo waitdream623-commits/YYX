@@ -1,12 +1,12 @@
 {
 	"folders": [
         {
-            "name": "Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)",
-            "path": "Contest/Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)"
-        },
-        {
             "name": "Cnstructive_Algorithms",
             "path": "Cnstructive_Algorithms"
+        },
+        {
+            "name": "Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)",
+            "path": "Contest/Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)"
         },
         {
             "name": "combinatorial_counting",
