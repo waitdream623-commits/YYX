@@ -14,9 +14,14 @@ int INF=0x3f3f3f3f;
 #define lc p<<1
 #define rc p<<1|1
 const int N = 1e6 + 10;
-void wait()
+void solve()
 {
-    
+    int n,k;
+    cin>>n>>k;
+    if(n%k)
+    cout<<k-n%k;
+    else
+    cout<<k;
 }
 int main() {
     ios::sync_with_stdio(false);
@@ -25,7 +30,7 @@ int main() {
     int T = 1;
     // cin >> T;  // 多测时取消注释
     while (T--) {
-        wait();
+        solve();
     }
     return 0;
 }

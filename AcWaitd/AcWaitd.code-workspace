@@ -1,6 +1,18 @@
 {
 	"folders": [
         {
+            "name": "2025年12月ZZUACM实验室招新赛",
+            "path": "Contest/2025年12月ZZUACM实验室招新赛"
+        },
+        {
+            "name": "Contest",
+            "path": "Contest"
+        },
+        {
+            "name": "Consolidation",
+            "path": "Consolidation"
+        },
+        {
             "name": "Cnstructive_Algorithms",
             "path": "Cnstructive_Algorithms"
         },
@@ -31,10 +43,6 @@
         {
             "name": "DP",
             "path": "DP"
-        },
-        {
-            "name": "Consolidation",
-            "path": "Consolidation"
         },
         {
             "name": "Game_Theory",
@@ -77,16 +85,16 @@
             "path": "Graph_Theory"
         },
         {
-            "name": "Contest",
-            "path": "Contest"
-        },
-        {
             "name": "templates",
             "path": "templates"
         },
         {
             "name": "Daily_Log",
             "path": "Daily_Log"
+        },
+        {
+            "name": "study",
+            "path": "../study"
         }
     ],
 	"settings": {
