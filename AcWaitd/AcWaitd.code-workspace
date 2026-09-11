@@ -1,6 +1,18 @@
 {
 	"folders": [
         {
+            "name": "牛客小白月赛137",
+            "path": "Contest/牛客小白月赛137"
+        },
+        {
+            "name": "Prefix Sum",
+            "path": "Foundation/Prefix Sum"
+        },
+        {
+            "name": "Consolidation",
+            "path": "Consolidation"
+        },
+        {
             "name": "2025年12月ZZUACM实验室招新赛",
             "path": "Contest/2025年12月ZZUACM实验室招新赛"
         },
@@ -9,16 +21,8 @@
             "path": "Contest"
         },
         {
-            "name": "Consolidation",
-            "path": "Consolidation"
-        },
-        {
             "name": "Cnstructive_Algorithms",
             "path": "Cnstructive_Algorithms"
-        },
-        {
-            "name": "Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)",
-            "path": "Contest/Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)"
         },
         {
             "name": "combinatorial_counting",
@@ -27,10 +31,6 @@
         {
             "name": "ABC",
             "path": "ABC"
-        },
-        {
-            "name": "lanqiaoCAcountry",
-            "path": "Contest/lanqiaoCAcountry"
         },
         {
             "name": "AGC",
