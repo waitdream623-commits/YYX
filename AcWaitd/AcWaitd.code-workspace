@@ -1,12 +1,20 @@
 {
 	"folders": [
         {
-            "name": "Codeforces Round 1120 (Div. 2)",
-            "path": "Contest/Codeforces Round 1120 (Div. 2)"
+            "name": "牛客周赛 Round 161",
+            "path": "Contest/牛客周赛 Round 161"
+        },
+        {
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
         },
         {
             "name": "DP",
             "path": "DP"
+        },
+        {
+            "name": "Codeforces Round 1120 (Div. 2)",
+            "path": "Contest/Codeforces Round 1120 (Div. 2)"
         },
         {
             "name": "Binary Indexed Tree",
