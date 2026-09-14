@@ -5,7 +5,7 @@
 ```cpp
 void dfs(int u, int fa) {
     for (int v : adj[u]) {
-        if (v == fa) continue;
+        if (v == fa) continue;//防止往回递归
         dfs(v, u);
         // 用子节点的 dp 值更新当前节点
     }

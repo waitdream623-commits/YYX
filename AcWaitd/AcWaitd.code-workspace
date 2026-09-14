@@ -1,12 +1,16 @@
 {
 	"folders": [
         {
-            "name": "牛客周赛 Round 161",
-            "path": "Contest/牛客周赛 Round 161"
+            "name": "tree_dp",
+            "path": "DP/tree_dp"
         },
         {
             "name": "linear_dp",
             "path": "DP/linear_dp"
+        },
+        {
+            "name": "牛客周赛 Round 161",
+            "path": "Contest/牛客周赛 Round 161"
         },
         {
             "name": "DP",
@@ -115,6 +119,10 @@
         {
             "name": "study",
             "path": "../study"
+        },
+        {
+            "name": "leetcode",
+            "path": "leetcode"
         }
     ],
 	"settings": {

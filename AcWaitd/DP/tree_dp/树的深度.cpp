@@ -15,9 +15,17 @@ int INF=0x3f3f3f3f;
 #define lc p<<1
 #define rc p<<1|1
 const int N = 1e6 + 10;
+vector<vector<int>>f(N);
 void wait()
 {
-    
+    int n;cin>>n;
+    rep(i,1,n)
+    {
+        int x,y;cin>>x>>y;
+        f[x]=x;
+
+    }
+ 
 }
 int main() {
     ios::sync_with_stdio(false);
