@@ -15,30 +15,36 @@ int INF=0x3f3f3f3f;
 #define lc p<<1
 #define rc p<<1|1
 const int N = 1e6 + 10;
-vector<vector<int>>f(N);
-int dp[N];//记录根节点i的高度
-void dfs(int u)
+vector<int>edge[N];
+int dp[N][2];//0表示该节点不选，1表示选；
+void dfs(int x, int fa)
 {
-    dp[u]=1;//至少为1；
-    for(auto e:f[u])
+    dp[x][1]=1;
+    dp[x][0]=0;
+    for(auto e: edge[x])
     {
-        dfs(e);
-        dp[u]=max(dp[e] + 1,dp[u]);
+        if(e==fa)continue;
+        dfs(e,x);
+        dp[x][0]+=dp[e][1];
+        dp[x][1]+=min(dp[e][0],dp[e][1]);
     }
-    
 }
 void wait()
 {
-    int n;cin>>n;
+    int n; cin >> n;
     rep(i,1,n)
     {
-        int x,y;cin>>x>>y;
-        f[x].push_back(y);
+        int a,m;cin >> a >>m;
+        while(m--)
+        {
+            int x;cin>>x;
+            edge[x].push_back(a);
+            edge[a].push_back(x);
+        }
 
     }
-    dfs(1);
-    cout<<dp[1];
- 
+    dfs(0,0);
+    cout<<min(dp[0][0],dp[0][1]);
 }
 int main() {
     ios::sync_with_stdio(false);

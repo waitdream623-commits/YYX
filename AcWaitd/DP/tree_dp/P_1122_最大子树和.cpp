@@ -30,6 +30,7 @@ void solve()
 
     for(int i=1;i<n;i++)
     {
+        //无根树
         int a,b;cin>>a>>b;
         edge[a].push_back(b);
         edge[b].push_back(a);
