@@ -85,10 +85,10 @@ int dfs(int u, int fa) {
 | 题号 | 题目 | 模型 | 难度 |
 |------|------|------|------|
 | P2016 | 战略游戏 | 最小点覆盖 | ⭐⭐⭐ |
-| P2899 | [USACO08JAN] Cell Phone Network | 最小支配集 | ⭐⭐⭐ |
-| P4084 | [USACO17DEC] Barn Painting | 树上染色 | ⭐⭐⭐ |
-| P1131 | [ZJOI2007] 时态同步 | 贪心+树形 DP | ⭐⭐⭐ |
-| P3047 | [USACO12FEB] Nearby Cows | 换根 DP | ⭐⭐⭐ |
+| P2899 | [USACO08JAN] Cell Phone Network | 最小支配集 | ⭐⭐⭐ |分三个状态
+| P4084 | [USACO17DEC] Barn Painting | 树上染色 | ⭐⭐⭐ |分染三种颜色的情况
+| P1131 | [ZJOI2007] 时态同步 | 贪心+树形 DP | ⭐⭐⭐ |求出每条路最大距离
+| P3047 | [USACO12FEB] Nearby Cows | 换根 DP | ⭐⭐⭐ |需要父与子的信息，两次dfs
 | P3574 | [POI2014] FAR-FarmCraft | 树上排序+DP | ⭐⭐⭐⭐ |
 
 ### 难题（2题）
