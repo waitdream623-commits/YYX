@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "牛客练习赛157",
+            "path": "Contest/牛客练习赛157"
+        },
+        {
+            "name": "CF",
+            "path": "CF"
+        },
+        {
             "name": "tree_dp",
             "path": "DP/tree_dp"
         },

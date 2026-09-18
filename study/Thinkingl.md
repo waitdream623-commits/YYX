@@ -39,6 +39,46 @@ P3047 [USACO12FEB] Nearby Cows G
 ~~~
 一直跑与休息跑比较，最后结合；
 ~~~
+- 力扣最低票价https://leetcode.cn/problems/minimum-cost-for-tickets/description/
+~~~
+会写递归，但是忘记加记忆化超时
+不会写递推也就是动态规划
+从后往前推，左边依赖右边已经填好
+如果顺推，每个点都有多种转移方式（感觉行）
+class Solution {
+public:
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        int n = days.back();
+
+        unordered_set<int> st(days.begin(), days.end());
+
+        vector<int> dp(n + 1, 0);
+
+        for (int i = 1; i <= n; i++) {
+
+            // 今天不旅行
+            if (!st.count(i)) {
+                dp[i] = dp[i - 1];
+            }
+
+            // 今天旅行
+            else {
+                dp[i] = min({
+                    dp[i - 1] + costs[0],
+                    dp[max(0, i - 7)] + costs[1],
+                    dp[max(0, i - 30)] + costs[2]
+                });
+            }
+        }
+
+        return dp[n];
+    }
+};
+auto dfs = [&](auto&& dfs, int i) -> int
+Lanbda写法，引用是Lambda 可以使用外面的变量，并且按引用捕获。
+auto&& dfs，表示可以调用自己
+->int 这个 Lambda 返回 int.
+~~~
 
 ## 贪心
 - 最长重叠段
