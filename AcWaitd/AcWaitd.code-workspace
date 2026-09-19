@@ -1,12 +1,12 @@
 {
 	"folders": [
         {
-            "name": "牛客练习赛157",
-            "path": "Contest/牛客练习赛157"
-        },
-        {
             "name": "CF",
             "path": "CF"
+        },
+        {
+            "name": "牛客练习赛157",
+            "path": "Contest/牛客练习赛157"
         },
         {
             "name": "tree_dp",
@@ -131,6 +131,18 @@
         {
             "name": "leetcode",
             "path": "leetcode"
+        },
+        {
+            "name": "md",
+            "path": "C:/Users/wait/Desktop/cCourseware/md"
+        },
+        {
+            "name": "ppt",
+            "path": "C:/Users/wait/Desktop/cCourseware/ppt"
+        },
+        {
+            "name": "src",
+            "path": "C:/Users/wait/Desktop/cCourseware/src"
         }
     ],
 	"settings": {

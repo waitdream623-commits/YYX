@@ -16,23 +16,39 @@ int INF=0x3f3f3f3f;
 #define rc p<<1|1
 const int N = 1e6 + 10;
 int a[N];
-void wait()
-{
-    int n;cin>>n;
-    rep(i,1,n)
-    {
-        cin>>a[i];
+
+ int numDecodings(string s) {
+        int n=s.size();
+        int a=0,b=1,c=0;//a=dp[i-2],b=dp[i-1];
+        for(int i=1;i<=n;i++)//下标整体加一
+        {
+            c=0;//每次都是新的
+            if(s[i-1]!='0')
+            c+=b;
+           //两个
+           if(s[i-2]!='0'&&i-1>0)
+           {
+            int x = (s[i-2]-'0')*10 +s[i-1]-'0';
+            if(x>0&&x<=26)
+            {
+                c+=a;
+                
+            }
+           }
+          
+        a=b;
+        b=c;
+        }
+        cout<<c;
     }
-    
-}
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int T = 1;
-    cin >> T;  // 多测时取消注释
+    //cin >> T;  // 多测时取消注释
     while (T--) {
-        wait();
+       numDecodings("226");
     }
     return 0;
 }
