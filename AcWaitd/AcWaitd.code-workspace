@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "牛客周赛 Round 162",
+            "path": "Contest/牛客周赛 Round 162"
+        },
+        {
             "name": "CF",
             "path": "CF"
         },
@@ -135,10 +139,6 @@
         {
             "name": "md",
             "path": "C:/Users/wait/Desktop/cCourseware/md"
-        },
-        {
-            "name": "ppt",
-            "path": "C:/Users/wait/Desktop/cCourseware/ppt"
         },
         {
             "name": "src",

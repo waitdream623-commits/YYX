@@ -15,26 +15,29 @@ int INF=0x3f3f3f3f;
 #define lc p<<1
 #define rc p<<1|1
 const int N = 1e6 + 10;
-//因为k>=1;所以每次都可以删掉第二个数k=1时，k等于2删掉第三个数，因此，只有头和尾部不能删除，最大公因数只会小于等于他们俩
-//所以只需要返回首和尾
-int gcd(int a,int b)
-{
-    return b==0?a:gcd(b,a%b);
-}
 void wait()
-{   
-    int n; cin >> n;
-    int head;
-    cin >> head;
-    int x=0;//记得初始化，0能被所有数整除
-    rep(i,2,n)
-    {
-        
-        cin >> x;
+{
+    int n,m , x, y;
+    cin >>n>>m>>x>>y;
+    if(n==1||m==1){
+        cout<<0<<'\n';return;
     }
-    int d=gcd(head,x);
-    cout << d << '\n';
+    int c=2*(n+m);
     
+    if((x==1||x==n)&&(y!=1&&y!=m))
+    {
+        c+=2*n-6;
+    }
+    else if((y==1||y==m)&&(x!=1&&x!=n))
+    c+=2*m-6;
+    else if((y==1||y==m)&&(x==1||x==n))
+    c-=4;
+    else
+    c+=2*m+2*n-8;
+
+    
+    
+    cout<< c<<'\n';
 }
 int main() {
     ios::sync_with_stdio(false);
