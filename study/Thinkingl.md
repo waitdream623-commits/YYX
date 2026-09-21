@@ -3,7 +3,16 @@
 2. 空间优化，滚动数组
 3. 存边权重 vector<PII> edges[N];
 4. gcd(0,5)=0;,0能被所有数整除
+5. C++17 的结构化绑定（structured binding）
+~~~
+for (auto [a, b] : v)
+{
+    cout << a << " " << b;
+}
+pair<int, int> e = {3, 5};
 
+auto [a, b] = e;
+~~~
 
 ## 动态规划
 ### 思想

@@ -57,7 +57,7 @@ void wait()
             g[i][j]=min(g[i][j-1],g[i+(1<<(j-1))][j-1]);
         }
     }
-    int ans=0;
+    ll ans=0;
     for(int i=1;i<=n;i++)
     {
         // for(int j=n;j>=i;j--)
@@ -75,7 +75,7 @@ void wait()
         //     if(l<midmax&&r>midmin)
         //     ans++;
         // }
-        //二分
+        //二分，小范围可以推大范围
          int l=0;
         if(i==1)l=0;
         else
@@ -94,7 +94,7 @@ void wait()
         left=mid+1;
 
         }
-        //left可能不匹配
+        //left可能不匹配，所有都不匹配，left==n;
 
         int midmin=cacumin(i,left);
         int midmax=cacumax(i,left);
