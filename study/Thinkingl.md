@@ -4,6 +4,7 @@
 3. 存边权重 vector<PII> edges[N];
 4. gcd(0,5)=0;,0能被所有数整除
 5. C++17 的结构化绑定（structured binding）
+6. bitset，进制转换，转换成string，string 转换成int，stoi();
 ~~~
 for (auto [a, b] : v)
 {

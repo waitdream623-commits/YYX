@@ -9,7 +9,7 @@ int get_num(char c)
 {
   if(c>='a'&&c<='z')return c-'a';
   if(c>='A'&&c<='Z')return c-'A'+26;
-  return c-'0'+52;
+  return c-'0'+52;//分大小
 }
 void pushs(string&s)
 {

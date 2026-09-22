@@ -5,6 +5,10 @@
             "path": "CF"
         },
         {
+            "name": "Trie",
+            "path": "Trie"
+        },
+        {
             "name": "牛客周赛 Round 162",
             "path": "Contest/牛客周赛 Round 162"
         },
