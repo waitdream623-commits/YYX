@@ -7,11 +7,15 @@
 
 ```
 DP/
-├── knapsack_dp/     ← 背包 DP（01/完全/多重/分组/二维费用）
-├── linear_dp/       ← 线性 DP（LIS/LCS/最大子段和/编辑距离）
-├── interval_dp/     ← 区间 DP（石子合并/环形/两端扩展）
-├── tree_dp/         ← 树形 DP（独立集/换根/树上背包）
-└── ReadMe.md        ← 本文件
+├── knapsack_dp/       ← 背包 DP（01/完全/多重/分组/二维费用）
+├── linear_dp/         ← 线性 DP（LIS/LCS/最大子段和/编辑距离）
+├── interval_dp/       ← 区间 DP（石子合并/环形/两端扩展）
+├── tree_dp/           ← 树形 DP（独立集/换根/树上背包）
+├── dp_optimization/   ← DP 优化（单调队列/斜率/矩阵快速幂）
+│   ├── monotonic_queue/
+│   ├── slope_optimization/
+│   └── matrix_pow/
+└── ReadMe.md          ← 本文件
 ```
 
 ---
@@ -58,10 +62,12 @@ DP 动态规划
 │   └── 正向递推 / 逆向递推
 │
 └── 🔴 8. DP 优化（进阶）
-    ├── 单调队列优化
-    ├── 斜率优化
-    └── 矩阵快速幂优化
+    ├── 单调队列优化  ⬜              ← dp_optimization/monotonic_queue/
+    ├── 斜率优化      ⬜              ← dp_optimization/slope_optimization/
+    └── 矩阵快速幂优化 🟡 进行中       ← dp_optimization/matrix_pow/
 ```
+
+> **DP 优化怎么判类型** → `dp_optimization/ReadMe.md`（三条触发条件 + 反例警告）
 
 ### 学习优先级
 
@@ -189,3 +195,5 @@ dp[l][r][1] = min(dp[l][r-1][0]+cost, dp[l][r-1][1]+cost);  // 在右端
 | 背包 DP | ✅ Day 1-2 完成（8/10 题） |
 | 线性 DP | ⬜ 待开始 |
 | 区间 DP | ⬜ 待开始 |
+| 树形 DP | ⬜ 待开始 |
+| DP 优化 | 🟡 矩阵快速幂进行中（`dp_optimization/matrix_pow/`），单调队列/斜率 ⬜ |

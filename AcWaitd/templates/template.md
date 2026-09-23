@@ -211,6 +211,7 @@ ll qpow(ll a, ll b, ll MOD) {
 }
 // 求逆元（MOD 为质数）：ll inv(ll a, ll MOD) { return qpow(a, MOD - 2, MOD); }
 ```
+> 把上面的「数」换成「矩阵」就是**矩阵快速幂**，见文末 `五、动态规划 → 矩阵快速幂`。
 
 ## 欧几里得
 ```cpp
@@ -771,3 +772,69 @@ for (int i = 1; i <= n; i++) {
         dp[j] = max(dp[j], dp[j - k * ww] + k * vv);
 }
 ```
+
+---
+
+## 矩阵快速幂（线性递推加速）
+
+> 属于 **DP 优化**。完整版（动态矩阵 / k 维状态 / 不取模变形 / 踩坑清单）
+> → `../DP/dp_optimization/matrix_pow/Matrix_Pow_Template.cpp`
+
+**适用前提（缺一不可）**：转移是**线性**的（无 min/max、无乘法项）、系数与 $n$ **无关**、阶数 $k$ **固定**。
+
+```cpp
+const ll MOD = 1e9 + 7;      // 题面有则改
+
+template <int K>
+struct Mat {
+    ll a[K][K];
+    explicit Mat(bool I = false) {
+        for (int i = 0; i < K; i++)
+            for (int j = 0; j < K; j++) a[i][j] = 0;
+        if (I) for (int i = 0; i < K; i++) a[i][i] = 1;
+    }
+    Mat operator*(const Mat& o) const {
+        Mat r;
+        for (int i = 0; i < K; i++)
+            for (int t = 0; t < K; t++) {
+                if (!a[i][t]) continue;                        // 稀疏剪枝
+                for (int j = 0; j < K; j++)
+                    r.a[i][j] = (r.a[i][j] + a[i][t] * o.a[t][j]) % MOD;
+            }
+        return r;
+    }
+};
+
+template <int K>
+Mat<K> mat_qpow(Mat<K> b, ll e) {
+    Mat<K> r(true);             // ★ 单位矩阵，不是全 0
+    while (e) { if (e & 1) r = r * b; b = b * b; e >>= 1; }
+    return r;
+}
+
+// 1 维 k 阶：f[n] = c[0]*f[n-1] + ... + c[k-1]*f[n-k]，初值 f[1..k] = init[0..k-1]
+template <int K>
+ll linear_recurrence(array<ll, K> c, array<ll, K> init, ll n) {
+    if (n <= K) return init[n - 1] % MOD;                             // ★ 边界必判
+    Mat<K> A;
+    for (int j = 0; j < K; j++) A.a[0][j] = (c[j] % MOD + MOD) % MOD; // 第 0 行 = 系数照抄
+    for (int i = 1; i < K; i++) A.a[i][i - 1] = 1;                    // 第 i 行 = 上一行右移一格
+    A = mat_qpow(A, n - K);                                           // ★ 指数是 n-K
+    ll ans = 0;
+    for (int i = 0; i < K; i++) ans = (ans + A.a[0][i] * init[K - 1 - i]) % MOD;
+    return ans;                     // A^(n-K) 第 0 行 · [f[k], f[k-1], ..., f[1]]ᵀ
+}
+```
+
+**构造口诀**：第 0 行照抄递推系数，第 1 行起每行把上一行右移一格。
+
+| 坑 | 正确做法 |
+|----|----------|
+| 快速幂起点写成全 0 | 必须是**单位矩阵** |
+| 忘判 `n <= k` | 直接返回初值，否则下标越界 |
+| 指数写成 `n` / `n-1` | 用状态向量 $S_k$ 时为 `n - k`（换初值要同步改） |
+| 行/列向量混用 | 本模板是**列向量** $S_n = A S_{n-1}$；改行向量要转置 |
+| 模数 ≥ $10^{10}$ 还用 ll 相乘 | 用 `__int128` 中转 |
+
+> $n \le 10^6$、$k \le 3$ 时**别上矩阵**——$\log n \cdot k^3$ 常数比直接递推还大。
+
