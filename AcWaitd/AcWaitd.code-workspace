@@ -9,6 +9,14 @@
             "path": "Trie"
         },
         {
+            "name": "Strings",
+            "path": "Strings"
+        },
+        {
+            "name": "KMP",
+            "path": "Strings/KMP"
+        },
+        {
             "name": "牛客周赛 Round 162",
             "path": "Contest/牛客周赛 Round 162"
         },
