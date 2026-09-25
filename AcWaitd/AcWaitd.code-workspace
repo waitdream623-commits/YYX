@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "牛客挑战赛92",
+            "path": "Contest/牛客挑战赛92"
+        },
+        {
             "name": "CF",
             "path": "CF"
         },
