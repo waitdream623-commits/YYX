@@ -98,3 +98,20 @@ if(i>1&&s[i-2]!='0')
 ## 贪心
 - 最长重叠段
 - 哈夫曼
+
+## 递归
+5）master公式
+- a. 所有子问题规模相同的递归才能用master公式，T(n) = a * T(n/b) + O(n^c)，a、b、c都是常数
+- b. 如果log(b,a) < c，复杂度为：O(n^c)
+- c. 如果log(b,a) > c，复杂度为：O(n^log(b,a))
+- d. 如果log(b,a) == c，复杂度为：O(n^c * logn)
+- 6）一个补充
+- T(n) = 2\*T(n/2) + O(n\*logn)，时间复杂度是O(n \* ((logn)的平方))，证明过程比较复杂，记住即可
+
+
+
+## 二分
+###
+- 一般在有序数组上操作；
+- ⬜二分搜索不一定发生在有序数组上(比如[寻找峰值问题](https://leetcode.cn/problems/find-peak-element/description/))
+罗尔中值定理
