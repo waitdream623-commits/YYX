@@ -64,6 +64,7 @@ ll query(int p, int l, int r, int ql, int qr)
   if(ql <= mid) sum += query(p << 1, l, mid, ql, qr);
   if(qr > mid)  sum += query(p << 1 | 1, mid + 1, r, ql, qr);
   return sum;
+  //不用up，父亲早就已经更新过了
 }
 
 // ==================== 5. modify（单点修改） ====================

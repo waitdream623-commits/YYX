@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Binary Indexed Tree",
+            "path": "Binary Indexed Tree"
+        },
+        {
             "name": "牛客挑战赛92",
             "path": "Contest/牛客挑战赛92"
         },
@@ -43,10 +47,6 @@
         {
             "name": "Codeforces Round 1120 (Div. 2)",
             "path": "Contest/Codeforces Round 1120 (Div. 2)"
-        },
-        {
-            "name": "Binary Indexed Tree",
-            "path": "Binary Indexed Tree"
         },
         {
             "name": "Cnstructive_Algorithms",

@@ -14,6 +14,7 @@ int INF=0x3f3f3f3f;
 #define rep(i,m,n) for(int i=m;i<=n;++i)
 #define lc p<<1
 #define rc p<<1|1
+#define lowbit(x) (x&-x)
 const int N = 1e6 + 10;
 void wait()
 {

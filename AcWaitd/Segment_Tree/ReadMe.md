@@ -184,7 +184,7 @@ void pushdown(int p, int l, int r) {
     int right_len = r - mid;
 
     // 左儿子
-    tree[p << 1] += lazy[p] * left_len;    // 区间加：每个元素都加上 lazy
+    tree[p << 1] += lazy[p] * left_len;    // 区间加：每个元素都加上 lazy，该节点已经更新
     lazy[p << 1] += lazy[p];
 
     // 右儿子
@@ -201,7 +201,9 @@ void pushdown(int p, int l, int r) {
 // 将区间 [ml, mr] 每个元素加上 val
 void update(int p, int l, int r, int ml, int mr, int val) {
     if (ml <= l && r <= mr) {       // 完全覆盖 → 打懒标记
+    //对于区间长度为1的必定完全包裹
         tree[p] += val * (r - l + 1);
+        if(l!=r)
         lazy[p] += val;
         return;
     }
@@ -303,6 +305,7 @@ flowchart TD
 | 区间乘积 | `tree[p] = tree[lc] * tree[rc] % MOD` |
 
 ## 失误/注意
+- 注意开辟数组大小
 - modify与query，输入的是原始查询边界，切勿修改
 
 ---
