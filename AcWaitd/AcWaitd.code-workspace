@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "ABC",
+            "path": "ABC"
+        },
+        {
             "name": "Binary Indexed Tree",
             "path": "Binary Indexed Tree"
         },
@@ -29,12 +33,8 @@
             "path": "Contest/牛客练习赛157"
         },
         {
-            "name": "tree_dp",
-            "path": "DP/tree_dp"
-        },
-        {
-            "name": "linear_dp",
-            "path": "DP/linear_dp"
+            "name": "2025年12月ZZUACM实验室招新赛",
+            "path": "Contest/2025年12月ZZUACM实验室招新赛"
         },
         {
             "name": "牛客周赛 Round 161",
@@ -69,20 +69,12 @@
             "path": "Consolidation"
         },
         {
-            "name": "2025年12月ZZUACM实验室招新赛",
-            "path": "Contest/2025年12月ZZUACM实验室招新赛"
-        },
-        {
             "name": "Contest",
             "path": "Contest"
         },
         {
             "name": "combinatorial_counting",
             "path": "Combinatorics/combinatorial_counting"
-        },
-        {
-            "name": "ABC",
-            "path": "ABC"
         },
         {
             "name": "AGC",
@@ -111,18 +103,6 @@
         {
             "name": "Number_Theory",
             "path": "Number_Theory"
-        },
-        {
-            "name": "union-find_sets",
-            "path": "union-find_sets"
-        },
-        {
-            "name": "Monotonic_Queue",
-            "path": "Monotonic_Queue"
-        },
-        {
-            "name": "Monotonic_Stack",
-            "path": "Monotonic_Stack"
         },
         {
             "name": "Tree",
