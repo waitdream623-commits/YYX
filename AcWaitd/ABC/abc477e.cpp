@@ -56,7 +56,7 @@ void wait()
         {
             if(presum[j-1]-presum[i-1]+b[(j-1)%n+1]<ton[i])
             {
-                ton[i]=presum[j-1]-presum[i-1]+b[j];
+                ton[i]=presum[j-1]-presum[i-1]+b[(j-1)%n+1];
                     
             }
             // else break;//找到第一个不成立

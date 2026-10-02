@@ -166,3 +166,29 @@ if(i>1&&s[i-2]!='0')
   - 贪心优化，碎片处理是否能满足
 - 计算等位时间，题目六051ppt
   - 枚举时间，看目前每个服务员服务了多少顾客
+
+## 滑动窗口
+- 适用
+滑动窗口：维持左、右边界都不回退的一段范围，来求解很多子数组（串）的相关问题
+滑动窗口的关键：找到 范围 和 答案指标 之间的 单调性关系（类似贪心）
+  - 如果不达标只能往右扩
+- 滑动过程：滑动窗口可以用 简单变量 或者 结构 来 维护信息
+求解大流程：求子数组在 每个位置 开头 或 结尾 情况下的答案（开头还是结尾在于个人习惯）
+注意：
+滑动窗口维持最大值 或者 最小值的更新结构：**单调队列**
+### 想法
+- 对于窗口，要求连续一段满足某个条件，需要维护区间信息
+- 单调性方面，窗口越大越容易满足，增加l就会找到极限值，这需要判断题目是否有此性质
+### 题目
+- [209. 长度最小的子数组]( https://leetcode.cn/problems/minimum-size-subarray-sum/)
+  - 如果存在负数，可能会一直往后加，导致单调性与答案指标不一致；[862. 和至少为 K 的最短子数组](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k)该题存在负数
+- https://leetcode.cn/problems/longest-substring-without-repeating-characters/submissions/752439819/
+  - 可以记录上个字符出现位置，实现快速去重
+- [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/)
+  - 利用负债表，需要的为负，如果加完后小于等于零，说明是需要的cnt(债务)--;
+  - 此时债务清零，看l能否缩减，剪完会不会变为负数，如果不会就剪掉(要么本身是不需要字符，或者是多的需要字符)
+- [加油站](https://leetcode.cn/problems/gas-station/description/)
+  - 多种思考方式，找最低点；
+- [替换子串得到平衡子串](https://leetcode.cn/problems/replace-the-substring-for-balanced-string/description/)
+  - 利用了最小覆盖子串，债务法
+  - 对于vector<char>表示存储大小不超过char
