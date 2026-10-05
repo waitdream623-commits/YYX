@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Cnstructive_Algorithms",
+            "path": "Cnstructive_Algorithms"
+        },
+        {
             "name": "ABC",
             "path": "ABC"
         },
@@ -47,10 +51,6 @@
         {
             "name": "Codeforces Round 1120 (Div. 2)",
             "path": "Contest/Codeforces Round 1120 (Div. 2)"
-        },
-        {
-            "name": "Cnstructive_Algorithms",
-            "path": "Cnstructive_Algorithms"
         },
         {
             "name": "Sparse Table",
@@ -137,6 +137,7 @@
             "path": "C:/Users/wait/Desktop/cCourseware/src"
         },
         {
+            "name": "Monotonic_Stack",
             "path": "Monotonic_Stack"
         }
     ],
