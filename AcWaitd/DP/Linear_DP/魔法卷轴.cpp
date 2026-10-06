@@ -16,8 +16,12 @@ int INF=0x3f3f3f3f;
 #define rc p<<1|1
 #define lowbit(x) (x&-x)
 const int N = 1e6 + 10;
+int a[N];
+//
 void wait()
 {
+
+
 }
 int main() {
     ios::sync_with_stdio(false);

@@ -5,6 +5,14 @@
             "path": "Cnstructive_Algorithms"
         },
         {
+            "name": "linear_dp",
+            "path": "DP/linear_dp"
+        },
+        {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
             "name": "ABC",
             "path": "ABC"
         },
@@ -79,10 +87,6 @@
         {
             "name": "AGC",
             "path": "AGC"
-        },
-        {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
         },
         {
             "name": "Game_Theory",
