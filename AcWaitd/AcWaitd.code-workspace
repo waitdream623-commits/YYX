@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Graph_Theory",
+            "path": "Graph_Theory"
+        },
+        {
             "name": "Cnstructive_Algorithms",
             "path": "Cnstructive_Algorithms"
         },
@@ -111,10 +115,6 @@
         {
             "name": "Tree",
             "path": "Tree"
-        },
-        {
-            "name": "Graph_Theory",
-            "path": "Graph_Theory"
         },
         {
             "name": "templates",
