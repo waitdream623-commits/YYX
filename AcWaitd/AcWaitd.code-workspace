@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "search_advanced",
+            "path": "Search/search_advanced"
+        },
+        {
+            "name": "Search",
+            "path": "Search"
+        },
+        {
             "name": "Graph_Theory",
             "path": "Graph_Theory"
         },
@@ -103,10 +111,6 @@
         {
             "name": "Combinatorics",
             "path": "Combinatorics"
-        },
-        {
-            "name": "Search",
-            "path": "Search"
         },
         {
             "name": "Number_Theory",
