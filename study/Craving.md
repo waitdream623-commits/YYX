@@ -62,6 +62,22 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 ```
 
 > 注意：`vector` 不能用结构化绑定（元素个数不定）
+-   四方遍历写法
+
+    - `int a[] = {-1,0,1,0,-1};`dx = a[i], dy = a[i+1]
+
+-   封装数据类型维护更多信息
+
+    ```cpp
+    queue<array<int, 3>> q;//也可以改为struct
+    q.push({1, 2, 3});
+    
+    auto [x, y, steps] = q.front();
+    q.pop();
+    ```
+
+    
+
 ## 动态规划
 
 ### 思想
@@ -303,15 +319,6 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
   - 数据范围：$t \le 10^4$，$\sum n \le 10^5$，$a_i \le 10^9$ → 得分开 `long long`
   - 确定每个长度的左右可选范围；因为选了一个范围会变化，分为"范围交叉"与"不交叉"讨论
 
-## 递归DFS
-
-- **master 公式**
-  - a. 所有子问题规模相同的递归才能用 master 公式：$T(n) = a \cdot T(n/b) + O(n^c)$，$a$、$b$、$c$ 都是常数
-  - b. 如果 $\log_b a < c$，复杂度为：$O(n^c)$
-  - c. 如果 $\log_b a > c$，复杂度为：$O(n^{\log_b a})$
-  - d. 如果 $\log_b a = c$，复杂度为：$O(n^c \log n)$
-- **一个补充**：$T(n) = 2T(n/2) + O(n\log n)$，时间复杂度是 $O(n \log^2 n)$，证明过程比较复杂，记住即可
-
 -   [ ] - 
 
 ## 二分
@@ -486,6 +493,17 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
     - 题意：方块依次落下（给出落点与边长），求每次落下后所有方块堆叠的最大高度
     - 离散所有区间，维护区间内的最大值
 
+## 递归DFS
+
+- **master 公式**
+    - a. 所有子问题规模相同的递归才能用 master 公式：$T(n) = a \cdot T(n/b) + O(n^c)$，$a$、$b$、$c$ 都是常数
+    - b. 如果 $\log_b a < c$，复杂度为：$O(n^c)$
+    - c. 如果 $\log_b a > c$，复杂度为：$O(n^{\log_b a})$
+    - d. 如果 $\log_b a = c$，复杂度为：$O(n^c \log n)$
+- **一个补充**：$T(n) = 2T(n/2) + O(n\log n)$，时间复杂度是 $O(n \log^2 n)$，证明过程比较复杂，记住即可
+
+- [ ] - 
+
 ## BFS
 
 #### 特点
@@ -511,7 +529,7 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 
 - bfs 是一个理解难度很低的算法，**难点在于**：**节点如何找到路、路的展开、剪枝设计**([691. 贴纸拼词](https://leetcode.cn/problems/stickers-to-spell-word/description/))
 
-- #### [多源层序](https://leetcode.cn/problems/as-far-from-land-as-possible/description/)
+- #### [多源层序遍历模板](https://leetcode.cn/problems/as-far-from-land-as-possible/description/)
 
     ##### 题目
 
@@ -560,8 +578,7 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
                 - 如果 `w == 1`，`y` 从尾部进入双端队列
             - 3）考察完 `x` 出发的所有边之后，重复步骤 3
     4. 双端队列为空停止
-- 四方遍历写法
-    - `int a[] = {-1,0,1,0,-1};`dx = a[i], dy = a[i+1]
+- - 
 
 BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
 
@@ -587,6 +604,10 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
 
 -   不能用动态规划来解？尽管只有选与不选，但是无法存储背包信息
 -   从中间分割成两部分，将展开到最后的结果存放，后面整合
+-   [代码](D:\c\code\yy\AcWaitd\Search\search_advanced\P_4799_CEOI_2015_世界冰球锦标赛_Day_2.cpp)
+-   出现问题
+    -   递归结束是下一个的开始
+    -   读入数据要开long long
 
 [ [1755. 最接近目标值的子序列和]](https://leetcode.cn/problems/closest-subsequence-sum/description/)
 
@@ -595,12 +616,14 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
     -   求正数最大，负数最小，极端值对目标判段
     -   展开前排序，对于相同数子求组合数，采用分组展开，二叉树展开变成多叉树展开
 
+-   错误点，最后总结时，两个指针都只能增大，外层i增大，goal - a减小，此时j应该逆序转移
+
 ### 总结 
 
 -   对于普通bfs第一次访问就可以标记vis，而0/1bfs因为可以被松弛所以必须出队时才可以标记vis，由于只有0/1，0插头，1插尾，可以模仿堆作用，此时能松弛的一定先出来，因此可以用dist来代替vis作用，此时每个点最多入队两次
 -   但是对于dijkstra算法，出队是标记已经处理完，避免堆中元素重复操作
 
--   [ ] - 
+-   [ ] - [二维接雨水](https://leetcode.cn/problems/trapping-rain-water-ii/description/)
 
 -   [ ] - 
 
@@ -613,7 +636,7 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
 
 #### 题目
 
-- 给你一个已经排好序的字符串列表，找到一个递增的字符串
+- [火星词典](https://leetcode.cn/problems/Jf1JuT/description/)给你一个已经排好序的字符串列表，找到一个递增的字符串
   - 题意：外星文字典，根据已按新字母顺序排好序的单词列表，还原字母表的顺序
   - 将能确定顺序，建图小 -> 大，构造入度信息，此后进行拓扑，最小的在前
 
@@ -660,9 +683,69 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
 
 ### 单源最短路
 
-#### 实现算法
+#### Dijkstra算法
 
--
+-   Dijkstra算法：给定一个源点，求解从源点到每个点的最短路径长度。单源最短路径算法。
+-   适用范围：有向图、边的权值没有负数
+-   彻底暴力的Dijkstra算法，遍历每个距离看找到最近的点，O($n^2$)
+-   普通堆实现的Dijkstra算法，最普遍、最常用
+-   算法核心过程：
+-   节点弹出过就忽略
+-   节点没弹出过，让其它没弹出节点距离变小的记录加入堆
+-   反向索引堆实现的Dijkstra算法，最快速、最极致
+
+##### 实现
+
+[模板](D:\c\code\yy\AcWaitd\Graph_Theory\single_source_shortest\P_4779_模板_单源最短路径_标准版.cpp)
+
+-   普通堆实现的Dijkstra算法，时间复杂度O(m * log m)，m为边数
+-   1，distance[i]表示从源点到i点的最短距离，visited[i]表示i节点是否从小根堆弹出过
+-   2，准备好小根堆，小根堆存放记录：(源点到x的距离, x点)，小根堆根据距离组织
+-   3，令distance[源点]=0，(0， 源点)进入小根堆
+-   4，从小根堆弹出(u点，源点到u的距离)
+-   a. 如果visited[u] == true，不做任何处理，重复步骤4
+-   b. 如果visited[u] == false，令visited[u] = true，u就算弹出过了
+-   然后考察u的每一条边，假设某边去往v，边权为w
+-   1）如果visited[v] == false 并且 distance[u] + w < distance[v]
+-   令distance[v] = distance[u] + w，把(v, distance[u] + w)加入小根堆
+-   2）处理完u的每一条边之后，重复步骤4
+-   5，小根堆为空过程结束，distance表记录了源点到每个节点的最短距离。
+
+##### 细节
+
+-   入队时，不能标记vis，出队时标记
+
+##### 题目
+
+[维护路径上最大差值最小](https://leetcode.cn/problems/path-with-minimum-effort/description/)
+
+```text
+1.网格图，从左上到右下，四方遍历，找差值绝对值，距离为差值绝对值，依旧松弛操作
+2.可以使用最小生成树解决，看两点是否连通，kruskal算法可以解决
+```
+
+[维护路径上最大值最小](https://leetcode.cn/problems/swim-in-rising-water/description/)
+
+#### 分层图最短路
+
+-   分层图最短路，又叫扩点最短路
+-   不把实际位置看做图上的点，而是把 实际位置及其状态的组合 看做是图上的点，然后搜索
+-   bfs 或者 Dijkstra的过程不变，只是扩了点（分层）而已
+-   原理简单，核心在于如何扩点、如何到达、如何算距离，每个题可能都不一样
+-   增加一维度，维护更多信息
+
+
+
+##### 题目
+
+[一些格子需要获取前置条件](https://leetcode.cn/problems/shortest-path-to-get-all-keys/description/)
+
+-   多维护一层信息，是否有钥匙
+-   只有当位置和钥匙信息重复时才跳过，因为可能后面去别的路拿到了钥匙返回
+-   错点
+    -   判断钥匙是否存在存在错误
+
+
 
 ## 树上倍增与LCA
 

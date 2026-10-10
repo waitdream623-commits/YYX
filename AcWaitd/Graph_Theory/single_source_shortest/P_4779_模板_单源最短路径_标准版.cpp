@@ -31,7 +31,7 @@ void dijk(int s)
       
       int x=e.first,y=e.second;
       
-      if(dist[b]+y<dist[x])
+      if(!st[x]&&dist[b]+y<dist[x])
       {
         dist[x]=dist[b]+y;//松弛操作
         q.push({dist[x],x});
