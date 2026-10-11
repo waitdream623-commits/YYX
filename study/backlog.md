@@ -16,6 +16,7 @@
 -   [x] 打表
 -   [ ] 最长回文子串，马拉车算法
 -   [x] kmp必学
+-   [ ] raney计数
 
 
 ### 了解
@@ -32,3 +33,9 @@
 -   [ ] [单词接龙Ⅱ](https://leetcode.cn/problems/word-ladder-ii/)
     -   bfs
 -   [ ] [二维接雨水](https://leetcode.cn/problems/trapping-rain-water-ii/description/)
+
+## 知识点
+
+-   异或操作
+
+    -   ## U629159 拯救世界的小牛

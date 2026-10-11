@@ -25,7 +25,7 @@ void spfa()
         {
             int a=q.front();q.pop();
             st[a]=0;//拿出，后续可能更新
-            for(auto&e:edge[a])
+            for(auto&e:edge[a])//松弛该点出发的边
             {
                 int b=e.first,w=e.second;
                 if(dist[a]+w<dist[b])
