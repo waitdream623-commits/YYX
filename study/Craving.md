@@ -273,6 +273,16 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
   - **小挂大**：需要维护 `size` 和转移 `size`，初始化为 1；`union` 时 a -> b，`size[b] += size[a]`；小（认为高度小）的挂在大（认为高度大）的上，减小递归深度，可不做
 - 带权并查集、可持久化并查集、可撤销并查集
 
+
+
+### 题目
+
+[947. 移除最多的同行或同列石头](https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/)
+
+-   要移除最多，将能连的连起来，最后一定只会剩一个(从边缘往中心交点删，如果删掉交点，会多保留几个，不符合题意)
+
+
+
 ## 树状数组
 
 > 模板：[P3374 树状数组 1](<../AcWaitd/Binary Indexed Tree/P_3374_模板_树状数组_1.cpp>) ｜ [P3368 树状数组 2](<../AcWaitd/Binary Indexed Tree/P_3368_模板_树状数组_2.cpp>) ｜ 笔记：[树状数组.md](<../AcWaitd/Binary Indexed Tree/树状数组.md>)
@@ -1039,8 +1049,6 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
   - 应用：[P4139 上帝与集合的正确用法](../AcWaitd/Number_Theory/modular_arithmetic/P_4139_上帝与集合的正确用法.cpp)（无限递归的指数塔）
 - ⬜ 待补：中国剩余定理（讲解 141）、线性基（136/137）、高斯消元（133~135）、01 分数规划（138）、同余最短路（143）
 
-
-
 ## 质数判定
 ### 试除法
 试除法判断质数
@@ -1277,12 +1285,110 @@ for(int i = 1; i <= cnt; i++)
 
 - 求单个 n 的约数和：不用分解，直接**试除配对** O($\sqrt{n}$) —— 枚举 $i \le \sqrt n$，`i` 和 `n / i` 成对加上（注意 `i != n/i` 时才加第二个）→ [约数之和](../AcWaitd/Number_Theory/fundamental_theorem/约数之和.cpp)
 - 求 1~n 的**约数个数之和**：等价于 $\sum_{k=1}^{n}\lfloor n/k \rfloor$ —— 换成"数每个 k 是哪些数的约数"，$k > n/2$ 的部分每项都是 1，可以省掉那半圈 → [约数个数的和](../AcWaitd/Number_Theory/fundamental_theorem/约数个数的和.cpp)
-
 - **P3383【模板】线性筛素数**：[代码](../AcWaitd/Number_Theory/prime/P_3383_模板_线性筛素数.cpp)｜[P5736 质数筛](../AcWaitd/Number_Theory/prime/P_5736_深基_7_例_2_质数筛.cpp)
 - 筛法应用：[P1835 素数密度](../AcWaitd/Number_Theory/prime/P_1835_素数密度.cpp)（区间筛）｜[UVA543 Goldbach's Conjecture](../AcWaitd/Number_Theory/prime/UVA_543_Goldbach_s_Conjecture.cpp)
 - 质因子分解：[P10495 阶乘分解](../AcWaitd/Number_Theory/fundamental_theorem/P_10495_阶乘分解.cpp)｜[P2043 质因子分解](../AcWaitd/Number_Theory/fundamental_theorem/P_2043_质因子分解.cpp)
 - 约数：[约数个数的和](../AcWaitd/Number_Theory/fundamental_theorem/约数个数的和.cpp)｜[约数之和](../AcWaitd/Number_Theory/fundamental_theorem/约数之和.cpp)
 - 应用：[P2158 仪仗队](../AcWaitd/Number_Theory/fundamental_theorem/P_2158_SDOI_2008_仪仗队.cpp)（$\varphi$ 前缀和）｜[P2568 GCD](../AcWaitd/Number_Theory/fundamental_theorem/P_2568_GCD.cpp)
+
+## 逆元
+
+**单个逆元**
+
+- 如果你想计算：a / b，然后 % MOD结果
+- 1) 必须保证a/b可以整除，每次有除法的时候，都需要保证绝对能整除
+- 2) 必须保证MOD是质数，求逆元的原理是费马小定理，要求MOD是质数，比如1000000007
+- 3) 必须保证b和MOD的最大公约数为1，也就是b和MOD互质
+- 先求 1/b 的乘法同余数，也就是b的逆元，b的逆元 = b的(MOD-2)次方 % MOD
+- 然后，(a / b) % MOD的结果，等于，((a % MOD) * (b的逆元)) % MOD的结果
+
+**连续数字逆元的线性递推**
+
+- 在 % p意义下，1、2、3 . . . n，求每个数的逆元
+    - 用inv[i]，代表i的逆元
+    - inv[1] = 1
+    - inv[i] = (int) (p - (long) inv[p % i] * (p / i) % p); // 从左往右线性递推
+- 连续阶乘逆元的线性递推
+    - 在 % p意义下，
+    - 1!、2!、3! . . . n!，求每个数的逆元，
+    - 用inv[i]，代表i!的逆元
+    - 先求n!乘法同余的结果，假设为a，然后求a的逆元，假设为b
+    - inv[n] = b
+    - inv[i] = ((long) (i + 1) * inv[i + 1]) % MOD; // 从右往左线性递推
+
+## 容斥原理
+
+-   作用：把「至少满足一个条件」或「所有条件都满足」的计数，拆成若干个「且（交集）」来数，正负交错。
+-   并集公式：
+
+### 基本公式
+
+$$
+|A_1\cup A_2\cup\cdots\cup A_m|
+=
+\sum_{i=1}^{m}|A_i|
+-\sum_{1\le i<j\le m}|A_i\cap A_j|
++\sum_{1\le i<j<k\le m}|A_i\cap A_j\cap A_k|
+-\cdots
++(-1)^{m+1}|A_1\cap A_2\cap\cdots\cap A_m|
+$$
+
+
+### 通项公式
+
+$$
+\boxed{
+\left|\bigcup_{i=1}^{m}A_i\right|
+=
+\sum_{k=1}^{m}
+(-1)^{k+1}
+\sum_{1\le i_1<i_2<\cdots<i_k\le m}
+\left|
+A_{i_1}\cap A_{i_2}\cap\cdots\cap A_{i_k}
+\right|
+}
+$$
+
+
+### 符号规律
+
+取 $k$ 个集合的交集：
+
+$$
+\boxed{(-1)^{k+1}}
+$$
+
+
+即：
+
+$$
++,-,+,-,+,\cdots
+$$
+
+
+### 两个集合
+
+$$
+|A\cup B|
+=
+|A|+|B|-|A\cap B|
+$$
+
+
+### 三个集合
+
+$$
+\begin{aligned}
+|A\cup B\cup C|
+=&|A|+|B|+|C|\\
+&-|A\cap B|-|A\cap C|-|B\cap C|\\
+&+|A\cap B\cap C|
+\end{aligned}
+$$
+
+
+
+-   交集个数为**奇数**的项取 ++，**偶数**取 −−。
 
 ## 快速幂 / 矩阵快速幂（讲解 098）
 
