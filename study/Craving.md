@@ -4,6 +4,7 @@
 
 - 开 long long
 - 区间越界，特别对于 `while`，`while` 内先判断是否越界
+- 自定义比较时，记得&，减少因为开辟空间而影响速度
 
 ## 语法知识
 
@@ -270,16 +271,63 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 - 并查集优化（在 `find` 中）
   - **扁平化**：每次查询，如果所挂的不是本身（是本身说明自己是头），说明有上级，直接递归修改为最上级
     - 可以递归写法，也可以用栈模拟递归防止爆栈
+    
+    - ```cpp
+            int find(int x)
+            {
+                int root = x;
+                while(fa[root] != root)
+                {
+                    root = fa[root];
+                }
+                while(fa[x] != x)
+                {
+                    int t = fa[x];
+                    fa[x] = root;
+                    x = t;
+                }
+                return root;
+            }
+        ```
+    
+    - 
   - **小挂大**：需要维护 `size` 和转移 `size`，初始化为 1；`union` 时 a -> b，`size[b] += size[a]`；小（认为高度小）的挂在大（认为高度大）的上，减小递归深度，可不做
+  
+      - 因为**小树挂到大树下面时，只有小树里的节点深度增加 1**，大树里的节点深度不变。
+  
+      - ```cpp
+           auto un = [&](int x,int y)->void
+                  {
+                      int fx = find(x),fy = find(y);
+                      if(fx != fy)
+                      {
+                          if(sz[fy] > sz[fx])
+                          {
+                              swap(fy,fx);
+                          }
+                          fa[fy] = fx;
+                          sz[fx] += sz[fy];
+                      }
+                  };
+          ```
+  
+      - 
 - 带权并查集、可持久化并查集、可撤销并查集
 
 
 
 ### 题目
 
-[947. 移除最多的同行或同列石头](https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/)
+-   [ ] [947. 移除最多的同行或同列石头](https://leetcode.cn/problems/most-stones-removed-with-same-row-or-column/)
+
 
 -   要移除最多，将能连的连起来，最后一定只会剩一个(从边缘往中心交点删，如果删掉交点，会多保留几个，不符合题意)
+
+[2092. 找出知晓秘密的所有专家](https://leetcode.cn/problems/find-all-people-with-secret/)
+
+-   时间排序，从前往后处理，对于同一时间，可能后面连接上了，前面没有得到信息
+-   解决上述，我们应该将其全部连接起来，最后能连的都在一起，对于不能的，最后需要取消并查集，防止影响后面不同时间的
+-   对于多次访问同一个集合，可将改find提前准备好，避免多次调用函数
 
 
 
