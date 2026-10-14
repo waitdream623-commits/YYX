@@ -329,7 +329,13 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 -   解决上述，我们应该将其全部连接起来，最后能连的都在一起，对于不能的，最后需要取消并查集，防止影响后面不同时间的
 -   对于多次访问同一个集合，可将改find提前准备好，避免多次调用函数
 
+-   [ ] [2421. 好路径的数目 - 力扣（LeetCode）](https://leetcode.cn/problems/number-of-good-paths/description/)
 
+-   优先处理两头节点最大值，最小的边，合并计数，如果最大值相等才计数，并更新最大值与其个数(方便后续计数)
+-   按照从大到小顺序，避免大的阻挠
+
+-   [ ] [928. 尽量减少恶意软件的传播 II - 力扣（LeetCode）](https://leetcode.cn/problems/minimize-malware-spread-ii/)
+    -   
 
 ## 树状数组
 

@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Educational Codeforces Round 195 (Rated for Div. 2)",
+            "path": "Contest/Educational Codeforces Round 195 (Rated for Div. 2)"
+        },
+        {
             "name": "CF",
             "path": "CF"
         },
