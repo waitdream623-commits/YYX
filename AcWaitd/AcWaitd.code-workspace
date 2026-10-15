@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "differential_constraints",
+            "path": "Graph_Theory/differential_constraints"
+        },
+        {
             "name": "Educational Codeforces Round 195 (Rated for Div. 2)",
             "path": "Contest/Educational Codeforces Round 195 (Rated for Div. 2)"
         },
