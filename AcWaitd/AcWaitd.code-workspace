@@ -1,5 +1,22 @@
 {
 	"folders": [
+      
+        {
+            "name": "Tree_Centroid",
+            "path": "Tree/Tree_Centroid"
+        },
+        {
+            "name": "Tree_Diameter",
+            "path": "Tree/Tree_Diameter"
+        },
+        {
+            "name": "Tree_Difference",
+            "path": "Tree/Tree_Difference"
+        },
+        {
+            "name": "Reroot_DP",
+            "path": "Tree/Reroot_DP"
+        },
         {
             "name": "LCA",
             "path": "Tree/LCA"
@@ -156,15 +173,7 @@
             "name": "Monotonic_Stack",
             "path": "Monotonic_Stack"
         }
-    ],
-	"settings": {
-        "files.exclude": {
-            "**/*.exe": true,
-            "**/*.pdb": true,
-            "**/*.ilk": true,
-            "**/*.tmp*": true,
-            "**/.cph": true,
-            "**/.png": true,
+    ]            "**/.png": true,
 
         },
         "C_Cpp.intelliSenseEngine": "Tag Parser",
