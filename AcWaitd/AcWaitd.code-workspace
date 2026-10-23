@@ -2,6 +2,10 @@
 	"folders": [
       
         {
+            "name": "牛客挑战赛93",
+            "path": "Contest/牛客挑战赛93"
+        },
+        {
             "name": "Tree_Centroid",
             "path": "Tree/Tree_Centroid"
         },
@@ -173,8 +177,10 @@
             "name": "Monotonic_Stack",
             "path": "Monotonic_Stack"
         }
-    ]            "**/.png": true,
-
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.png": true
         },
         "C_Cpp.intelliSenseEngine": "Tag Parser",
         "code-runner.runInTerminal": true,
