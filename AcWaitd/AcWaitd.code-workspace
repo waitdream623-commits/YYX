@@ -1,5 +1,9 @@
 {
 	"folders": [
+        {
+            "name": "binary_search",
+            "path": "Search/binary_search"
+        },
       
         {
             "name": "牛客挑战赛93",
