@@ -1,10 +1,13 @@
 {
 	"folders": [
         {
+            "name": "CF",
+            "path": "CF"
+        },
+        {
             "name": "binary_search",
             "path": "Search/binary_search"
         },
-      
         {
             "name": "牛客挑战赛93",
             "path": "Contest/牛客挑战赛93"
@@ -44,10 +47,6 @@
         {
             "name": "Educational Codeforces Round 195 (Rated for Div. 2)",
             "path": "Contest/Educational Codeforces Round 195 (Rated for Div. 2)"
-        },
-        {
-            "name": "CF",
-            "path": "CF"
         },
         {
             "name": "2025年12月ZZUACM实验室招新赛",
