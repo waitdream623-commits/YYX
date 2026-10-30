@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "knapsack_dp",
+            "path": "DP/knapsack_dp"
+        },
+        {
             "name": "CF",
             "path": "CF"
         },
@@ -33,10 +37,6 @@
             "path": "Tree/LCA"
         },
         {
-            "name": "WorldQuant Round 1 (Codeforces Round 1128, Div. 1 + Div. 2)",
-            "path": "Contest/WorldQuant Round 1 (Codeforces Round 1128, Div. 1 + Div. 2)"
-        },
-        {
             "name": "2026 年秋季学期 ZZUACM 线上练习赛（一）",
             "path": "Contest/2026 年秋季学期 ZZUACM 线上练习赛（一）"
         },
@@ -51,6 +51,10 @@
         {
             "name": "2025年12月ZZUACM实验室招新赛",
             "path": "Contest/2025年12月ZZUACM实验室招新赛"
+        },
+        {
+            "name": "WorldQuant Round 1 (Codeforces Round 1128, Div. 1 + Div. 2)",
+            "path": "Contest/WorldQuant Round 1 (Codeforces Round 1128, Div. 1 + Div. 2)"
         },
         {
             "name": "single_source_shortest",
