@@ -1,13 +1,21 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-pair<double,double>nodex[100],nodey[100];
+pair<double,double>nodex[10005],nodey[10005];
+// pair<double,double> z; 
+// int zid=INT_MAX;
+// int n;
+// struct point{
+//     double x,y; int id;
+// }node[100005];
 int n;
 double getdis(pair<double,double> i,pair<double,double> j)
 {
     double ans = sqrt(pow(i.first-j.first,2)+pow(i.second-j.second,2));
     return ans;
 }
+//判断是否相等，
+map<pair<double,double>,int>mp;
 double getmindis(int l,int r,pair<double,double>&x,pair<double,double>&y)
 {
     if(r-l+1==2)
@@ -18,7 +26,7 @@ double getmindis(int l,int r,pair<double,double>&x,pair<double,double>&y)
     //只有1个怎么办
     else if(r==l)
     {
-        return 1e9;//无效值
+        return numeric_limits<double>::infinity();
     }
     //处理中间
     int mid = (l+r)>>1;
@@ -49,22 +57,39 @@ double getmindis(int l,int r,pair<double,double>&x,pair<double,double>&y)
 
         }
             sort(tmp.begin(),tmp.end(),[](auto&a,auto&b){
-                return  a.second<b.second;
-            });
+                return  a.second<b.second;});
+    if(x.first>y.first)swap(x,y);
     //找每个点以自身y为中心，上下为d范围的点比较距离
     for(int i = 0;i<tmp.size();i++)
         {
-            for(int j = max(0,i-4);j<=i+4&&j<tmp.size();j++)
+            for(int j = i+1;j<tmp.size();j++)
                 {
-                    if(j==i)continue;//不与自身
+                    if(tmp[j].second-tmp[i].second>d)break;//超过
                     double t =getdis(tmp[i],tmp[j]);
-            if(d>t)
+            if(d>t)//相等选x轴小的，输入以x递增输入
             {
-                if(tmp[j].first+tmp[j].second>tmp[i].first+tmp[i].second)
-                    x = tmp[i],y = tmp[j];
-                else
-                x = tmp[j],y = tmp[i];
+                x = tmp[i],y = tmp[j];
+                if(x.first+x.second>y.second+y.first)swap(x,y);
+                
                 d = t;
+            }
+            else if(fabs(d-t)<1e-12)//xi相等选出正确点
+            {
+                if(1)
+                { int a = i,b = j;
+                if(mp[tmp[i]]>mp[tmp[j]])
+                {
+                     a = j; b = i;
+                }
+                if(mp[x]>mp[y])swap(x,y);
+                if(mp[x]>mp[tmp[a]]||(mp[x]==mp[tmp[a]]&&mp[y]>mp[tmp[b]]))//可能是同一个点，第二个选小的
+                {
+                    x = tmp[a],y= tmp[b];
+                }}
+                if(1)
+                { auto a = min(x,y),b = max(x,y);
+                auto c = min(tmp[i],tmp[j]),d = max(tmp[i],tmp[j]);
+                if(a>c||(a==c&&b>d))x = c,y = d;}
             }
                 }
         }
@@ -73,20 +98,22 @@ double getmindis(int l,int r,pair<double,double>&x,pair<double,double>&y)
 }
 int main()
 {
-    cin >> n;
+    ios::sync_with_stdio(false);cin.tie(nullptr); cin >> n;
     for(int i =1;i<=n;i++)
         {
             cin >> nodex[i].first>>nodex[i].second;
-            nodey[i] = nodex[i];
+            if(!mp.count(nodex[i]))//相同数据
+            mp[nodex[i]] = i;
         }
-    sort(nodex+1,nodex+1+n);//以x;
-    sort(nodey+1,nodey+1+n,[&](auto&a,auto&b){
-        return a.second<b.second;
-    });
+    //sort(nodex+1,nodex+1+n);//以x;已经以x排序
+    // sort(nodey+1,nodey+1+n,[&](auto&a,auto&b){
+    //     return a.second<b.second;
+    // });
     //分治
     //以x分治
     pair<double,double>x,y;
-    double dis = getmindis(1,n,x,y);
+    double dis=getmindis(1,n,x,y);
+    if(x.first+x.second>y.first+y.second+1e-12||((fabs(x.first+x.second-y.first-y.second)<=1e-12)&&mp[x]>mp[y])||y<x)swap(x,y);
     printf("(%.2f,%.2f),(%.2f,%.2f),miniDist=%.3f",x.first,x.second,y.first,y.second,dis);
     return  0;
 }

@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Codeforces Round 1131 (Div. 3)",
+            "path": "Contest/Codeforces Round 1131 (Div. 3)"
+        },
+        {
             "name": "knapsack_dp",
             "path": "DP/knapsack_dp"
         },
