@@ -330,7 +330,7 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 
 - [第K大MEX](https://codeforces.com/contest/2272/problem/A)
 
-  - [code](D:\c\code\yy\AcWaitd\CF\CF_2272_A_Maximize_One_MEX.cpp)
+  - [code](<../AcWaitd/CF/Codeforces Round 1130 (Div. 2)/CF_2272_A_Maximize_One_MEX.cpp>)
 
   - f[i]表示前i个的mex，求第k大的f
 
