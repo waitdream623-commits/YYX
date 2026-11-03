@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
             "name": "Codeforces Round 1131 (Div. 3)",
             "path": "Contest/Codeforces Round 1131 (Div. 3)"
         },
@@ -87,10 +91,6 @@
         {
             "name": "linear_dp",
             "path": "DP/linear_dp"
-        },
-        {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
         },
         {
             "name": "ABC",

@@ -603,6 +603,8 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 
 ## 线段树
 
+### 线段树
+
 > 模板：[Segment_Tree_Template.cpp](../AcWaitd/Segment_Tree/Segment_Tree_Template.cpp) ｜ 题目清单：[ReadMe.md](../AcWaitd/Segment_Tree/ReadMe.md)
 > LIS 系列：[Range_LIS.cpp](../AcWaitd/Segment_Tree/Range_LIS.cpp)、[Segment_Tree_LIS_Range.cpp](../AcWaitd/Segment_Tree/Segment_Tree_LIS_Range.cpp)、[Segment_Tree_LCIS.cpp](../AcWaitd/Segment_Tree/Segment_Tree_LCIS.cpp)
 
@@ -610,6 +612,40 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
   - [掉落的方块](https://leetcode.cn/problems/falling-squares)
     - 题意：方块依次落下（给出落点与边长），求每次落下后所有方块堆叠的最大高度
     - 离散所有区间，维护区间内的最大值
+  
+- 二分搜索
+
+  - [瓶子里的花朵](D:\c\code\yy\AcWaitd\Segment_Tree\Vases_and_Flowers.cpp)
+  - 给定n个瓶子，编号从0~n-1，一开始所有瓶子都是空的
+  - 每个瓶子最多插入一朵花，实现以下两种类型的操作
+  - 操作 1 from flower : 一共有flower朵花，从from位置开始依次插入花朵，已经有花的瓶子跳过
+  - 如果一直到最后的瓶子，花也没有用完，就丢弃剩下的花朵
+  - 返回这次操作插入的首个空瓶的位置 和 最后空瓶的位置
+  - 如果从from开始所有瓶子都有花，打印"Can not put any one."
+  - 操作 2 left right : 从left位置开始到right位置的瓶子，变回空瓶，返回清理花朵的数量
+
+  ---
+
+  - 如何解决操作1，二分找到满足没放花的瓶子数，返回起始和开头，将涉及区间全部改为1(lazy标记)
+  - 操作2，区间和
+
+- 区间开平方
+
+  [code](D:\c\code\yy\AcWaitd\Segment_Tree\P_4145_上帝造题的七分钟_2_花神游历各国.cpp)
+
+  可暴力操作，最值为1，2^64次方最多操作7次
+
+- 区间取模
+
+  - 记录区间最大值
+
+### 可持久化线段树
+
+- 将每次修改后结果保存为一个版本，其中未影响区域复用之前，实现logn的复杂度修改
+- 区间修改时，懒标记下发需要创建新的节点存储
+  -  可以用永久化Tag优化空间(重学)
+
+
 
 ## ST 表（RMQ）
 
