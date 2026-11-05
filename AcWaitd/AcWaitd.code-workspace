@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Thinking",
+            "path": "Thinking"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
@@ -83,10 +87,6 @@
         {
             "name": "Graph_Theory",
             "path": "Graph_Theory"
-        },
-        {
-            "name": "Cnstructive_Algorithms",
-            "path": "Cnstructive_Algorithms"
         },
         {
             "name": "linear_dp",
