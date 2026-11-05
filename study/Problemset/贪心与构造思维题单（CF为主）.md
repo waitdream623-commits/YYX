@@ -20,7 +20,7 @@
 
 #### 1. [1537C · Challenging Cliffs](https://codeforces.com/problemset/problem/1537/C)
 
-难度：1200｜完成记录：—
+难度：1200｜完成记录：—借助ai找到反例
 
 **笔记：**
 
@@ -74,11 +74,15 @@
 
 #### 2. [1355B · Young Explorers](https://codeforces.com/problemset/problem/1355/B)
 
-难度：1200｜完成记录：—
+难度：1200｜完成记录：—独立ac，超时排除原因
 
 **笔记：**
 
 <br>
+
+每个人有一个阈值，大于等于才可分为一组，让小的尽可能先在一起，多的分给剩下的。
+
+tle原因memset清空，O(N),改为只清空已经用的。
 
 #### 3. [1497C1 · k-LCM (easy version)](https://codeforces.com/problemset/problem/1497/C1)
 
@@ -86,24 +90,54 @@
 
 **笔记：**
 
-<br>
+<br>如图可以看出，分奇偶讨论，n/2也分奇偶
+
+![image-20261105172057229](./assets/image-20261105172057229.png)
+
+![image-20261105172112444](./assets/image-20261105172112444.png)
 
 #### 4. [1512D · Corrupted Array](https://codeforces.com/problemset/problem/1512/D)
 
-难度：1200｜完成记录：—
+难度：1200｜完成记录：—ai排查
 
 **笔记：**
 
 <br>
+
+```cpp
+ rep(i,1,n+1)
+
+​    {
+
+​      if(a[i] == f)
+
+​      {
+
+​        fg = 1;//找到了
+
+​        f = i;//必须退出，否则修改后可能被再次多删
+
+​        break;
+
+​      }
+
+​    }
+```
+
+![image-20261105172505224](./assets/image-20261105172505224.png)
 
 #### 5. [1559C · Mocha and Hiking](https://codeforces.com/problemset/problem/1559/C)
 
-难度：1200｜完成记录：—
+难度：1200｜完成记录：—ai辅助找
 
 **笔记：**
 
 <br>
 
+> [!CAUTION]
+>
+> n+1,可以在开头，末尾以及中间(存在01)，漏掉了开头！！！！
+>
 
 ### 建立证明意识：1300
 
@@ -122,6 +156,16 @@
 **笔记：**
 
 <br>
+
+**蓝色前缀**：处理到第 `l` 个蓝色数时，需要 `x >= l`，否则它们无法占满前面的不同位置。
+
+**红色后缀**：还有 `cnt[i]` 个红色数不小于当前 `x`，可用位置只有 `n-x+1` 个，因此需要 `n-x+1 >= cnt[i]`。
+
+需要特殊处理小于0和大于n
+
+> [!WARNING]
+>
+> 提前输出返回需要return
 
 #### 8. [1753A1 · Make Nonzero Sum (easy version)](https://codeforces.com/problemset/problem/1753/A1)
 
