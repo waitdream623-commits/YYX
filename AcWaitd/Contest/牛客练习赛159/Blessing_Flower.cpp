@@ -175,7 +175,7 @@ void wait()
     }
 
     int cur = 0;
-    rep(i,1,n)
+    rep(i,1,n)//不翻转
     {
         if(s[i-1] == 'L')cur += l[0][i];
         else cur += r[0][i];
@@ -184,7 +184,7 @@ void wait()
     int ans = cur;
     int k = 0;
 
-    rep(i,1,n)
+    rep(i,1,n)//枚举翻转位置，记录最大处
     {
         if(s[i-1] == 'L')
             cur += r[0][i] - l[0][i];
