@@ -198,124 +198,253 @@ int id = lower_bound(all(v), x) - v.begin() + 1; // 1-indexed
 
 # 二、数论
 
-## 快速幂
+代码沿用竞赛模板中的 `using namespace std;` 和 `using ll = long long;`。有取模的题先确认模数和数据范围。
+
+| 要做什么 | 用哪个板子 | 条件或复杂度 |
+| --- | --- | --- |
+| 求公约数、公倍数 | `std::gcd`、`lcm_nonneg` | 公倍数必须能用 `ll` 表示 |
+| 求模幂 | `qpow` | `O(log e)`，指数非负 |
+| 求一个逆元 | `inv_prime` 或 `inv_exgcd` | 质数模可用快速幂，一般模数先检查互质 |
+| 解 `a*x ≡ c (mod m)` | `solve_congruence` | 有解时给出最小非负解和周期 |
+| 求 `1..n` 的逆元 | `init_inv` | 质数模且 `n < p`，`O(n)` |
+| 多次查询组合数 | `init_comb`、`C` | 质数模且 `n < MOD`，查询 `O(1)` |
+| 小范围任意模数组合数 | `pascal` | `O(n²)`，只做加法 |
+| 批量筛质数 | `linear_sieve` 或 `eratosthenes` | 前者附最小质因子，后者只标记质数 |
+| 分解、约数、欧拉函数 | `factorize`、`divisors`、`phi` | 试除，最坏 `O(√x)` |
+
+## 快速幂与取模
+
+下面的乘法适用于正模数不超过 `INT_MAX`，两个余数用 `ll` 相乘。模数更大时，乘法中间值要用 `__int128` 或按题目范围另处理。
+
 ```cpp
-ll qpow(ll a, ll b, ll MOD) {
-    ll ret = 1;
-    while (b) {
-        if (b & 1) ret = ret * a % MOD;
-        a = a * a % MOD;
-        b >>= 1;
-    }
-    return ret;
+ll norm(ll x, ll mod)
+{
+    x %= mod;
+    if(x < 0)x += mod;
+    return x;
 }
-// 求逆元（MOD 为质数）：ll inv(ll a, ll MOD) { return qpow(a, MOD - 2, MOD); }
+
+ll qpow(ll a, ll e, int mod)
+{
+    a = norm(a, mod);
+    ll res = 1 % mod;
+    while(e > 0)
+    {
+        if(e & 1)res = res * a % mod;
+        a = a * a % mod;
+        e >>= 1;
+    }
+    return res;
+}
 ```
-> 把上面的「数」换成「矩阵」就是**矩阵快速幂**，见文末 `五、动态规划 → 矩阵快速幂`。
 
-## 欧几里得
-```cpp
-ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
-ll lcm(ll a, ll b) { return a / gcd(a, b) * b; } // 先除再乘防溢出
-```
+## gcd、lcm 与扩展欧几里得
 
-## 扩展欧几里得 (exgcd)
-
-> 求 $ax + by = \gcd(a, b)$ 的一组整数解。  
-> **用途**：解二元一次不定方程、求逆元（MOD 非质数时）、模线性方程。
+`std::gcd(a,b)` 返回最大公约数。计算 LCM 时先除再乘，结果仍须在类型范围内。对非负的 `a,b`，`exgcd` 返回 `g=gcd(a,b)`，同时求出一组 `a*x+b*y=g` 的解。若要求 `a*x+b*y=c`，先检查 `g | c`，再把系数乘以 `c/g`。这里假设 `a,b` 不同时为零。
 
 ```cpp
-ll exgcd(ll a, ll b, ll &x, ll &y) {
-    if (b == 0) { x = 1, y = 0; return a; }
-    ll d = exgcd(b, a % b, y, x);
+ll lcm_nonneg(ll a, ll b)
+{
+    if(a == 0 || b == 0)return 0;
+    return a / std::gcd(a, b) * b;
+}
+
+ll exgcd(ll a, ll b, ll& x, ll& y)
+{
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+
+    ll g = exgcd(b, a % b, y, x);
     y -= a / b * x;
-    return d;
-}
-// 求 a 在模 m 下的逆元（gcd(a,m)=1）：
-// ll x, y; exgcd(a, m, x, y); inv = (x % m + m) % m;
-```
-
-## 求逆元
-
-> 三种方法，按场景选用。
-
-### 方法一：快速幂（费马小定理）— 仅 MOD 为质数
-```cpp
-ll inv(ll a, ll MOD) { return qpow(a, MOD - 2, MOD); }
-```
-
-### 方法二：扩展欧几里得 — MOD 非质数但 gcd=1
-```cpp
-ll inv(ll a, ll MOD) {
-    ll x, y; exgcd(a, MOD, x, y);
-    return (x % MOD + MOD) % MOD;
+    return g;
 }
 ```
 
-### 方法三：线性递推 — 批量求 1~n 所有逆元，O(n)
+## 逆元与线性同余
+
+模意义下用 `a * inv(b) % mod` 表示除以 `b`，前提是 `gcd(b,mod)=1`。下面约定求逆元时 `mod > 1`。线性同余的解为 `first + k*step`，其中 `k` 是任意整数。
+
 ```cpp
-ll inv[N];
-void init_inv(int n, ll p) { // p 为质数
-    inv[1] = 1;
-    for (int i = 2; i <= n; i++)
-        inv[i] = p - (p / i) * inv[p % i] % p;
+// mod 为质数，且 a % mod != 0
+ll inv_prime(ll a, int mod)
+{
+    return qpow(a, mod - 2, mod);
 }
-// 推导：p = k·i + r → k·i + r ≡ 0 → i⁻¹ ≡ -k·r⁻¹ (mod p)
-```
 
-## 质数
-
-### 线性筛 O(n)
-```cpp
-int p[N], cnt;
-bool st[N];
-void get_primes(int n) {
-    for (int i = 2; i <= n; i++) {
-        if (!st[i]) p[++cnt] = i;
-        for (int j = 1; 1ll * i * p[j] <= n; j++) {
-            st[i * p[j]] = true;
-            if (i % p[j] == 0) break;
-        }
-    }
+// mod 可以是合数。返回 -1 表示逆元不存在
+ll inv_exgcd(ll a, int mod)
+{
+    ll x, y;
+    if(exgcd(norm(a, mod), mod, x, y) != 1)return -1;
+    return norm(x, mod);
 }
-```
 
-### 埃氏筛 O(n log log n)
-```cpp
-bool st[N];
-void get_primes(int n) {
-    for (int i = 2; i <= n / i; i++)
-        if (!st[i])
-            for (int j = i * i; j <= n; j += i) st[j] = true;
-}
-```
+// 解 a*x ≡ c (mod m)，要求 m > 0
+bool solve_congruence(ll a, ll c, int m, ll& first, ll& step)
+{
+    ll x, y;
+    ll g = exgcd(norm(a, m), m, x, y);
+    if(c % g != 0)return false;
 
-### 质数判定 O(√n)
-```cpp
-bool is_prime(ll x) {
-    if (x < 2) return false;
-    for (ll i = 2; i * i <= x; i++)
-        if (x % i == 0) return false;
+    step = m / g;
+    first = norm(norm(c / g, step) * norm(x, step), step);
     return true;
 }
+
+// p 是质数，且 1 <= n < p
+vector<ll> init_inv(int n, int p)
+{
+    vector<ll> inv(n + 1);
+    inv[1] = 1;
+    for(int i = 2; i <= n; i++)
+        inv[i] = p - (p / i) * inv[p % i] % p;
+    return inv;
+}
 ```
 
-## 组合数（模 MOD 意义下）
+例如 `inv_exgcd(3,8)=3`，而 `inv_exgcd(2,8)=-1`。解 `6x ≡ 8 (mod 14)` 得到 `first=6, step=7`。
+
+## 组合数
+
+阶乘法要求 `MOD` 是质数且 `maxN < MOD`。多测按总上限初始化一次。下面的 `C(n,k)` 要求有效的 `n` 已经预处理。若 `n >= MOD`，阶乘可能变成零而没有逆元。模数是小质数时可以考虑 Lucas。范围小且模数任意时，用下面的杨辉三角。
+
 ```cpp
-ll fac[N], invfac[N];
-void init_comb(int n) {
+const int MOD = 998244353;
+vector<ll> fac, ifac;
+
+void init_comb(int maxN)
+{
+    fac.resize(maxN + 1);
+    ifac.resize(maxN + 1);
+
     fac[0] = 1;
-    for (int i = 1; i <= n; i++) fac[i] = fac[i - 1] * i % MOD;
-    invfac[n] = qpow(fac[n], MOD - 2, MOD);
-    for (int i = n - 1; i >= 0; i--) invfac[i] = invfac[i + 1] * (i + 1) % MOD;
+    for(int i = 1; i <= maxN; i++)
+        fac[i] = fac[i - 1] * i % MOD;
+
+    ifac[maxN] = inv_prime(fac[maxN], MOD);
+    for(int i = maxN; i >= 1; i--)
+        ifac[i - 1] = ifac[i] * i % MOD;
 }
-ll C(int n, int m) {
-    if (m < 0 || m > n) return 0;
-    return fac[n] * invfac[m] % MOD * invfac[n - m] % MOD;
+
+ll C(int n, int k)
+{
+    if(k < 0 || k > n)return 0;
+    return fac[n] * ifac[k] % MOD * ifac[n - k] % MOD;
 }
-// 小范围可用递推：C[i][j] = (C[i-1][j-1] + C[i-1][j]) % MOD;
-// n 极大但 MOD 为小质数时用 Lucas：C(n,m) = C(n/MOD,m/MOD) * C(n%MOD,m%MOD) % MOD
+
+// init_comb(200000) 后，C(5, 2) == 10
+vector<vector<int>> pascal(int n, int mod)
+{
+    vector<vector<int>> c(n + 1, vector<int>(n + 1));
+    c[0][0] = 1 % mod;
+    for(int i = 1; i <= n; i++)
+    {
+        c[i][0] = c[i][i] = 1 % mod;
+        for(int j = 1; j < i; j++)
+            c[i][j] = (1LL * c[i - 1][j - 1] + c[i - 1][j]) % mod;
+    }
+    return c;
+}
 ```
+
+## 质数判定与筛法
+
+只有少量数时可试除。需要批量判断时筛到上限。埃氏筛返回是否为质数，线性筛同时存 `lp[x]`（最小质因子），可用来反复除掉因子。
+
+```cpp
+bool is_prime(ll x)
+{
+    if(x < 2)return false;
+    for(ll i = 2; i <= x / i; i++)
+        if(x % i == 0)return false;
+    return true;
+}
+
+vector<bool> eratosthenes(int n)
+{
+    vector<bool> prime(n + 1, true);
+    prime[0] = false;
+    if(n >= 1)prime[1] = false;
+
+    for(int i = 2; i <= n / i; i++)
+        if(prime[i])
+            for(ll j = 1LL * i * i; j <= n; j += i)
+                prime[j] = false;
+    return prime;
+}
+
+vector<int> linear_sieve(int n, vector<int>& lp)
+{
+    lp.assign(n + 1, 0);
+    vector<int> primes;
+    for(int i = 2; i <= n; i++)
+    {
+        if(lp[i] == 0)
+        {
+            lp[i] = i;
+            primes.push_back(i);
+        }
+
+        for(int p : primes)
+        {
+            if(p > lp[i] || 1LL * i * p > n)break;
+            lp[i * p] = p;
+        }
+    }
+    return primes;
+}
+```
+
+## 质因数分解、约数与欧拉函数
+
+下面三个函数的输入均为正整数。若 `x = ∏p^e`，约数个数为 `∏(e+1)`。计算欧拉函数时，每种质因子只扣一次。
+
+```cpp
+vector<pair<ll,int>> factorize(ll x)
+{
+    vector<pair<ll,int>> factors;
+    for(ll p = 2; p <= x / p; p++)
+    {
+        if(x % p != 0)continue;
+        int e = 0;
+        while(x % p == 0)
+        {
+            x /= p;
+            e++;
+        }
+        factors.push_back({p, e});
+    }
+    if(x > 1)factors.push_back({x, 1});
+    return factors;
+}
+
+vector<ll> divisors(ll x)
+{
+    vector<ll> d, upper;
+    for(ll i = 1; i <= x / i; i++)
+    {
+        if(x % i != 0)continue;
+        d.push_back(i);
+        if(i != x / i)upper.push_back(x / i);
+    }
+    d.insert(d.end(), upper.rbegin(), upper.rend());
+    return d;
+}
+
+ll phi(ll x)
+{
+    ll res = x;
+    for(auto [p, e] : factorize(x))
+        res -= res / p;
+    return res;
+}
+```
+
+矩阵快速幂在本文件「五、动态规划」下。容斥、组合计数与博弈公式见 [Craving 数学部分](../../study/Craving.md#数学)。
 
 ---
 

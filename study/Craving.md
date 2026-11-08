@@ -46,6 +46,31 @@
 
 
 
+### 交互题
+
+每次查询按「输出一整行 → 刷新 → 读取回答」执行。输出 `? l r` 时检查下标范围和询问次数。提交答案也换行并刷新，评测器收到后才会继续交互。格式以题面为准，例如 [CF 2280B 的交互协议](https://codeforces.com/problemset/problem/2280/B)。
+
+```cpp
+int ask(int l, int r)
+{
+    cout << "? " << l << ' ' << r << endl;
+
+    int reply;
+    if(!(cin >> reply) || reply == -1)exit(0);
+    return reply;
+}
+
+void answer(bool ok)
+{
+    cout << (ok ? "! YES" : "! NO") << endl;
+}
+```
+
+- `endl` 同时换行和刷新。用 `'\n'` 时，可以紧接 `cout.flush()`。上一次查询的刷新只发送当时已写入的内容，之后写出的答案要单独刷新。
+- 默认 `cin` 与 `cout` 绑定，查询后紧接 `cin >> reply` 会在读入前自动刷新。调用 `cin.tie(nullptr)` 会解除绑定，此时显式刷新。`ios::sync_with_stdio(false)` 控制 C 和 C++ 标准流的同步，与绑定是两回事。
+- 读到 `-1` 或读入失败时立即退出整个程序。多测里的 `return` 只会结束当前 `wait()`。读进哪个变量，就用哪个变量判断，避免使用未初始化的值。
+- 自测时按顺序提供评测器的回答。正式交互只往 `stdout` 写协议要求的内容。
+
 ## 一些小想法记录
 
 1. 区间加减，差分数组
@@ -118,6 +143,22 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 ### 适用
 
 - 一般在有序数组上操作
+- C++ 整数除法向零截断：
+
+  ```cpp
+   3 / 2 ==  1;
+  -3 / 2 == -1;
+  ```
+
+  若 l=-2、r=-1，`(l+r)/2` 得到 -1，执行 `r=mid` 后区间不变，会死循环。
+
+  使用：
+
+  ```cpp
+  int mid = l + (r - l) / 2;
+  ```
+
+  在差值不溢出的前提下，因为 r-l 非负，保证 l<r 时有 l≤mid<r。
 - 二分搜索不一定发生在有序数组上（比如 [寻找峰值问题](https://leetcode.cn/problems/find-peak-element/description/)）—— 罗尔中值定理
 - 二分答案：确定上界，想清楚限制条件，不要太过鲁莽
 
@@ -449,6 +490,14 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
    - 4）其实是先有对题目的分析！进而发现单调性，然后利用单调栈的特征去实现
    - 注意：单调栈可以和很多技巧交叉使用！比如：动态规划 + 单调栈优化
 
+### 子数组最小值的贡献
+
+让每个子数组归给它**最右边的最小值**。对位置 `i`，`L[i]` 是左边最近的严格更小位置（没有则为 `0`），`R[i]` 是右边最近的小于等于位置（没有则为 `n+1`）。左端点可取 `L[i]+1..i`，右端点可取 `i..R[i]-1`，所以贡献为 `1LL * a[i] * (i-L[i]) * (R[i]-i)`。求 `L` 时弹掉 `>= a[i]` 的栈顶，求 `R` 时弹掉 `> a[i]` 的栈顶。
+
+例如 `[2,1,3,3]` 的子数组 `[3,4]`（下标）归给第 `4` 个位置。第 `3` 个位置的 `R[3]=4`，其右端点到不了 `4`。第 `4` 个位置的 `L[4]=2`，左端点可以取 `3`，因此这段只算一次。
+
+梦想碎片题中，长度平方等于区间内的有序位置对数。位置对 `(l,r)` 最多同时出现 `min(a[l..r])` 次，逐层取连续区间可以同时达到各对的上限。若 `S` 是所有子数组最小值之和，答案为 `2*S-sum(a)`。
+
 ### 题目
 
 - 如何转化为单调栈：找最近小于/大于，想延申
@@ -608,6 +657,14 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 > 模板：[Segment_Tree_Template.cpp](../AcWaitd/Segment_Tree/Segment_Tree_Template.cpp) ｜ 题目清单：[ReadMe.md](../AcWaitd/Segment_Tree/ReadMe.md)
 > LIS 系列：[Range_LIS.cpp](../AcWaitd/Segment_Tree/Range_LIS.cpp)、[Segment_Tree_LIS_Range.cpp](../AcWaitd/Segment_Tree/Segment_Tree_LIS_Range.cpp)、[Segment_Tree_LCIS.cpp](../AcWaitd/Segment_Tree/Segment_Tree_LCIS.cpp)
 
+> [!NOTE]
+>
+> down后，需要清楚lazy标记
+>
+> update时用down，否则可能合并信息不对
+>
+> query不用up
+
 - 维护数据范围过大可能需要离散化处理
   - [掉落的方块](https://leetcode.cn/problems/falling-squares)
     - 题意：方块依次落下（给出落点与边长），求每次落下后所有方块堆叠的最大高度
@@ -615,7 +672,7 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
   
 - 二分搜索
 
-  - [瓶子里的花朵](D:\c\code\yy\AcWaitd\Segment_Tree\Vases_and_Flowers.cpp)
+  - [瓶子里的花朵code](D:\c\code\yy\AcWaitd\Segment_Tree\Vases_and_Flowers.cpp)
   - 给定n个瓶子，编号从0~n-1，一开始所有瓶子都是空的
   - 每个瓶子最多插入一朵花，实现以下两种类型的操作
   - 操作 1 from flower : 一共有flower朵花，从from位置开始依次插入花朵，已经有花的瓶子跳过
@@ -628,6 +685,9 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 
   - 如何解决操作1，二分找到满足没放花的瓶子数，返回起始和开头，将涉及区间全部改为1(lazy标记)
   - 操作2，区间和
+  - > [!IMPORTANT]
+    >
+    > 实现找右边界时，先找到左边界，固定左边界，二分右边界
 
 - 区间开平方
 
@@ -816,6 +876,8 @@ BFS+DFS[单词接龙](https://leetcode.cn/problems/word-ladder-ii/)
 本章已拆分至 [图论.md](图论.md)，笔记与题目在该文件中维护。
 
 # 数学
+
+> 比赛速查：[数学 C++ 板子](../AcWaitd/templates/template.md#二数论)。包含快速幂、逆元、组合数、扩欧、线性同余、质数筛、分解和约数。
 
 > 讲次对照：[041 最大公约数、同余原理](<C:\Users\wait\Desktop\cCourseware\md\算法讲解041【必备】最大公约数、同余原理.md>)｜[097 质数判断、质因子分解、质数筛](<C:\Users\wait\Desktop\cCourseware\md\算法讲解097【必备】质数判断、质因子分解、质数筛.md>)｜[098 快速幂、矩阵快速幂与两类问题](<C:\Users\wait\Desktop\cCourseware\md\算法讲解098【必备】快速幂、矩阵快速幂与两类问题.md>)｜[099 逆元和除法同余、容斥原理](<C:\Users\wait\Desktop\cCourseware\md\算法讲解099【扩展】 逆元和除法同余、容斥原理.md>)｜[139 裴蜀定理和扩展欧几里得](<C:\Users\wait\Desktop\cCourseware\md\算法讲解139【扩展】裴蜀定理和扩展欧几里得算法.md>)｜[140 扩展欧几里得和二元一次不定方程](<C:\Users\wait\Desktop\cCourseware\md\算法讲解140【扩展】扩展欧几里得和二元一次不定方程.md>)｜[095 博弈-上](<C:\Users\wait\Desktop\cCourseware\md\算法讲解095【必备】博弈类问题必备内容详解-上.md>)｜[096 博弈-下](<C:\Users\wait\Desktop\cCourseware\md\算法讲解096【必备】博弈类问题必备内容详解-下.md>)
 

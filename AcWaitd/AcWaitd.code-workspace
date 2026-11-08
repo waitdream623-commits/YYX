@@ -1,16 +1,24 @@
 {
 	"folders": [
         {
+            "name": "Segment_Tree",
+            "path": "Segment_Tree"
+        },
+        {
+            "name": "2026 年秋季学期 ZZUACM 线上练习赛（二）",
+            "path": "Contest/2026 年秋季学期 ZZUACM 线上练习赛（二）"
+        },
+        {
             "name": "Codeforces Round 1133 (Div. 2)",
             "path": "Contest/Codeforces Round 1133 (Div. 2)"
         },
         {
-            "name": "牛客练习赛159",
-            "path": "Contest/牛客练习赛159"
-        },
-        {
             "name": "Thinking",
             "path": "Thinking"
+        },
+        {
+            "name": "牛客练习赛159",
+            "path": "Contest/牛客练习赛159"
         },
         {
             "name": "Codeforces Round 1032 (Div. 3)",
@@ -19,10 +27,6 @@
         {
             "name": "Codeforces Round 1132 (Div. 2)",
             "path": "Contest/Codeforces Round 1132 (Div. 2)"
-        },
-        {
-            "name": "Segment_Tree",
-            "path": "Segment_Tree"
         },
         {
             "name": "knapsack_dp",

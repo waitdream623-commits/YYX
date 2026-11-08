@@ -20,30 +20,33 @@ int a[6];
 void wait()
 {
     int n;cin >> n;
-        cout << "? " << 1 <<' '<<n;
-        int x; cin >>a[1];
-        if(x==0||x==n)
+        cout << "? " << 1 <<' '<<n<<'\n';
+         cin >>a[1];
+        if(a[1]==0||a[1]==n)
         {
-            cout << "NO\n";
+            cout << "! NO\n";
             return;
         }
-        cout.flush();
         //此时有0/1
-        cout << "? " << 1 <<' '<<n/2;
+        int one = a[1],zero = n-one;
+        cout << "? " << n-zero+1 <<' '<<n<<'\n';
         cin >> a[2];
-        if(x==n/2)
+        
+        if(a[2]==0)//0都在末尾
         {
-
+              cout << "! NO\n";
+            return;
         }
         else
         {
-            
+              cout << "! YES\n";
+            return;
         }
 
 }
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    // ios::sync_with_stdio(false);
+    // cin.tie(nullptr);
 
     int T = 1;
     cin >> T;  // 多测时取消注释
