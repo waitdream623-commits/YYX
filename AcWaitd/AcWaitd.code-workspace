@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "interval_dp",
+            "path": "DP/interval_dp"
+        },
+        {
+            "name": "Codeforces Round 1005 (Div. 2)",
+            "path": "Contest/Codeforces Round 1005 (Div. 2)"
+        },
+        {
             "name": "Segment_Tree",
             "path": "Segment_Tree"
         },
