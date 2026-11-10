@@ -6,8 +6,31 @@
 | --- | --- | --- |
 | [A. Are They the Same?](https://codeforces.com/contest/2280/problem/A) | [A.cpp](<../../AcWaitd/Contest/Codeforces Round 1133 (Div. 2)/A_Are_They_the_Same.cpp>) | 按 `k` 的奇偶比较两组的偶数个数，本地 CPH 样例通过 |
 | [B. Secret String Patterns](https://codeforces.com/contest/2280/problem/B) | [B.cpp](<../../AcWaitd/Contest/Codeforces Round 1133 (Div. 2)/B_Secret_String_Patterns.cpp>) | 交互草稿，查询和答案分支待补 |
-| [C. Reverse and Double](https://codeforces.com/contest/2280/problem/C) | [C.cpp](<../../AcWaitd/Contest/Codeforces Round 1133 (Div. 2)/C_Reverse_and_Double.cpp>) | 枚举相邻差的草稿，尚未输出答案 |
+| [C. Reverse and Double](https://codeforces.com/contest/2280/problem/C) | [C.cpp](<../../AcWaitd/Contest/Codeforces Round 1133 (Div. 2)/C_Reverse_and_Double.cpp>) | 固定一条最大差值边，线性枚举，本地样例和对拍通过 |
 | [D. Balanced Subsets](https://codeforces.com/contest/2280/problem/D) | [D.cpp](<../../AcWaitd/Contest/Codeforces Round 1133 (Div. 2)/D_Balanced_Subsets.cpp>) | 讨论后写出状压记忆化，本地 CPH 样例通过，滚动递推待回做 |
+
+## C · 固定一条最大差值边
+
+设 `d[i] = abs(a[i]-a[i+1])`。翻转并翻倍 `[l,r]` 后，区间外的相邻差保持原值，区间内的差值翻倍，只有两条边界可能变小。因此任选一个 `d[pos]` 达到原最大值的位置。要把答案降到原最大值以下，就必须切断这条边，只需枚举 `[l,pos]` 和 `[pos+1,r]`。有并列最大差时也适用，其他最大差会由每个区间的完整代价处理。
+
+每个候选区间都要先算完整代价再取最小值。区间外用前后缀最大值，区间内随枚举滚动维护最大差值。左边界是 `abs(a[l-1]-2*a[r])`，右边界是 `abs(2*a[l]-a[r+1])`，端点没有邻居时跳过对应边界。答案初值是原最大差。时间 `O(n)`，空间 `O(n)`。
+
+反例 `[1,3]`，只翻倍第一个元素得到 `[2,3]`，答案为 `1`。向左枚举的右端固定为 `pos`，数组端点没有外侧差值。`wait1()` 通过本地 CPH 用例和 22,347 组全区间枚举对拍。
+
+### `wait2()` · 每轮算完再更新 `ans`
+
+原先先用 `difl`、`difr` 和 `midmax` 选区间，再扫描整个 `dif`。扫 `dif` 时 `ansr` 已经固定，只能补算已选区间的外侧差。换一个区间，原先留在外面的大差值可能变成边界差，两个区间的排名也会随之变化。
+
+例如 `[6,3,2,5]` 的相邻差为 `[3,1,3]`，取 `pos = 3`。向左扫描时会依次遇到以下两个候选。
+
+| 操作区间 | 操作后的数组 | 局部最大差 | 区间外最大差 | 完整代价 |
+| --- | --- | ---: | ---: | ---: |
+| `[3,3]` | `[6,3,4,5]` | 1 | 3 | 3 |
+| `[2,3]` | `[6,4,6,5]` | 2 | 0 | 2 |
+
+原循环看到局部代价 `1` 后就跳过了局部代价为 `2` 的区间，最终只能把已选区间的结果补回 `3`。修法是每轮对 `difl`、`difr`、`midmax`、`prefix[l-2]`、`suffix[r+1]` 取 `max`，再和 `ans` 取 `min`。其中 `midmax` 已经乘过 `2`，缺失的边界或外侧区间贡献为 `0`。
+
+`wait2()` 曾在第 97 行越界。右扫到 `r = n` 时，右侧已经没有区间外的差值，直接读 `suffix[r+1]` 会访问 `suffix[n+1]`，但长度为 `n+1` 的 `vector` 只到下标 `n`。用 `[3,1]` 和带下标检查的编译版本可复现。改成 `r < n ? suffix[r+1] : 0` 后，打开下标检查重新通过本地 CPH 样例和 5,464 组暴力对拍。
 
 ## D · 从稳定性随选择变化想到状压
 
@@ -23,4 +46,4 @@
 
 - [ ] D 闭卷写滚动递推。自测 `{1,2,3,4}`、只有一个数以及中间有缺口的集合。
 - [ ] B 先补齐交互读写。当前读入的是 `a[1]`，随后判断的 `x` 没有初始化。查询要在读取回答前换行并刷新。
-- [ ] C 先补推导，再检查相邻差的范围。当前循环会读取 `a[n+1]`，后续还有 `a[k+2]`，需要结合端点情况处理。
+- [ ] C 闭卷写出固定最大差值边的枚举，重点检查没有外侧邻居时如何计算代价。
