@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "Codeforces Round 1023 (Div. 2)",
+            "path": "Contest/Codeforces Round 1023 (Div. 2)"
+        },
+        {
             "name": "Codeforces Round 1133 (Div. 2)",
             "path": "Contest/Codeforces Round 1133 (Div. 2)"
         },

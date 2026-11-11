@@ -4,6 +4,9 @@
 
 - 开 long long
 - 区间越界，特别对于 `while`，`while` 内先判断是否越界
+  - 搜索位置还要防止漏掉末尾：先测目标在首位、末位和不存在；构造题同时检查目标值和固定元素是否保留。例：[CF2107C 复盘](<Problemset/Codeforces Round 1023 (Div. 2).md>)。
+- BFS 的最远点只在本次实际访问的节点中选，其他连通块中默认的 `dist = 0` 不能参与比较；多轮循环还要计算每轮初始化、全量扫描的成本。例：[CF2107D 复盘](<Problemset/Codeforces Round 1023 (Div. 2).md#d-apple-tree-traversing>)。
+  - BFS 访问顺序不代表编号顺序，同距离时显式比较编号；路径回溯完成前保留父节点数组，不能提前清零。
 - 自定义比较时，记得&，减少因为开辟空间而影响速度
 - 对于pow，返回值为double，`double` 只能保证精确表示所有不超过 \(2^{53}\) 的整数。超过后，相邻整数可能被表示成同一个值
     - pow(2, mid) - 1     // 浮点计算，可能丢失精度
@@ -417,6 +420,9 @@ while (l < r) {
 ## 构造
 
 ### 题目
+
+- [CF2107C Maximum Subarray Sum](https://codeforces.com/problemset/problem/2107/C) ｜ [简短复盘](<Problemset/Codeforces Round 1023 (Div. 2).md>)
+  - 其他未知位置填极小负数隔断，选一个未知位置令 `a[p] = k - 左侧最大后缀和 - 右侧最大前缀和`；两侧均允许不取。
 
 - 贪心 → [CF 2268A K Is Important](https://codeforces.com/problemset/problem/2268/A)（Div.1 A，\*1200，constructive + greedy）
   - 题意：给长度为 $n$ 的正整数数组和参数 $k$，只要当前长度 $m \ge k$，就可以删掉 $a_k$ 或 $a_{m-k+1}$ 并把它的值计入得分（删完其余元素保持相对顺序），求最大得分
