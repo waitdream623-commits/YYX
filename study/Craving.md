@@ -49,6 +49,94 @@
 
 
 
+### 复制、重置与清空
+
+先分清目的：**复制已有数据、保留长度但重设元素、删除全部元素**是三种操作。
+
+| 目的 | 普通数组 | `vector` |
+| --- | --- | --- |
+| 复制全部元素 | `copy(a, a + n, b)` | `b = a` |
+| 将现有元素全部设为 0 | `fill(a, a + n, 0)` | `fill(v.begin(), v.end(), 0)` |
+| 将现有元素全部设为指定值 | `fill(a, a + n, value)` | `fill(v.begin(), v.end(), value)` |
+| 变成 n 个指定值 | 数组长度固定，只能改元素 | `v.assign(n, value)` |
+| 删除全部元素 | 固定数组没有 `clear()` | `v.clear()`，之后 `size() == 0` |
+
+#### copy：复制元素，目标必须有位置
+
+```cpp
+int a[5] = {1, 2, 3, 4, 5}, b[5];
+copy(a, a + 5, b);               // 把 a[0..4] 复制到 b[0..4]
+copy(a + 1, a + 4, b);           // 把 a[1..3] 复制到 b[0..2]
+
+vector<int> src = {1, 2, 3};
+vector<int> dst = src;           // 创建副本
+dst = src;                      // 赋值，自动调整 dst 长度
+
+vector<int> dst2(src.size());
+copy(src.begin(), src.end(), dst2.begin());
+
+vector<int> dst3;
+copy(src.begin(), src.end(), back_inserter(dst3)); // 在末尾追加
+```
+
+- 范围是左闭右开 `[first, last)`；复制区间 `[l,r]` 用 `copy(a+l, a+r+1, b)`。
+- 普通数组不能写 `b = a`；`vector`、`array<int, N>` 可以整体赋值。
+- `copy` 不会自动扩容。空 `vector` 的 `begin()` 没有可写元素，不能直接作为目标；`reserve(n)` 只预留容量，也没有创建元素。需要 `resize(n)` 或 `back_inserter`。
+- `vector<vector<int>> b = a` 会复制各行；之后修改 `b` 的整数元素不影响 `a`。`auto& b = a` 是引用，二者指向同一个容器；若元素本身是指针，复制的只是指针。
+- 同一数组内移动重叠区间时：向左覆盖可用 `copy`，向右覆盖用 `copy_backward`，不要让目标起点落进 `copy` 的源区间。
+
+```cpp
+// 目标右端也是左闭右开区间的末尾。
+int c[6] = {1, 2, 3, 4, 5, 0};
+copy_backward(c, c + 5, c + 6); // 原 c[0..4] 右移到 c[1..5]
+```
+
+#### fill / assign / clear：是否保留元素个数
+
+```cpp
+vector<int> v = {1, 2, 3};
+fill(v.begin(), v.end(), 0);    // {0, 0, 0}，size 仍为 3
+v.assign(5, -1);               // {-1, -1, -1, -1, -1}，size 变为 5
+v.clear();                     // {}，size 变为 0，不能再访问 v[0]
+v.resize(3);                   // 创建 3 个 int 元素，值为 0
+```
+
+- `clear()` 通常保留 `vector` 的容量，适合多测复用；它不保证释放存储空间。
+- `resize(n)` 只初始化新增加的元素；已有元素保持原值，长度已经是 n 时不会清零。要每轮重置，用 `assign(n, 0)`。
+- `string`、`map`、`set`、`unordered_map` 也有 `clear()`；`queue`、`stack`、`priority_queue` 可以通过赋空容器重置，如 `q = queue<int>{};`。
+
+#### memset / memcpy：按字节操作
+
+```cpp
+int a[100], b[100];
+memset(a, 0, sizeof a);        // 常用：整数数组清零
+memset(a, 0x3f, sizeof a);     // 每个字节设为 0x3f；常见 32 位 int 为 0x3f3f3f3f
+fill(a, a + 100, 1);          // 每个整数设为 1
+memcpy(b, a, sizeof a);        // 复制整个普通 int 数组，目标空间必须足够
+```
+
+- `memset(a, 1, sizeof a)` 把每个字节设为 1；常见 32 位 `int` 得到 `0x01010101`，不是整数 1。任意整数赋值优先用 `fill`。
+- `memset`、`memcpy` 的长度单位是**字节**；`copy`、`fill` 按**元素区间**操作。
+- 不要用 `memset` 或 `memcpy` 操作 `vector`、`string`、`map` 等容器对象。复制它们用赋值，重置用对应容器接口。
+- 函数参数 `void solve(int a[])` 中，`a` 实际是指针，`sizeof a` 是指针大小；应传入长度，使用 `fill(a, a+n, 0)` 或 `copy(a, a+n, b)`。
+- `memcpy` 的源和目标不能重叠；普通整数数组有重叠时可用 `memmove`。
+
+#### 二维数组与多测初始化
+
+```cpp
+int dp[100][100];
+memset(dp, 0, sizeof dp);      // 整个普通整数二维数组清零
+for (auto& row : dp) fill(begin(row), end(row), -1);
+
+vector<vector<int>> f(n, vector<int>(m, -1));
+for (auto& row : f) fill(row.begin(), row.end(), -1); // 保留形状重置
+f.assign(n, vector<int>(m, -1));                    // 重建指定形状
+```
+
+多测时在每轮开始重置会被本轮读取的状态。线段树若约定 `lazy = -1` 表示无标记，应分别将 `sum` 设为 0、`lazy` 设为 -1，不能全部统一清零。若固定数组只使用前 n 个位置，可以只重置这部分，但必须保证不会读到上轮残留的数据。
+
+复制 k 个元素、给 k 个元素重新赋值，通常都需要 `O(k)` 时间；多测反复处理整个大数组时，要计算初始化的总成本。
+
 ### 交互题
 
 每次查询按「输出一整行 → 刷新 → 读取回答」执行。输出 `? l r` 时检查下标范围和询问次数。提交答案也换行并刷新，评测器收到后才会继续交互。格式以题面为准，例如 [CF 2280B 的交互协议](https://codeforces.com/problemset/problem/2280/B)。
@@ -123,7 +211,8 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
 ```
 
 > 注意：`vector` 不能用结构化绑定（元素个数不定）
--   四方遍历写法
+
+- 四方遍历写法
 
     - `int a[] = {-1,0,1,0,-1};`dx = a[i], dy = a[i+1]
 
@@ -137,7 +226,14 @@ int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
     q.pop();
     ```
 
-    
+
+#### 记录
+
+- 相同余数，abs(a-b)%=0
+
+  [cf余数相同](https://codeforces.com/problemset/problem/1920/C)
+
+- 
 
 # 基础算法
 
