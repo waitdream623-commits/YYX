@@ -47,3 +47,17 @@ Release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+
+# ===== 依赖与生成物（2026-11 补充）=====
+node_modules/
+study/outputs/
+dist/
+build/
+*.dll
+*.node
+*.so
+*.dylib
+*.o
+*.obj
+*.ilk
+.cph/cache/
