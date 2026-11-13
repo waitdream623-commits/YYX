@@ -1,6 +1,10 @@
 {
 	"folders": [
         {
+            "name": "牛客小白月赛140",
+            "path": "Contest/牛客小白月赛140"
+        },
+        {
             "name": "Thinking",
             "path": "Thinking"
         },
