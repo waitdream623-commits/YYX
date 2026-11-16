@@ -39,17 +39,7 @@ void dfs(int x,int f)
             cnt[x]++;
         }
     }
-    if(cnt[x]==sz[x]-1)//全部满足
-    {
-        return;
-    }
     //选择翻转路径
-    add = max(1,add);//必然可以增加1；
-    //单链处理
-    // if(sz[x]==3&&cnt[x]==0)
-    // {
-    //     add = max(2,add);
-    // }
 
     //处理根，最多为2(存在子树不全）+根改变的变化
     int cnt1=0;
@@ -92,6 +82,50 @@ void dfs(int x,int f)
 
 
 }
+void dfs2(int x, int f)
+{
+    cnt[x] = 0;
+
+    int base = 0;      // 只翻转 x 时，所有子边的收益
+    int first = 0;
+    int second = 0;    // 向孩子延伸的最大两个额外收益
+
+    for (int e : edge[x])
+    {
+        if (e == f) continue;
+        dfs2(e, x);
+
+        cnt[x] += cnt[e] + (a[x] != a[e]);
+
+        int w = (a[x] == a[e] ? 1 : -1);
+        base += w;
+
+        // 延伸到 e：撤销边 x-e 的收益，加上子链收益
+        int gain = single[e] - w;
+
+        if (gain > first)
+        {
+            second = first;
+            first = gain;
+        }
+        else if (gain > second)
+        {
+            second = gain;
+        }
+    }
+
+    // 向父亲连接时，向下最多选择一条链。
+    // 此状态不计父边收益，且允许为负数。
+    single[x] = base + first;
+
+    // x 是整条路径最高点，向下最多选择两条链。
+    // 父亲不在路径中，因此父边只有 x 一端翻转。
+    int parentGain = 0;
+    if (f != -1)
+        parentGain = (a[x] == a[f] ? 1 : -1);
+
+    add = max(add, base + first + second + parentGain);
+}
 void wait()
 {
     int n;cin >> n;
@@ -103,7 +137,7 @@ void wait()
         edge[x].push_back(y);
         edge[y].push_back(x);
     }
-    dfs(1,-1);
+    dfs2(1,-1);
     cout<<cnt[1]+add;
 }
 int main() {

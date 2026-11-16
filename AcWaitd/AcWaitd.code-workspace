@@ -1,8 +1,8 @@
 {
 	"folders": [
         {
-            "name": "Codeforces Round 1135 (Div. 2)",
-            "path": "Contest/Codeforces Round 1135 (Div. 2)"
+            "name": "Educational Codeforces Round 112 (Rated for Div. 2)",
+            "path": "Contest/Educational Codeforces Round 112 (Rated for Div. 2)"
         },
         {
             "name": "牛客周赛 Round 170",
@@ -17,24 +17,8 @@
             "path": "Contest/牛客小白月赛140"
         },
         {
-            "name": "Educational Codeforces Round 196 (Rated for Div. 2)",
-            "path": "Contest/Educational Codeforces Round 196 (Rated for Div. 2)"
-        },
-        {
-            "name": "Codeforces Round 1023 (Div. 2)",
-            "path": "Contest/Codeforces Round 1023 (Div. 2)"
-        },
-        {
-            "name": "Codeforces Round 1133 (Div. 2)",
-            "path": "Contest/Codeforces Round 1133 (Div. 2)"
-        },
-        {
             "name": "interval_dp",
             "path": "DP/interval_dp"
-        },
-        {
-            "name": "Codeforces Round 1005 (Div. 2)",
-            "path": "Contest/Codeforces Round 1005 (Div. 2)"
         },
         {
             "name": "Segment_Tree",
@@ -47,14 +31,6 @@
         {
             "name": "牛客练习赛159",
             "path": "Contest/牛客练习赛159"
-        },
-        {
-            "name": "Codeforces Round 1032 (Div. 3)",
-            "path": "Contest/Codeforces Round 1032 (Div. 3)"
-        },
-        {
-            "name": "Codeforces Round 1132 (Div. 2)",
-            "path": "Contest/Codeforces Round 1132 (Div. 2)"
         },
         {
             "name": "knapsack_dp",
