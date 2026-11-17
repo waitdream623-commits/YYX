@@ -1,16 +1,20 @@
 {
 	"folders": [
         {
+            "name": "Codeforces Round 966 (Div. 3)",
+            "path": "Contest/Codeforces Round 966 (Div. 3)"
+        },
+        {
+            "name": "Thinking",
+            "path": "Thinking"
+        },
+        {
             "name": "Educational Codeforces Round 112 (Rated for Div. 2)",
             "path": "Contest/Educational Codeforces Round 112 (Rated for Div. 2)"
         },
         {
             "name": "牛客周赛 Round 170",
             "path": "Contest/牛客周赛 Round 170"
-        },
-        {
-            "name": "Thinking",
-            "path": "Thinking"
         },
         {
             "name": "牛客小白月赛140",
