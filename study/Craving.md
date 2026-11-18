@@ -525,18 +525,17 @@ while (l < r) {
 
 - [CF2107C Maximum Subarray Sum](https://codeforces.com/problemset/problem/2107/C) ｜ [简短复盘](<Problemset/Codeforces Round 1023 (Div. 2).md>)
   - 其他未知位置填极小负数隔断，选一个未知位置令 `a[p] = k - 左侧最大后缀和 - 右侧最大前缀和`；两侧均允许不取。
-
 - 贪心 → [CF 2268A K Is Important](https://codeforces.com/problemset/problem/2268/A)（Div.1 A，\*1200，constructive + greedy）
   - 题意：给长度为 $n$ 的正整数数组和参数 $k$，只要当前长度 $m \ge k$，就可以删掉 $a_k$ 或 $a_{m-k+1}$ 并把它的值计入得分（删完其余元素保持相对顺序），求最大得分
   - 数据范围：$t \le 10^4$，$\sum n \le 10^5$，$a_i \le 10^9$ → 得分开 `long long`
   - 确定每个长度的左右可选范围；因为选了一个范围会变化，分为"范围交叉"与"不交叉"讨论
-
 - [cf](https://codeforces.com/problemset/problem/1891/C)pbds库
 
   - 例如a1,a2,b2,b1,此时1与2会greeting一次，可以知道，对于2，只要有包括她的，说明ai<a2,会经过终点，必然会相遇，所以，对于每个求有多少包含她的。(已知速度相同)
   - 按照左端点排序，将右端点加入集合，每次在集合中找大于等于x数量，即为包含个数，也为greeting次数。
 
-  
+- [gcd相关](https://codeforces.com/problemset/problem/1776/L)
+  - 要让正负号数目相等，让ax+by=0;选择x与y，此时正负差值必须是x与y差值倍数，选多组x与y使得正负数目平衡。，注意组数要求正负是否满足。
 
 ## 滑动窗口
 
