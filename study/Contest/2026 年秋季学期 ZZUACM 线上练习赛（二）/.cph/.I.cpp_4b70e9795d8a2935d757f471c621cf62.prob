@@ -1,0 +1,1 @@
+{"name":"Local: I","url":"d:\\c\\code\\yy\\AcWaitd\\Contest\\2026 年秋季学期 ZZUACM 线上练习赛（二）\\I.cpp","tests":[{"id":1794127626107,"input":"3\n2 11\n1 2\n0 1073741823\n","output":"4\n0\n1073741824\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\c\\code\\yy\\AcWaitd\\Contest\\2026 年秋季学期 ZZUACM 线上练习赛（二）\\I.cpp","group":"local","local":true}

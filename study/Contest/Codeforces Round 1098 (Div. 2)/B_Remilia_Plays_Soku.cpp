@@ -1,0 +1,31 @@
+#include <iostream>
+#include <utility>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int>PII;
+int INF=0x3f3f3f3f;
+const int N = 1e6 + 10;
+int main() {
+
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  int t;cin>>t;
+  while (t--)
+  {
+    int n,a,b,k;cin>>n>>a>>b>>k;
+    ll ret=0;
+    if(n<=3)
+    {
+      cout<<1<<endl;
+      continue;
+    }
+    //距离
+    int d=min(abs(a-b),n-abs(a-b));
+    //k能增加k秒
+    ret+=k+d;
+    cout<<ret<<endl;
+  }
+  
+  return 0;
+}

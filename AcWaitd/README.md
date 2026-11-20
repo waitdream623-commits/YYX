@@ -18,7 +18,7 @@
 
 ## 笔记与命名
 
-- 题单和比赛复盘放在 [study/Problemset](../study/Problemset/)。
+- 训练题单从 [study 总入口](../study/README.md)进入；比赛复盘和单题记录仍放在 [study/Problemset](../study/Problemset/)。
 - 通用知识点放在 `study` 对应学科或算法笔记中。
 - 新建 CF 源码建议用 `CF_1537_C_Challenging_Cliffs.cpp`，保留题号便于搜索；历史文件名暂时保留。
 - 同一题的简短笔记、配图可以与源码放在一起，图片使用相对路径。
