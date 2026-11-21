@@ -24,6 +24,7 @@
 
 ## 知识笔记
 
+- [招新赛数学与图论速查](../AcWaitd/templates/招新赛数学与图论速查.md)：常用 C++ 板子，以及树直径、LCA 和点／边差分。
 - 算法：[总笔记 Craving](Craving.md) · [动态规划](动态规划.md) · [图论](图论.md)。
 - 课程：[离散数学](<Discrete mathematics.md>) · [线性代数](线性代数.md) · [汇编实验 GCC 与 GDB](<汇编实验 GCC编译与GDB调试.md>)。
 - [源码和模板](../AcWaitd/README.md)。

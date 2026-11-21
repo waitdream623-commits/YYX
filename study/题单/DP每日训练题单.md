@@ -12,8 +12,8 @@
 
 | 顺序 | 当天任务 | 结果/卡点 |
 | --- | --- | --- |
-| D1 | 独立尝试 [CF1525D · Armchairs · 1800](https://codeforces.com/problemset/problem/1525/D) | — |
-| D2 | 完成 1525D，说明正确性，尝试末尾对应的一个拓展问题 | — |
+| D1 | 独立尝试 [CF1525D · Armchairs · 1800](https://codeforces.com/problemset/problem/1525/D) | 贪心做了，每个位置找最近，此时后面可能要到更远。 |
+| D2 | 完成 1525D，说明正确性，尝试末尾对应的一个拓展问题 | 已复盘有序匹配和选空位 DP，完成平方距离的交换证明（辅助推导，暂未记录 AC）。[详细笔记](../Problemset/CF1525D%20Armchairs.md) |
 | D3 | 独立尝试 [CF1155D · Beautiful Array · 1900](https://codeforces.com/problemset/problem/1155/D) | — |
 | D4 | 完成 1155D，说明正确性，尝试一个拓展问题 | — |
 | D5 | 独立尝试 [CF607B · Zuma · 1900](https://codeforces.com/problemset/problem/607/B) | — |

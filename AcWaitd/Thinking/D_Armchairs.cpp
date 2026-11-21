@@ -65,6 +65,30 @@ void wait()
     }
     cout << ans<<'\n';
 }
+void wait1() {
+    int n;
+    cin >> n;
+
+    vector<int> people, seats;
+    for (int i = 1; i <= n; ++i) {
+        int occupied;
+        cin >> occupied;
+        if (occupied) people.push_back(i);
+        else seats.push_back(i);
+    }
+
+    int m = people.size();
+    vector<int> dp(m + 1, 1'000'000'000);
+    dp[0] = 0;
+
+    for (int seat : seats) {
+        for (int i = m; i >= 1; --i) {
+            dp[i] = min(dp[i], dp[i - 1] + abs(people[i - 1] - seat));
+        }
+    }
+
+    cout << dp[m] << '\n';
+}
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -72,7 +96,7 @@ int main() {
     int T = 1;
     // cin >> T;  // 多测时取消注释
     while (T--) {
-        wait();
+        wait1();
     }
     return 0;
 }
