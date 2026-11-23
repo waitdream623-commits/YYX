@@ -1,5 +1,86 @@
 # 元信息
 
+## 一些小想法记录
+
+1. 区间加减，差分数组
+2. 空间优化，滚动数组
+3. 存边权重：`vector<PII> edges[N];`
+4. `gcd(0,5)=5`（0 能被所有数整除，所以 `gcd(0,x)=x`）
+5. C++17 的结构化绑定（structured binding）
+6. `bitset`，进制转换，转换成 `string`，`string` 转换成 `int`，`stoi();`
+
+```cpp
+for (auto [a, b] : v)
+{
+    cout << a << " " << b;
+}
+pair<int, int> e = {3, 5};
+
+auto [a, b] = e;
+```
+
+- C++ 默认大根堆（顶部最大），小根堆要加 `greater`
+- 看一题：避免第一直觉就想方法，多列几个思路再评估每个思路的正确性（基本样例）与复杂度，避免栽坑
+- 二维压成一维（压缩数组技巧 → [最大矩形](https://leetcode.cn/problems/maximal-rectangle/description/) 单调栈）
+  - [最大子矩阵](https://leetcode.cn/problems/max-submatrix-lcci/description/) dp
+- 要排序、且要保留原先位置时，可以用
+
+```cpp
+vector<PII> v(n);                    // (值, 原下标)
+for (int i = 1; i <= n; i++) { cin >> v[i-1].first; v[i-1].second = i; }
+sort(v.begin(), v.end());            // 值与下标一次搞定
+
+// 原先数据复杂（一组不只一个值）时
+vector<pair<vector<int>, int>> q;
+for (int i = 0; i < queries.size(); i++) q.push_back({queries[i], i});
+
+// 也可以直接把下标 push 进去
+for (int i = 0; i < queries.size(); i++) queries[i].push_back(i);
+
+// map 映射：值 → 该值出现的所有下标
+unordered_map<int, vector<int>> positions;
+for (int i = 0; i < n; ++i) positions[value[i]].push_back(i);
+
+// 复制一份 + 排序去重 + 二分找排名（离散化）
+vector<int> xs = values;
+sort(xs.begin(), xs.end());
+xs.erase(unique(xs.begin(), xs.end()), xs.end());   // unique 返回去重后的新尾，erase 删掉多余部分
+int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+```
+
+> 注意：`vector` 不能用结构化绑定（元素个数不定）
+
+- 四方遍历写法
+
+  - `int a[] = {-1,0,1,0,-1};`dx = a[i], dy = a[i+1]
+
+- 封装数据类型维护更多信息
+
+  ```cpp
+  queue<array<int, 3>> q;//也可以改为struct
+  q.push({1, 2, 3});
+  
+  auto [x, y, steps] = q.front();
+  q.pop();
+  ```
+
+
+#### 记录
+
+- 相同余数，abs(a-b)%=0
+
+  [cf余数相同](https://codeforces.com/problemset/problem/1920/C)
+
+- 
+
+- Think in the reverse way
+
+  - 如果依照题意难以求解，何尝不反着思考一下，考虑每个位置贡献。
+  - [求解每个数作用范围](https://codeforces.com/problemset/problem/1416/A)
+
+
+
+
 ## 错误
 
 - 开 long long
@@ -181,77 +262,6 @@ void answer(bool ok)
 - 自测时按顺序提供评测器的回答。正式交互只往 `stdout` 写协议要求的内容。
 
 
-
-## 一些小想法记录
-
-1. 区间加减，差分数组
-2. 空间优化，滚动数组
-3. 存边权重：`vector<PII> edges[N];`
-4. `gcd(0,5)=5`（0 能被所有数整除，所以 `gcd(0,x)=x`）
-5. C++17 的结构化绑定（structured binding）
-6. `bitset`，进制转换，转换成 `string`，`string` 转换成 `int`，`stoi();`
-
-```cpp
-for (auto [a, b] : v)
-{
-    cout << a << " " << b;
-}
-pair<int, int> e = {3, 5};
-
-auto [a, b] = e;
-```
-
-- C++ 默认大根堆（顶部最大），小根堆要加 `greater`
-- 看一题：避免第一直觉就想方法，多列几个思路再评估每个思路的正确性（基本样例）与复杂度，避免栽坑
-- 二维压成一维（压缩数组技巧 → [最大矩形](https://leetcode.cn/problems/maximal-rectangle/description/) 单调栈）
-  - [最大子矩阵](https://leetcode.cn/problems/max-submatrix-lcci/description/) dp
-- 要排序、且要保留原先位置时，可以用
-
-```cpp
-vector<PII> v(n);                    // (值, 原下标)
-for (int i = 1; i <= n; i++) { cin >> v[i-1].first; v[i-1].second = i; }
-sort(v.begin(), v.end());            // 值与下标一次搞定
-
-// 原先数据复杂（一组不只一个值）时
-vector<pair<vector<int>, int>> q;
-for (int i = 0; i < queries.size(); i++) q.push_back({queries[i], i});
-
-// 也可以直接把下标 push 进去
-for (int i = 0; i < queries.size(); i++) queries[i].push_back(i);
-
-// map 映射：值 → 该值出现的所有下标
-unordered_map<int, vector<int>> positions;
-for (int i = 0; i < n; ++i) positions[value[i]].push_back(i);
-
-// 复制一份 + 排序去重 + 二分找排名（离散化）
-vector<int> xs = values;
-sort(xs.begin(), xs.end());
-xs.erase(unique(xs.begin(), xs.end()), xs.end());   // unique 返回去重后的新尾，erase 删掉多余部分
-int id = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
-```
-
-> 注意：`vector` 不能用结构化绑定（元素个数不定）
-
-- 四方遍历写法
-
-    - `int a[] = {-1,0,1,0,-1};`dx = a[i], dy = a[i+1]
-
--   封装数据类型维护更多信息
-
-    ```cpp
-    queue<array<int, 3>> q;//也可以改为struct
-    q.push({1, 2, 3});
-    
-    auto [x, y, steps] = q.front();
-    q.pop();
-    ```
-
-
-#### 记录
-
-- 相同余数，abs(a-b)%=0
-
-  [cf余数相同](https://codeforces.com/problemset/problem/1920/C)
 
 - 
 
@@ -494,7 +504,9 @@ while (l < r) {
 
 
 
-
+- [格子中最短路](https://codeforces.com/problemset/problem/1486/B)
+  - $\sum_{i=1}^{n}|x_i-x|+|y_i-y|=\sum_{i=1}^{n}|x_i-x|+\sum_{i=1}^{n}|y_i-y|$
+  - 此时考虑每一维的最短位置个数，相乘即是最终个数
 
 ## 贪心
 
