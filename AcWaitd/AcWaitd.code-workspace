@@ -1,6 +1,14 @@
 {
 	"folders": [
         {
+            "name": "Codeforces Round 1138 (Div. 3)",
+            "path": "Contest/Codeforces Round 1138 (Div. 3)"
+        },
+        {
+            "name": "牛客练习赛160",
+            "path": "Contest/牛客练习赛160"
+        },
+        {
             "name": "Thinking",
             "path": "Thinking"
         },

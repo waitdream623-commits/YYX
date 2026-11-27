@@ -557,6 +557,10 @@ while (l < r) {
 
 ### 题目
 
+- [牛客 143482 B · 容器分配](https://ac.nowcoder.com/acm/contest/143482/B)
+  - 最少容器数为 `k = max(最高种类频次, (n+m-1)/m)`。前者来自同类必须分开，后者来自每箱最多装 `m` 件。
+  - 按种类把物品下标分组，每组连续分配，容器编号始终按 `1, 2, ..., k, 1, ...` 循环。每组至多有 `k` 件，所以组内编号各不相同。全程只用一个编号变量，每箱至多得到 $\lceil n/k\rceil\le m$ 件。
+  - 新种类要接着上次的编号分配。若每组都从 1 开始，前几个箱子可能超容量。
 - [CF2107C Maximum Subarray Sum](https://codeforces.com/problemset/problem/2107/C) ｜ [简短复盘](<Problemset/Codeforces Round 1023 (Div. 2).md>)
   - 其他未知位置填极小负数隔断，选一个未知位置令 `a[p] = k - 左侧最大后缀和 - 右侧最大前缀和`；两侧均允许不取。
 - 贪心 → [CF 2268A K Is Important](https://codeforces.com/problemset/problem/2268/A)（Div.1 A，\*1200，constructive + greedy）
